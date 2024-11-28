@@ -33,25 +33,19 @@ void SpecialKeyboard(int key, int x, int y);
 #define render_freq 10
 #define M_PI 3.14159265358979323846
 
+glm::vec3 ship_pos{};
+
 Renderer* render;
 ObjectMgr* mgr;
 Importer_obj* importer;
 Camera* camera;
 Light* light;
 
-bool DepthTest = true;
-bool KeyB = false;
-bool KeyM = false;
-bool KeyF = false;
-bool KeyE = false;
-bool KeyT = false;
-bool KeyZ = false;
-bool KeyX = false;
-bool KeyY = false;
-bool KeyR = false;
-bool KeyA = false;
-bool KeyS = false;
-bool isOne = false;
+static float currentAngle = -1.0f;   // 현재 각도
+static bool increasing = true;      // 각도 증가 방향
+float minAngle = -1.0f;            // 최소 각도 (시작 지점)
+float maxAngle = 1.0f;             // 최대 각도 (끝 지점)
+float angleStep = 0.01f;             // 한 프레임당 각도 변화량 (속도)
 
 bool LightOn = true;
 
@@ -84,21 +78,33 @@ void main(int argc, char** argv)
 	mgr = new ObjectMgr(importer);
 	render = new Renderer(mgr);
 	camera = new Camera;
-	light = new Light({ 0.0, 0.0, 0.0 });
+	light = new Light({ 0.0, 40.0, 100.0 });
 	//camera->ortho = true;
 	camera->perspect = true;
-	camera->SetLocation({ 0.0, 0.0, 100.0 });
+	camera->SetLocation({ 0.0, 50.0, 100.0 });
 	camera->SetLookLocation({ 0.0, 0.0, 0.0 });
 	render->SetCamera(camera);
 	render->SetLight(light);
 
-	mgr->AddObject(wheel_body, glm::vec3({ 0.0, -30.0, 0.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(wheel_body, glm::vec3({ 0.0, -30.0, -50.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
 
-	mgr->AddObject(wheel_car, glm::vec3({ 0.0, 0.0, 0.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(wheel_car, glm::vec3({ 0.0, 0.0, -50.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
 
+	mgr->AddObject(viking_body, glm::vec3({ -30.0, -50.0, -10.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
+		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
 
+	mgr->AddObject(viking_ship, glm::vec3({ -30.0, -50.0, -10.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
+		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
+
+	mgr->AddObject(merry_go_round_body, glm::vec3({ 30.0, -50.0, -10.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
+		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3((1.0, 1.0, 1.0)));
+
+	mgr->AddObject(merry_go_round_horse, glm::vec3({ 30.0, -50.0, -10.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
+		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
+
+	ship_pos = glm::vec3({ -30.0, -20.0, -10.0 });
 
 	glutDisplayFunc(drawScene);		// 출력 콜백 함수
 	glutMouseFunc(Mouse);
@@ -116,7 +122,7 @@ GLvoid drawScene()
 {
 	glClearColor(0.678f, 0.847f, 0.902f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	if (DepthTest) { glEnable(GL_DEPTH_TEST); }
+	glEnable(GL_DEPTH_TEST);
 	render->SceneRender();
 
 	glutSwapBuffers();	// 화면에 출력하기
@@ -141,12 +147,44 @@ void SpecialKeyboard(int key, int x, int y) {
 
 void TimerFunction(int value)
 {
+	// 회전 각도 업데이트
+
 	for (auto& v : mgr->GetAllObjs()) {
 		if (v->GetType() == wheel_car) {
 			glm::mat4 orbit = glm::mat4(1.0f);
-			orbit = glm::translate(orbit, glm::vec3(0.0, 0.0, 0.0));
+			orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
 			orbit = glm::rotate(orbit, glm::radians(1.0f), glm::vec3(0.0, 0.0, 1.0));
-			orbit = glm::translate(orbit, glm::vec3(0.0, 0.0, 0.0));
+			orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
+			v->modelMatrix = orbit * v->modelMatrix;
+		}
+
+		else if (v->GetType() == merry_go_round_horse) {
+			glm::mat4 orbit = glm::mat4(1.0f);
+			orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
+			orbit = glm::rotate(orbit, glm::radians(1.0f), glm::vec3(0.0, 1.0, 0.0));
+			orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
+			v->modelMatrix = orbit * v->modelMatrix;
+		}
+
+		if (v->GetType() == viking_ship) {
+			// 회전 각도 업데이트
+			if (increasing) {
+				currentAngle += angleStep;
+				if (currentAngle >= maxAngle) {
+					increasing = false; // 최대 각도에 도달하면 방향 전환
+				}
+			}
+			else {
+				currentAngle -= angleStep;
+				if (currentAngle <= minAngle) {
+					increasing = true;  // 최소 각도에 도달하면 방향 전환
+				}
+			}
+
+			glm::mat4 orbit = glm::mat4(1.0f);
+			orbit = glm::translate(orbit, glm::vec3(ship_pos));
+			orbit = glm::rotate(orbit, glm::radians(currentAngle), glm::vec3(0.0, 0.0, 1.0));
+			orbit = glm::translate(orbit, glm::vec3(-ship_pos));
 			v->modelMatrix = orbit * v->modelMatrix;
 		}
 	}

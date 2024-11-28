@@ -26,8 +26,11 @@ Object::Object(int _type, glm::vec3 loc, glm::vec3 rot, glm::vec3 _size, glm::ve
 
 	std::cout << "new obj " << type << '\n';
 
-	if (type == rollercoaster) {
-
+	if (type == viking_body) {
+		SetMesh("viking_body.obj");
+	}
+	else if (type == viking_ship) {
+		SetMesh("viking_ship.obj");
 	}
 	else if (type == wheel_car) {
 		SetMesh("wheel_car.obj");
@@ -35,11 +38,11 @@ Object::Object(int _type, glm::vec3 loc, glm::vec3 rot, glm::vec3 _size, glm::ve
 	else if (type == wheel_body) {
 		SetMesh("wheel_body.obj");
 	}	
-	else if (type == droptower) {
-
+	else if (type == merry_go_round_body) {
+		SetMesh("merry_go_round_body.obj");
 	}
-	else if (type == box) {
-
+	else if (type == merry_go_round_horse) {
+		SetMesh("merry_go_round_horse.obj");
 	}
 
 }
