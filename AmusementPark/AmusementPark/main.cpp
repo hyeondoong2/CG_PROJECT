@@ -78,33 +78,36 @@ void main(int argc, char** argv)
 	mgr = new ObjectMgr(importer);
 	render = new Renderer(mgr);
 	camera = new Camera;
-	light = new Light({ 0.0, 40.0, 100.0 });
-	//camera->ortho = true;
-	camera->perspect = true;
-	camera->SetLocation({ 0.0, 50.0, 100.0 });
+	light = new Light({ 200.0, 200.0, 200.0 });
+	camera->ortho = true;
+	//camera->perspect = true;
+	camera->SetLocation({ 0.0, 90.0, 100.0 });
 	camera->SetLookLocation({ 0.0, 0.0, 0.0 });
 	render->SetCamera(camera);
 	render->SetLight(light);
+
+	mgr->AddObject(base, glm::vec3({ 0.0, -40.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 30.0, 1.0, 30.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
 
 	mgr->AddObject(wheel_body, glm::vec3({ 0.0, -30.0, -50.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
 
 	mgr->AddObject(wheel_car, glm::vec3({ 0.0, 0.0, -50.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
+		glm::vec3({ 0.8, 0.8, 0.8 }), glm::vec3({ 1.0, 1.0, 1.0 }));
 
-	mgr->AddObject(viking_body, glm::vec3({ -30.0, -50.0, -10.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
+	mgr->AddObject(viking_body, glm::vec3({ -30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
 		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
 
-	mgr->AddObject(viking_ship, glm::vec3({ -30.0, -50.0, -10.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
+	mgr->AddObject(viking_ship, glm::vec3({ -30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
 		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
 
-	mgr->AddObject(merry_go_round_body, glm::vec3({ 30.0, -50.0, -10.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
+	mgr->AddObject(merry_go_round_body, glm::vec3({ 30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
 		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3((1.0, 1.0, 1.0)));
 
-	mgr->AddObject(merry_go_round_horse, glm::vec3({ 30.0, -50.0, -10.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
+	mgr->AddObject(merry_go_round_horse, glm::vec3({ 30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
 		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
 
-	ship_pos = glm::vec3({ -30.0, -20.0, -10.0 });
+	ship_pos = glm::vec3({ -30.0, 0.0, -10.0 });
 
 	glutDisplayFunc(drawScene);		// 출력 콜백 함수
 	glutMouseFunc(Mouse);
@@ -122,7 +125,8 @@ GLvoid drawScene()
 {
 	glClearColor(0.678f, 0.847f, 0.902f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST);  // 깊이 테스트 활성화
+	glClear(GL_DEPTH_BUFFER_BIT);  // 깊이 버퍼 초기화
 	render->SceneRender();
 
 	glutSwapBuffers();	// 화면에 출력하기

@@ -19,7 +19,6 @@ uniform sampler2D u_Emissive;
 
 void main(void) 
 {
-    //vec3 texColor = texture(texture1, TexCoords).rgb;
 
     // 1. Ambient (ȯ�汤)
     float ambientStrength = 0.1;

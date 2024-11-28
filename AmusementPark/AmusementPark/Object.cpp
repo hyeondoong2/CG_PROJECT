@@ -44,6 +44,9 @@ Object::Object(int _type, glm::vec3 loc, glm::vec3 rot, glm::vec3 _size, glm::ve
 	else if (type == merry_go_round_horse) {
 		SetMesh("merry_go_round_horse.obj");
 	}
+	else if (type == base) {
+		SetMesh("Base.obj");
+	}
 
 }
 

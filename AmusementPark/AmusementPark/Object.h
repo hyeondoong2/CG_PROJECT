@@ -3,7 +3,7 @@
 #include "Importer.h"
 
 enum Shape {
-	wheel_body, wheel_car, viking_body, viking_ship, merry_go_round_body, merry_go_round_horse
+	wheel_body, wheel_car, viking_body, viking_ship, merry_go_round_body, merry_go_round_horse, base
 };
 
 

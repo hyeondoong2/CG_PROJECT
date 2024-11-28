@@ -21,7 +21,10 @@ void Importer_obj::Initialize()
 	ReadObj("objs/merry_go_round_body.obj");
 	ReadObj("objs/merry_go_round_horse.obj");
 
-	//LoadMTL("mtls/3d-model.mtl");
+	ReadObj("objs/Base.obj");
+
+
+
 }
 
 void Importer_obj::CalculateTangentBitangent(const glm::vec3& pos1, const glm::vec3& pos2, const glm::vec3& pos3, const glm::vec2& uv1, const glm::vec2& uv2, const glm::vec2& uv3, glm::vec3& tangent, glm::vec3& bitangent)
@@ -338,70 +341,6 @@ VertexData* Importer_obj::FindMesh(std::string filename)
 	return nullptr;
 }
 
-//void Importer_obj::setupMesh(VertexData* VD)
-//{
-//	glGenVertexArrays(1, &VD->VAO);
-//	glGenBuffers(1, &VD->VBO);
-//	glGenBuffers(1, &VD->normalVBO);
-//	glGenBuffers(1, &VD->colorVBO);
-//
-//	glBindVertexArray(VD->VAO);
-//
-//	std::vector<glm::vec3> re_vertexs;
-//	std::vector<glm::vec3> re_normals;
-//	std::vector<glm::vec3> re_colors;
-//
-//	for (size_t i = 0; i < VD->faceIndices.size(); ++i) {
-//		// 각 삼각형의 정점 좌표와 텍스처 좌표 가져오기
-//		glm::vec3 pos1 = VD->vertexs[VD->faceIndices[i].x - 1];
-//		glm::vec3 pos2 = VD->vertexs[VD->faceIndices[i].y - 1];
-//		glm::vec3 pos3 = VD->vertexs[VD->faceIndices[i].z - 1];
-//
-//		glm::vec3 normal1 = VD->normals[VD->normalIndices[i].x - 1];
-//		glm::vec3 normal2 = VD->normals[VD->normalIndices[i].y - 1];
-//		glm::vec3 normal3 = VD->normals[VD->normalIndices[i].z - 1];
-//
-//		//glm::vec3 color1{ color(dre), color(dre), color(dre) };
-//		//glm::vec3 color2{ color(dre), color(dre), color(dre) };
-//		//glm::vec3 color3{ color(dre), color(dre), color(dre) };
-//
-//		re_vertexs.push_back(pos1);
-//		re_vertexs.push_back(pos2);
-//		re_vertexs.push_back(pos3);
-//
-//		re_normals.push_back(normal1);
-//		re_normals.push_back(normal2);
-//		re_normals.push_back(normal3);
-//
-//		//re_colors.push_back(color1);
-//		//re_colors.push_back(color2);
-//		//re_colors.push_back(color3);
-//	}
-//
-//	// VBO에 버텍스 데이터 바인딩
-//	glBindBuffer(GL_ARRAY_BUFFER, VD->VBO);
-//	glBufferData(GL_ARRAY_BUFFER, re_vertexs.size() * sizeof(glm::vec3), &re_vertexs[0], GL_STATIC_DRAW);
-//	glEnableVertexAttribArray(0);
-//	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (void*)0);
-//
-//	// VBO에 컬러 데이터 바인딩
-//	glBindBuffer(GL_ARRAY_BUFFER, VD->colorVBO);
-//	glBufferData(GL_ARRAY_BUFFER, re_colors.size() * sizeof(glm::vec3), &re_colors[0], GL_STATIC_DRAW);
-//	glEnableVertexAttribArray(1);
-//	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (void*)0);
-//
-//	// VBO에 노멀 데이터 바인딩
-//	glBindBuffer(GL_ARRAY_BUFFER, VD->normalVBO);
-//	glBufferData(GL_ARRAY_BUFFER, re_normals.size() * sizeof(glm::vec3), &re_normals[0], GL_STATIC_DRAW);
-//	glEnableVertexAttribArray(2);
-//	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (void*)0);
-//
-//
-//	glBindVertexArray(0);
-//}
-
-
-//
 void Importer_obj::setupMesh(VertexData* VD) {
 	glGenVertexArrays(1, &VD->VAO);
 	glGenBuffers(1, &VD->VBO);
@@ -413,8 +352,6 @@ void Importer_obj::setupMesh(VertexData* VD) {
 	std::vector<glm::vec3> re_vertexs;
 	std::vector<glm::vec2> re_texcoords;
 	std::vector<glm::vec3> re_normals;
-	std::vector<glm::vec3> tangents;
-	std::vector<glm::vec3> bitangents;
 
 	for (size_t i = 0; i < VD->faceIndices.size(); ++i) {
 		// 각 삼각형의 정점 좌표와 텍스처 좌표 가져오기
