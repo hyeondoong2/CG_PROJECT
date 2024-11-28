@@ -1,62 +1,10 @@
-﻿  Camera.cpp
-  Importer.cpp
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\Importer.cpp(351,53): warning C4244: '인수': 'T'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-          with
-          [
-              T=float
-          ]
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\Importer.cpp(352,53): warning C4244: '인수': 'T'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-          with
-          [
-              T=float
-          ]
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\Importer.cpp(353,53): warning C4244: '인수': 'T'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-          with
-          [
-              T=float
-          ]
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\Importer.cpp(355,58): warning C4244: '인수': 'T'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-          with
-          [
-              T=float
-          ]
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\Importer.cpp(356,58): warning C4244: '인수': 'T'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-          with
-          [
-              T=float
-          ]
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\Importer.cpp(357,58): warning C4244: '인수': 'T'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-          with
-          [
-              T=float
-          ]
-  Light.cpp
-  LoadPng.cpp
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\LoadPng.cpp(801,10): warning C4334: '<<': 32비트 시프트의 결과가 암시적으로 64비트로 변환됩니다. 64비트 시프트를 사용하시겠습니까?
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\LoadPng.cpp(1463,24): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\LoadPng.cpp(1467,26): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\LoadPng.cpp(1539,29): warning C4267: '=': 'size_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\LoadPng.cpp(3484,23): warning C4334: '<<': 32비트 시프트의 결과가 암시적으로 64비트로 변환됩니다. 64비트 시프트를 사용하시겠습니까?
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\LoadPng.cpp(3498,50): warning C4267: '인수': 'size_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\LoadPng.cpp(4339,24): warning C4267: '=': 'size_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\LoadPng.cpp(4387,24): warning C4267: '=': 'size_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\LoadPng.cpp(4467,24): warning C4267: '=': 'size_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\LoadPng.cpp(5410,23): warning C4267: '초기화 중': 'size_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\LoadPng.cpp(6297,22): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-  main.cpp
+﻿  main.cpp
 C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\main.cpp(59,32): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\main.cpp(63,13): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\main.cpp(68,1): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
-  Object.cpp
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\Object.cpp(6,51): warning C4305: '인수': 'double'에서 '_Ty'(으)로 잘립니다.
-          with
-          [
-              _Ty=float
-          ]
-  ObjectMgr.cpp
-  Renderer.cpp
   코드를 생성하고 있습니다.
-  Previous IPDB not found, fall back to full compilation.
-  All 581 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  1 of 579 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   AmusementPark.vcxproj -> C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\x64\Release\AmusementPark.exe
