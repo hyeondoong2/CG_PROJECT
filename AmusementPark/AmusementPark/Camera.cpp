@@ -54,7 +54,7 @@ void Camera::DoWorking(GLuint shader)
 		float fovy = glm::radians(45.0f); // 45도 시야각
 		float aspect = 1000.0f / 1000.0f;   // 화면 비율
 		float _near = 0.1f;                // 가까운 클리핑 평면
-		float _far = 100.0f;               // 먼 클리핑 평면
+		float _far = 200.0f;               // 먼 클리핑 평면
 
 		glm::mat4 projection = glm::perspective(fovy, aspect, _near, _far);
 		glUniformMatrix4fv(glGetUniformLocation(shader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));

@@ -87,16 +87,18 @@ void main(int argc, char** argv)
 	light = new Light({ 0.0, 0.0, 0.0 });
 	//camera->ortho = true;
 	camera->perspect = true;
-	camera->SetLocation({ 30.0, 30.0, 30.0 });
+	camera->SetLocation({ 0.0, 0.0, 100.0 });
 	camera->SetLookLocation({ 0.0, 0.0, 0.0 });
 	render->SetCamera(camera);
 	render->SetLight(light);
 
-	//mgr->AddObject(rollercoaster, glm::vec3({ 0.0, 0.0, 0.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-	//	glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
+	mgr->AddObject(wheel_body, glm::vec3({ 0.0, -30.0, 0.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
 
-	mgr->AddObject(wheel, glm::vec3({ 0.0, 0.0, 0.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({1.0, 1.0, 1.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
+	mgr->AddObject(wheel_car, glm::vec3({ 0.0, 0.0, 0.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
+
+
 
 	glutDisplayFunc(drawScene);		// 출력 콜백 함수
 	glutMouseFunc(Mouse);
@@ -140,11 +142,13 @@ void SpecialKeyboard(int key, int x, int y) {
 void TimerFunction(int value)
 {
 	for (auto& v : mgr->GetAllObjs()) {
-		//glm::mat4 orbit = glm::mat4(1.0f);
-		//orbit = glm::translate(orbit, glm::vec3(0.0, 0.0, 0.0));
-		//orbit = glm::rotate(orbit, glm::radians(1.0f), glm::vec3(0.0, 1.0, 0.0));
-		//orbit = glm::translate(orbit, glm::vec3(0.0, 0.0, 0.0));
-		//v->modelMatrix = orbit * v->modelMatrix;
+		if (v->GetType() == wheel_car) {
+			glm::mat4 orbit = glm::mat4(1.0f);
+			orbit = glm::translate(orbit, glm::vec3(0.0, 0.0, 0.0));
+			orbit = glm::rotate(orbit, glm::radians(1.0f), glm::vec3(0.0, 0.0, 1.0));
+			orbit = glm::translate(orbit, glm::vec3(0.0, 0.0, 0.0));
+			v->modelMatrix = orbit * v->modelMatrix;
+		}
 	}
 
 	glutPostRedisplay();

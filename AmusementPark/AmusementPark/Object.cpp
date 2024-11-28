@@ -27,17 +27,19 @@ Object::Object(int _type, glm::vec3 loc, glm::vec3 rot, glm::vec3 _size, glm::ve
 	std::cout << "new obj " << type << '\n';
 
 	if (type == rollercoaster) {
-		SetMesh("3d-model.obj");
-		SetMaterial("3d-model.mtl");
+
 	}
-	else if (type == wheel) {
-		SetMesh("Ferris_Wheel_01.obj");
+	else if (type == wheel_car) {
+		SetMesh("wheel_car.obj");
+	}
+	else if (type == wheel_body) {
+		SetMesh("wheel_body.obj");
 	}	
 	else if (type == droptower) {
-		SetMesh("DropTower.obj");
+
 	}
 	else if (type == box) {
-		SetMesh("GravityBox.obj");
+
 	}
 
 }

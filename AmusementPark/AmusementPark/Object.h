@@ -3,7 +3,7 @@
 #include "Importer.h"
 
 enum Shape {
-	cube, rollercoaster, wheel, droptower, box
+	cube, rollercoaster, wheel_body, wheel_car, droptower, box
 };
 
 
