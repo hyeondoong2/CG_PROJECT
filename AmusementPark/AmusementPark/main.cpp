@@ -96,7 +96,7 @@ void main(int argc, char** argv)
 	//	glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
 
 	mgr->AddObject(wheel, glm::vec3({ 0.0, 0.0, 0.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
+		glm::vec3({ 0.1, 0.1, 0.1 }), glm::vec3({ 1.0, 1.0, 1.0 }));
 
 	glutDisplayFunc(drawScene);		// 출력 콜백 함수
 	glutMouseFunc(Mouse);
@@ -112,7 +112,7 @@ void main(int argc, char** argv)
 
 GLvoid drawScene()
 {
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClearColor(0.678f, 0.847f, 0.902f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	if (DepthTest) { glEnable(GL_DEPTH_TEST); }
 	render->SceneRender();
