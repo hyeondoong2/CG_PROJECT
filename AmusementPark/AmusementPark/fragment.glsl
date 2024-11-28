@@ -21,7 +21,7 @@ void main(void)
 {
 
     // 1. Ambient (환경광)
-    float ambientStrength = 0.1;
+    float ambientStrength = 0.2;
     vec3 ambient = ambientStrength * lightColor;
 
     // 2. Diffuse (난반사)
@@ -30,7 +30,6 @@ void main(void)
     float diffuseStrength = max(dot(normalVector, lightDir), 0.0);
     vec3 diffuse = diffuseStrength * lightColor;
 
-
     // 3. Specular (반사광)
     float specularStrength = 0.5;                // 반사광 강도
     int shininess = 130;                         // 반짝임의 정도
@@ -38,9 +37,14 @@ void main(void)
     vec3 reflectDir = reflect(-lightDir, normalVector); // 반사 벡터
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), shininess);
 
-    vec3 specular = specularStrength * spec * out_Color;
+    vec3 specular = specularStrength * spec * lightColor;
 
     // 최종 조명 색상 계산
     vec3 result = (ambient + diffuse + specular) * out_Color;
-    FragColor = vec4(result, 1.0);
+
+    // 감마 보정 적용
+    float gamma = 2.2;
+    vec3 gammaCorrected = pow(result, vec3(1.0 / gamma)); // 감마 보정
+
+    FragColor = vec4(gammaCorrected, 1.0);
 }

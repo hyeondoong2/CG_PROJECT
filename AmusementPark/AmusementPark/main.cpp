@@ -78,7 +78,7 @@ void main(int argc, char** argv)
 	mgr = new ObjectMgr(importer);
 	render = new Renderer(mgr);
 	camera = new Camera;
-	light = new Light({ 200.0, 200.0, 200.0 });
+	light = new Light({ 100.0, 100.0, 100.0 });
 	//camera->ortho = true;
 	camera->perspect = true;
 	camera->SetLocation({ 0.0, 120.0, 150.0 });
@@ -87,25 +87,25 @@ void main(int argc, char** argv)
 	render->SetLight(light);
 
 	mgr->AddObject(base, glm::vec3({ 0.0, -40.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 30.0, 1.0, 30.0 }), glm::vec3({ 0.4, 1.0, 0.0 }));
+		glm::vec3({ 40.0, 1.0, 40.0 }), glm::vec3({ 0.565f, 0.933f, 0.565f }));
 
 	mgr->AddObject(wheel_body, glm::vec3({ 0.0, -40.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
+		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0f, 0.713f, 0.756f }));
 
 	mgr->AddObject(wheel_car, glm::vec3({ 0.0, -10.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 0.8, 0.8, 0.8 }), glm::vec3({ 1.0, 1.0, 1.0 }));
+		glm::vec3({ 0.8, 0.8, 0.8 }), glm::vec3({ 0.678f, 0.902f, 1.0f }));
 
 	mgr->AddObject(viking_body, glm::vec3({ -30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
-		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
+		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 1.0f, 1.0f, 0.8f }));
 
 	mgr->AddObject(viking_ship, glm::vec3({ -30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
-		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
+		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 1.0, 0.39, 0.28 }));
 
 	mgr->AddObject(merry_go_round_body, glm::vec3({ 30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
-		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3((1.0, 1.0, 1.0)));
+		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3((0.678f, 0.902f, 1.0f)));
 
 	mgr->AddObject(merry_go_round_horse, glm::vec3({ 30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
-		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
+		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 0.678f, 0.902f, 1.0f }));
 
 	ship_pos = glm::vec3({ -30.0, 0.0, -10.0 });
 

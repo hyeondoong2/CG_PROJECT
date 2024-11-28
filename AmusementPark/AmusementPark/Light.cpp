@@ -5,7 +5,7 @@ Light::Light(glm::vec3 xyz)
 	type = "none";
 	location = xyz;
 	rotation = glm::vec3{ 0 };
-	color = glm::vec3{ 1.0f, 1.0f, 1.0f };
+	color = glm::vec3{ 1.0, 1.0, 1.0 };
 	distance = 200.f;
 
 	modelMatrix = glm::translate(modelMatrix, location);
