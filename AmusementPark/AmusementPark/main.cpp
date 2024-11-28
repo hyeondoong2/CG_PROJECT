@@ -79,20 +79,20 @@ void main(int argc, char** argv)
 	render = new Renderer(mgr);
 	camera = new Camera;
 	light = new Light({ 200.0, 200.0, 200.0 });
-	camera->ortho = true;
-	//camera->perspect = true;
-	camera->SetLocation({ 0.0, 90.0, 100.0 });
+	//camera->ortho = true;
+	camera->perspect = true;
+	camera->SetLocation({ 0.0, 120.0, 150.0 });
 	camera->SetLookLocation({ 0.0, 0.0, 0.0 });
 	render->SetCamera(camera);
 	render->SetLight(light);
 
 	mgr->AddObject(base, glm::vec3({ 0.0, -40.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 30.0, 1.0, 30.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
+		glm::vec3({ 30.0, 1.0, 30.0 }), glm::vec3({ 0.4, 1.0, 0.0 }));
 
-	mgr->AddObject(wheel_body, glm::vec3({ 0.0, -30.0, -50.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(wheel_body, glm::vec3({ 0.0, -40.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0, 1.0, 1.0 }));
 
-	mgr->AddObject(wheel_car, glm::vec3({ 0.0, 0.0, -50.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(wheel_car, glm::vec3({ 0.0, -10.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 0.8, 0.8, 0.8 }), glm::vec3({ 1.0, 1.0, 1.0 }));
 
 	mgr->AddObject(viking_body, glm::vec3({ -30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
