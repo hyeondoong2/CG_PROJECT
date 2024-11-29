@@ -92,7 +92,7 @@ void main(int argc, char** argv)
 	camera->perspect = true;
 
 	// 카메라 위치 설정
-	camera->SetLocation({ 0.0, 100.0, 150.0 });
+	camera->SetLocation({ 0.0, -30.0, 120.0 });
 	camera->SetLookLocation({ 0.0, 0.0, 0.0 });
 
 	render->SetCamera(camera);
@@ -209,25 +209,29 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	case 'w':
 	case 'W':
 	{
-		camera->ChangeLocation({0.0, 0.0, -0.5});
+		camera->ChangeLocation({0.0, 0.0, -1.0});
+		camera->ChangeLookLocation({0.0, 0.0, -1.0});
 	}
 	break;
 	case 's':
 	case 'S':
 	{
-		camera->ChangeLocation({ 0.0, 0.0, 0.5 });
+		camera->ChangeLocation({ 0.0, 0.0,1.0 });
+		camera->ChangeLookLocation({ 0.0, 0.0,1.0 });
 	}
 	break;
 	case 'a':
 	case 'A':
 	{
-		camera->ChangeLocation({ -0.5, 0.0, 0.0 });
+		camera->ChangeLocation({ -1.0, 0.0, 0.0 });
+		camera->ChangeLookLocation({ -1.0, 0.0, 0.0 });
 	}
 	break;
 	case 'd':
 	case 'D':
 	{
-		camera->ChangeLocation({ 0.5, 0.0, 0.0 });
+		camera->ChangeLocation({ 1.0, 0.0, 0.0 });
+		camera->ChangeLookLocation({ 1.0, 0.0, 0.0 });
 	}
 	break;
 	}
