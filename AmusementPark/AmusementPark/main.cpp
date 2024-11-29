@@ -88,11 +88,11 @@ void main(int argc, char** argv)
 	camera = new Camera;
 	light = new Light({ 100.0, 100.0, 100.0 });
 
-	camera->ortho = true;
-	//camera->perspect = true;
+	//camera->ortho = true;
+	camera->perspect = true;
 
 	// 카메라 위치 설정
-	camera->SetLocation({ 0.0, 0.0, 170.0 });
+	camera->SetLocation({ 0.0, 100.0, 150.0 });
 	camera->SetLookLocation({ 0.0, 0.0, 0.0 });
 
 	render->SetCamera(camera);
@@ -103,9 +103,9 @@ void main(int argc, char** argv)
 		glm::vec3({ 40.0, 1.0, 40.0 }), glm::vec3({ 0.6f, 0.933f, 0.565f }));
 
 	// 관람차
-	mgr->AddObject(wheel_body, glm::vec3({ 0.0, -40.0, -60.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(wheel_body, glm::vec3({ 0.0, -40.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0f, 0.713f, 0.756f }));
-	mgr->AddObject(wheel_car, glm::vec3({ 0.0, -8.0, -60.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(wheel_car, glm::vec3({ 0.0, -8.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 0.8, 0.8, 0.8 }), glm::vec3({ 0.678f, 0.902f, 1.0f }));
 
 	// 바이킹
@@ -130,13 +130,13 @@ void main(int argc, char** argv)
 	// 롤코
 	mgr->AddObject(roller_coaster_rail, glm::vec3({ 0.0, -40.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 0.0005, 0.0005, 0.0005 }), glm::vec3({ 1.0f, 1.0f, 1.0f }));
-	mgr->AddObject(roller_coaster_head, glm::vec3({ -5.0, -35.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(roller_coaster_head, glm::vec3({ -5.0, -36.0, -115.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 0.0005,  0.0005, 0.0005 }), glm::vec3({ 0.678f, 0.902f, 1.0f }));
-	mgr->AddObject(roller_coaster_body, glm::vec3({ 0.0, -35.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(roller_coaster_body, glm::vec3({ 0.0, -36.0, -115.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 0.0005,  0.0005, 0.0005 }), glm::vec3({ 1.0f, 0.95f, 0.8f }));
-	mgr->AddObject(roller_coaster_body, glm::vec3({ 5.0, -35.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(roller_coaster_body, glm::vec3({ 5.0, -36.0, -115.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 0.0005,  0.0005, 0.0005 }), glm::vec3({ 1.0f, 0.713f, 0.756f }));
-	mgr->AddObject(roller_coaster_body, glm::vec3({ 10.0, -35.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(roller_coaster_body, glm::vec3({ 10.0, -36.0, -115.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 0.0005,  0.0005, 0.0005 }), glm::vec3({ 0.88f, 0.74f, 0.91f }));
 
 	ship_pos = glm::vec3({ -50.0, -10.0, -10.0 }); // 바이킹 회전축
