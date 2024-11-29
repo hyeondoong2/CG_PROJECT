@@ -12,13 +12,8 @@ struct Material {
 	std::string filename;
 
 	glm::vec3 BaseColor;         // Diffuse 색상 (Kd)
-	glm::vec3 Normal;            // Ambient 색상 (Ka)
+	glm::vec3 AmbientColor;      // Ambient 색상 (Ka)
 	glm::vec3 Emissive;          // Specular 색상 (Ks)
-	std::string texturePath;     // Diffuse 텍스처 경로 (map_Kd)
-
-	GLuint BaseColorID;         // Diffuse 텍스처 ID
-	GLuint NormalMapID;         // Normal 맵 텍스처 ID
-	GLuint EmissiveID;          // Emissive 텍스처 ID
 };
 
 struct VertexData {
@@ -61,8 +56,10 @@ class Importer_obj
 
 public:
 	static GLuint LoadTexture(const std::string filePath);
+
 	void LoadMTL(const std::string filePath);
-	Material* SetMaterial(std::string filename);
+	Material* FindMaterial(std::string filename);
+
 	void ReadObj(const std::string filePath);
 	VertexData* FindMesh(std::string filename);
 	void setupMesh(VertexData* VD);

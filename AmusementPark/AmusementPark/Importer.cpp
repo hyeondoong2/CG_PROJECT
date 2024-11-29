@@ -13,16 +13,27 @@ Importer_obj::~Importer_obj()
 void Importer_obj::Initialize()
 {
 	ReadObj("objs/wheel_body.obj");
+	LoadMTL("objs/wheel_body.mtl");
+
 	ReadObj("objs/wheel_car.obj");
+	LoadMTL("objs/wheel_car.mtl");
 
 	ReadObj("objs/viking_ship.obj");
+	LoadMTL("objs/viking_ship.mtl");
+
 	ReadObj("objs/viking_body.obj");
+	LoadMTL("objs/viking_body.mtl");
 
 	ReadObj("objs/merry_go_round_body.obj");
+	LoadMTL("objs/merry_go_round_body.mtl");
+
 	ReadObj("objs/merry_go_round_horse.obj");
+	LoadMTL("objs/merry_go_round_horse.mtl");
+
+	ReadObj("objs/chair.obj");
+	LoadMTL("objs/chair.mtl");
 
 	ReadObj("objs/Base.obj");
-
 
 
 }
@@ -98,7 +109,7 @@ void Importer_obj::LoadMTL(const std::string filePath)
 	}
 
 	Material* newMaterial = new Material;
-	newMaterial->filename = removeSubstring(filePath, "mtls/");
+	newMaterial->filename = removeSubstring(filePath, "objs/");
 
 	std::cout << newMaterial->filename << '\n';
 
@@ -127,8 +138,8 @@ void Importer_obj::LoadMTL(const std::string filePath)
 			if (newMaterial) {
 				glm::vec3 ambient;
 				ss >> ambient.x >> ambient.y >> ambient.z;
-				newMaterial->Normal = ambient;
-				//std::cout << "Ka: " << ambient.x << ", " << ambient.y << ", " << ambient.z << std::endl;
+				newMaterial->AmbientColor = ambient;
+				std::cout << "Ka: " << ambient.x << ", " << ambient.y << ", " << ambient.z << std::endl;
 			}
 		}
 		else if (type == "Kd") {
@@ -137,7 +148,7 @@ void Importer_obj::LoadMTL(const std::string filePath)
 				glm::vec3 diffuse;
 				ss >> diffuse.x >> diffuse.y >> diffuse.z;
 				newMaterial->BaseColor = diffuse;
-				//std::cout << "Kd: " << diffuse.x << ", " << diffuse.y << ", " << diffuse.z << std::endl;
+				std::cout << "Kd: " << diffuse.x << ", " << diffuse.y << ", " << diffuse.z << std::endl;
 			}
 		}
 		else if (type == "Ks") {
@@ -146,45 +157,11 @@ void Importer_obj::LoadMTL(const std::string filePath)
 				glm::vec3 specular;
 				ss >> specular.x >> specular.y >> specular.z;
 				newMaterial->Emissive = specular;
-				//std::cout << "Ks: " << specular.x << ", " << specular.y << ", " << specular.z << std::endl;
-			}
-		}
-		else if (type == "map_Kd") {
-			// Diffuse Texture (텍스처 경로)
-			if (newMaterial) {
-				ss >> newMaterial->texturePath;
-				std::cout << "Texture Path: " << newMaterial->texturePath << std::endl;
-
-				// 텍스처 로드 후 ID를 할당
-				newMaterial->BaseColorID = LoadTexture(newMaterial->texturePath);  // Diffuse 텍스처 ID 할당
-			}
-		}
-		else if (type == "map_Bump") {
-			// Normal Map (법선 맵 경로)
-			if (newMaterial) {
-				ss >> newMaterial->texturePath;
-				std::cout << "Normal Map Path: " << newMaterial->texturePath << std::endl;
-
-				// 텍스처 로드 후 ID를 할당
-				newMaterial->NormalMapID = LoadTexture(newMaterial->texturePath);  // Normal 맵 텍스처 ID 할당
-			}
-		}
-		else if (type == "map_Ks") {
-			// Emissive Texture (발광 맵 경로)
-			if (newMaterial) {
-				ss >> newMaterial->texturePath;
-				std::cout << "Emissive Map Path: " << newMaterial->texturePath << std::endl;
-
-				// 텍스처 로드 후 ID를 할당
-				newMaterial->EmissiveID = LoadTexture(newMaterial->texturePath);  // Emissive 맵 텍스처 ID 할당
+				std::cout << "Ks: " << specular.x << ", " << specular.y << ", " << specular.z << std::endl;
 			}
 		}
 	}
-
-	// 마지막 머티리얼 저장
-	if (newMaterial != nullptr) {
-		Materials.push_back(newMaterial);
-	}
+	Materials.push_back(newMaterial);
 
 	mtlFile.close();
 
@@ -221,14 +198,20 @@ GLuint Importer_obj::LoadTexture(const std::string filePath)
 }
 
 
-Material* Importer_obj::SetMaterial(std::string filename)
+Material* Importer_obj::FindMaterial(std::string filename)
 {
-	for (auto& v : Materials) {
+	std::cout << "find " << filename << '\n';
 
-		if (v->filename == filename) return v;
+	for (std::vector<Material*>::iterator itr = Materials.begin(); itr != Materials.end(); ++itr)
+	{
+		//std::cout << (*itr)->filename << '\n';
+		//DeBugVertexData((*itr));
+		if ((*itr)->filename == filename) {
+			return (*itr);
+		}
 	}
 
-	std::cout << "Can not find" << filename << "Material Asset." << std::endl;
+	std::cout << "Can not find" << filename << " Material Asset." << std::endl;
 	return nullptr;
 }
 
@@ -282,20 +265,6 @@ void Importer_obj::ReadObj(const std::string filePath) {
 
 		}
 		else if (type == "f") {
-			//int vertexIndex[3], normalIndex[3];
-			//char slash;
-
-			//// 각 삼각형의 정점과 노멀 인덱스 읽기
-			//ss >> vertexIndex[0] >> slash >> slash >> normalIndex[0] >>
-			//	vertexIndex[1] >> slash >> slash >> normalIndex[1] >>
-			//	vertexIndex[2] >> slash >> slash >> normalIndex[2];
-
-			//// 각 인덱스를 VertexData에 저장
-			//newVertexData->faceIndices.push_back(glm::vec3(vertexIndex[0], vertexIndex[1], vertexIndex[2]));
-			//newVertexData->normalIndices.push_back(glm::vec3(normalIndex[0], normalIndex[1], normalIndex[2]));
-
-			//newVertexData->polygon_count++;
-
 			int vertexIndex[3], texIndex[3], normalIndex[3];
 			char slash;
 
@@ -331,6 +300,7 @@ VertexData* Importer_obj::FindMesh(std::string filename)
 
 	for (std::vector<VertexData*>::iterator itr = VertexBuffers.begin(); itr != VertexBuffers.end(); ++itr)
 	{
+		//std::cout << (*itr)->filename << '\n';
 		//DeBugVertexData((*itr));
 		if ((*itr)->filename == filename) {
 			return (*itr);

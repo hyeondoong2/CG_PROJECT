@@ -3,6 +3,7 @@
 void Camera::SetLocation(glm::vec3 _location)
 {
 	location = _location;
+    camMatrix = glm::translate(camMatrix, _location);
 }
 
 glm::vec3 Camera::GetLocation()

@@ -6,6 +6,7 @@ class Camera
 private:
 public:
 
+	glm::mat4 camMatrix = glm::mat4(1.0f);
 	glm::vec3 location;
 	glm::vec3 look_location;
 

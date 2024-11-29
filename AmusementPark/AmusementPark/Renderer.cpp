@@ -30,6 +30,10 @@ void Renderer::SceneRender()
 		glm::vec3 color = v->GetColor();
 		glUniform3f(glGetUniformLocation(shaderProgramID, "incolor"), color.r, color.g, color.b);
 
+		glUniform3fv(glGetUniformLocation(shaderProgramID, "BaseColor"), 1, glm::value_ptr(v->GetMaterial()->BaseColor));
+		glUniform3fv(glGetUniformLocation(shaderProgramID, "AmbientColor"), 1, glm::value_ptr(v->GetMaterial()->AmbientColor));
+		glUniform3fv(glGetUniformLocation(shaderProgramID, "SpecularColor"), 1, glm::value_ptr(v->GetMaterial()->Emissive));
+
 		
 		//// 텍스처 바인딩 및 유니폼 설정
 		//  // BaseColor 텍스처 처리

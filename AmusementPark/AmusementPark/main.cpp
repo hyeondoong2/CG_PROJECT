@@ -42,12 +42,20 @@ Camera* camera;
 Light* light;
 
 static float currentAngle = -1.0f;   // 현재 각도
-static bool increasing = true;      // 각도 증가 방향
-float minAngle = -1.0f;            // 최소 각도 (시작 지점)
+static bool increasing = false;      // 각도 증가 방향
+float minAngle = -1.0;            // 최소 각도 (시작 지점)
 float maxAngle = 1.0f;             // 최대 각도 (끝 지점)
 float angleStep = 0.01f;             // 한 프레임당 각도 변화량 (속도)
 
 bool LightOn = true;
+
+// 밤낮 플래그
+bool DayMode = true;
+bool NightMode = false;
+
+// 시점 바꾸기 플래그
+bool OneMode = false;
+bool ThreeMode = true;
 
 float convertX(float x) {
 	return 2.0 * x / WINDOW_WIDTH - 1.0;
@@ -79,35 +87,47 @@ void main(int argc, char** argv)
 	render = new Renderer(mgr);
 	camera = new Camera;
 	light = new Light({ 100.0, 100.0, 100.0 });
+
 	//camera->ortho = true;
 	camera->perspect = true;
-	camera->SetLocation({ 0.0, 120.0, 150.0 });
+
+	// 카메라 위치 설정
+	camera->SetLocation({ 0.0, 0.0, 150.0 });
 	camera->SetLookLocation({ 0.0, 0.0, 0.0 });
+
 	render->SetCamera(camera);
 	render->SetLight(light);
 
+	// 땅
 	mgr->AddObject(base, glm::vec3({ 0.0, -40.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 40.0, 1.0, 40.0 }), glm::vec3({ 0.565f, 0.933f, 0.565f }));
+		glm::vec3({ 40.0, 1.0, 40.0 }), glm::vec3({ 0.6f, 0.933f, 0.565f }));
 
+	// 관람차
 	mgr->AddObject(wheel_body, glm::vec3({ 0.0, -40.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0f, 0.713f, 0.756f }));
-
-	mgr->AddObject(wheel_car, glm::vec3({ 0.0, -10.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(wheel_car, glm::vec3({ 0.0, -8.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 0.8, 0.8, 0.8 }), glm::vec3({ 0.678f, 0.902f, 1.0f }));
 
+	// 바이킹
 	mgr->AddObject(viking_body, glm::vec3({ -30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
-		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 1.0f, 1.0f, 0.8f }));
-
+		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 1.0f, 0.76f, 0.76f }));
 	mgr->AddObject(viking_ship, glm::vec3({ -30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
-		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 1.0, 0.39, 0.28 }));
+		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 1.0f, 0.95f, 0.8f }));
 
+
+	// 관람차
 	mgr->AddObject(merry_go_round_body, glm::vec3({ 30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
-		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3((0.678f, 0.902f, 1.0f)));
-
+		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 0.87f, 0.83f, 0.95f }));
 	mgr->AddObject(merry_go_round_horse, glm::vec3({ 30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
-		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 0.678f, 0.902f, 1.0f }));
+		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 0.678f, 0.902f, 1.0f }));
+	mgr->AddObject(merry_go_round_horse, glm::vec3({ 30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 1.0f, 1.0f, 0.8f }));
+	mgr->AddObject(merry_go_round_horse, glm::vec3({ 30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 180.0, 0.0 }),
+		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 1.0f, 0.713f, 0.756f }));
+	mgr->AddObject(merry_go_round_horse, glm::vec3({ 30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 270.0, 0.0 }),
+		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 0.88f, 0.74f, 0.91f }));
 
-	ship_pos = glm::vec3({ -30.0, 0.0, -10.0 });
+	ship_pos = glm::vec3({ -30.0, 0.0, -10.0 }); // 바이킹 회전축
 
 	glutDisplayFunc(drawScene);		// 출력 콜백 함수
 	glutMouseFunc(Mouse);
@@ -123,7 +143,9 @@ void main(int argc, char** argv)
 
 GLvoid drawScene()
 {
-	glClearColor(0.678f, 0.847f, 0.902f, 1.0f);
+	if (DayMode) glClearColor(0.678f, 0.847f, 0.902f, 1.0f);
+	else if (NightMode) glClearColor(0.0, 0.0, 0.0, 1.0f);
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);  // 깊이 테스트 활성화
 	glClear(GL_DEPTH_BUFFER_BIT);  // 깊이 버퍼 초기화
@@ -140,7 +162,61 @@ GLvoid Reshape(int w, int h)
 
 GLvoid Keyboard(unsigned char key, int x, int y)
 {
+	switch (key) {
+		// 밤낮 바꾸기
+	case 'M':
+	case 'm':
+	{
+		DayMode = true;
+		NightMode = false;
+	}
+	break;
+	case 'N':
+	case 'n':
+	{
+		NightMode = true;
+		DayMode = false;
+	}
+	break;
+	// 시점 변환
+	case '1':
+	{
+		OneMode = true;
+		ThreeMode = false;
+	}
+	break;
+	case '3':
+	{
+		ThreeMode = true;
+		OneMode = false;
+	}
+	break;
+	// 상하좌우 이동
+	case 'w':
+	case 'W':
+	{
 
+	}
+	break;
+	case 's':
+	case 'S':
+	{
+
+	}
+	break;
+	case 'a':
+	case 'A':
+	{
+
+	}
+	break;
+	case 'd':
+	case 'D':
+	{
+
+	}
+	break;
+	}
 	glutPostRedisplay();
 }
 
@@ -199,6 +275,8 @@ void TimerFunction(int value)
 
 void Mouse(int button, int state, int x, int y)
 {
+	//if (button == 3) camera->BindWithMouseWheel(-1.f);
+	//else if (button == 4) camera->BindWithMouseWheel(1.f);
 
 	if (button == GLUT_LEFT_BUTTON)
 	{
@@ -213,6 +291,9 @@ void Mouse(int button, int state, int x, int y)
 	{
 		if (state == GLUT_DOWN) {
 		}
+	}
+	else if (WM_MOUSEHWHEEL) {
+
 	}
 
 	glutPostRedisplay();

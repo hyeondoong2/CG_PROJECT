@@ -28,24 +28,33 @@ Object::Object(int _type, glm::vec3 loc, glm::vec3 rot, glm::vec3 _size, glm::ve
 
 	if (type == viking_body) {
 		SetMesh("viking_body.obj");
+		SetMaterial("viking_body.mtl");
 	}
 	else if (type == viking_ship) {
 		SetMesh("viking_ship.obj");
+		SetMaterial("viking_ship.mtl");
 	}
 	else if (type == wheel_car) {
 		SetMesh("wheel_car.obj");
+		SetMaterial("wheel_car.mtl");
 	}
 	else if (type == wheel_body) {
 		SetMesh("wheel_body.obj");
+		SetMaterial("wheel_body.mtl");
 	}	
 	else if (type == merry_go_round_body) {
 		SetMesh("merry_go_round_body.obj");
+		SetMaterial("merry_go_round_body.mtl");
 	}
 	else if (type == merry_go_round_horse) {
 		SetMesh("merry_go_round_horse.obj");
+		SetMaterial("viking_body.mtl");
 	}
 	else if (type == base) {
 		SetMesh("Base.obj");
+	}
+	else if (type == chair) {
+		SetMesh("chair.obj");
 	}
 
 }
@@ -73,7 +82,7 @@ Material* Object::GetMaterial()
 
 void Object::SetMaterial(std::string filename)
 {
-	m_material = Importer_mesh->SetMaterial(filename);
+	m_material = Importer_mesh->FindMaterial(filename);
 	std::cout << "find!" << '\n';
 }
 

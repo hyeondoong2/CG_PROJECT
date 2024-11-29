@@ -17,6 +17,10 @@ uniform sampler2D u_BaseColor;
 uniform sampler2D u_NormalMap;
 uniform sampler2D u_Emissive;
 
+uniform vec3 BaseColor; // Diffuse Color from MTL
+uniform vec3 AmbientColor; // Ambient Color from MTL
+uniform vec3 SpecularColor; // Specular Color from MTL
+
 void main(void) 
 {
 
