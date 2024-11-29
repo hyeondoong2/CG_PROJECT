@@ -33,6 +33,10 @@ void Importer_obj::Initialize()
 	ReadObj("objs/chair.obj");
 	LoadMTL("objs/chair.mtl");
 
+	ReadObj("objs/roller_coaster_body.obj");
+	ReadObj("objs/roller_coaster_head.obj");
+	ReadObj("objs/roller_coaster_rail.obj");
+
 	ReadObj("objs/Base.obj");
 
 

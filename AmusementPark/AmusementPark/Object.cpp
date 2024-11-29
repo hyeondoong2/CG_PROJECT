@@ -56,6 +56,15 @@ Object::Object(int _type, glm::vec3 loc, glm::vec3 rot, glm::vec3 _size, glm::ve
 	else if (type == chair) {
 		SetMesh("chair.obj");
 	}
+	else if (type == roller_coaster_rail) {
+		SetMesh("roller_coaster_rail.obj");
+	}
+	else if (type == roller_coaster_body) {
+		SetMesh("roller_coaster_body.obj");
+	}
+	else if (type == roller_coaster_head) {
+		SetMesh("roller_coaster_head.obj");
+	}
 
 }
 

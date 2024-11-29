@@ -3,7 +3,6 @@
 void Camera::SetLocation(glm::vec3 _location)
 {
 	location = _location;
-    camMatrix = glm::translate(camMatrix, _location);
 }
 
 glm::vec3 Camera::GetLocation()
@@ -74,6 +73,20 @@ void Camera::DoWorking(GLuint shader)
         // viewPos 전달 (카메라의 월드 좌표)
         glUniform3f(glGetUniformLocation(shader, "viewPos"), location.x, location.y, location.z);
     }
+}
+
+void Camera::ChangeLocation(glm::vec3 _location)
+{
+    location.x += _location.x;
+    location.y += _location.y;
+    location.z += _location.z;
+}
+
+void Camera::ChangeLookLocation(glm::vec3 _location)
+{
+    look_location.x += _location.x;
+    look_location.y += _location.y;
+    look_location.z += _location.z;
 }
 
 Camera::Camera()

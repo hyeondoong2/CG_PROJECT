@@ -19,6 +19,9 @@ public:
 	void RotateCam(float angle);
 	void DoWorking(GLuint shader);
 
+	void ChangeLocation(glm::vec3 _location);
+	void ChangeLookLocation(glm::vec3 _location);
+
 	bool ortho = false;
 	bool perspect = true;
 

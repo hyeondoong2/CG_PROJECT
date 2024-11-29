@@ -88,11 +88,11 @@ void main(int argc, char** argv)
 	camera = new Camera;
 	light = new Light({ 100.0, 100.0, 100.0 });
 
-	//camera->ortho = true;
-	camera->perspect = true;
+	camera->ortho = true;
+	//camera->perspect = true;
 
 	// 카메라 위치 설정
-	camera->SetLocation({ 0.0, 0.0, 150.0 });
+	camera->SetLocation({ 0.0, 0.0, 170.0 });
 	camera->SetLookLocation({ 0.0, 0.0, 0.0 });
 
 	render->SetCamera(camera);
@@ -103,31 +103,45 @@ void main(int argc, char** argv)
 		glm::vec3({ 40.0, 1.0, 40.0 }), glm::vec3({ 0.6f, 0.933f, 0.565f }));
 
 	// 관람차
-	mgr->AddObject(wheel_body, glm::vec3({ 0.0, -40.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(wheel_body, glm::vec3({ 0.0, -40.0, -60.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0f, 0.713f, 0.756f }));
-	mgr->AddObject(wheel_car, glm::vec3({ 0.0, -8.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(wheel_car, glm::vec3({ 0.0, -8.0, -60.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 0.8, 0.8, 0.8 }), glm::vec3({ 0.678f, 0.902f, 1.0f }));
 
 	// 바이킹
-	mgr->AddObject(viking_body, glm::vec3({ -30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
+	mgr->AddObject(viking_body, glm::vec3({ -50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
 		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 1.0f, 0.76f, 0.76f }));
-	mgr->AddObject(viking_ship, glm::vec3({ -30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
+	mgr->AddObject(viking_ship, glm::vec3({ -50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
 		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 1.0f, 0.95f, 0.8f }));
 
 
-	// 관람차
-	mgr->AddObject(merry_go_round_body, glm::vec3({ 30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
+	// 회전목마
+	mgr->AddObject(merry_go_round_body, glm::vec3({ 50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
 		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 0.87f, 0.83f, 0.95f }));
-	mgr->AddObject(merry_go_round_horse, glm::vec3({ 30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
+	mgr->AddObject(merry_go_round_horse, glm::vec3({ 50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
 		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 0.678f, 0.902f, 1.0f }));
-	mgr->AddObject(merry_go_round_horse, glm::vec3({ 30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(merry_go_round_horse, glm::vec3({ 50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 1.0f, 1.0f, 0.8f }));
-	mgr->AddObject(merry_go_round_horse, glm::vec3({ 30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 180.0, 0.0 }),
+	mgr->AddObject(merry_go_round_horse, glm::vec3({ 50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 180.0, 0.0 }),
 		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 1.0f, 0.713f, 0.756f }));
-	mgr->AddObject(merry_go_round_horse, glm::vec3({ 30.0, -30.0, -30.0 }), glm::vec3({ 0.0, 270.0, 0.0 }),
+	mgr->AddObject(merry_go_round_horse, glm::vec3({ 50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 270.0, 0.0 }),
 		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 0.88f, 0.74f, 0.91f }));
+	
+	// 롤코
+	mgr->AddObject(roller_coaster_rail, glm::vec3({ 0.0, -40.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 0.0005, 0.0005, 0.0005 }), glm::vec3({ 1.0f, 1.0f, 1.0f }));
+	mgr->AddObject(roller_coaster_head, glm::vec3({ -5.0, -35.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 0.0005,  0.0005, 0.0005 }), glm::vec3({ 0.678f, 0.902f, 1.0f }));
+	mgr->AddObject(roller_coaster_body, glm::vec3({ 0.0, -35.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 0.0005,  0.0005, 0.0005 }), glm::vec3({ 1.0f, 0.95f, 0.8f }));
+	mgr->AddObject(roller_coaster_body, glm::vec3({ 5.0, -35.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 0.0005,  0.0005, 0.0005 }), glm::vec3({ 1.0f, 0.713f, 0.756f }));
+	mgr->AddObject(roller_coaster_body, glm::vec3({ 10.0, -35.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 0.0005,  0.0005, 0.0005 }), glm::vec3({ 0.88f, 0.74f, 0.91f }));
 
-	ship_pos = glm::vec3({ -30.0, 0.0, -10.0 }); // 바이킹 회전축
+	ship_pos = glm::vec3({ -50.0, -10.0, -10.0 }); // 바이킹 회전축
+
+
 
 	glutDisplayFunc(drawScene);		// 출력 콜백 함수
 	glutMouseFunc(Mouse);
@@ -195,25 +209,25 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	case 'w':
 	case 'W':
 	{
-
+		camera->ChangeLocation({0.0, 0.0, -0.5});
 	}
 	break;
 	case 's':
 	case 'S':
 	{
-
+		camera->ChangeLocation({ 0.0, 0.0, 0.5 });
 	}
 	break;
 	case 'a':
 	case 'A':
 	{
-
+		camera->ChangeLocation({ -0.5, 0.0, 0.0 });
 	}
 	break;
 	case 'd':
 	case 'D':
 	{
-
+		camera->ChangeLocation({ 0.5, 0.0, 0.0 });
 	}
 	break;
 	}
@@ -278,23 +292,7 @@ void Mouse(int button, int state, int x, int y)
 	//if (button == 3) camera->BindWithMouseWheel(-1.f);
 	//else if (button == 4) camera->BindWithMouseWheel(1.f);
 
-	if (button == GLUT_LEFT_BUTTON)
-	{
-		if (state == GLUT_DOWN) {
-
-		}
-		else if (state == GLUT_UP) {
-
-		}
-	}
-	else if (button == GLUT_RIGHT_BUTTON)
-	{
-		if (state == GLUT_DOWN) {
-		}
-	}
-	else if (WM_MOUSEHWHEEL) {
-
-	}
+	
 
 	glutPostRedisplay();
 }
