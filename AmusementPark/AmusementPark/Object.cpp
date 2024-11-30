@@ -65,6 +65,10 @@ Object::Object(int _type, glm::vec3 loc, glm::vec3 rot, glm::vec3 _size, glm::ve
 	else if (type == roller_coaster_head) {
 		SetMesh("roller_coaster_head.obj");
 	}
+	else if (type == tree) {
+		SetMesh("tree.obj");
+		SetMaterial("tree.mtl");
+	}
 
 }
 

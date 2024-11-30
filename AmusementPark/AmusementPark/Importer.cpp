@@ -39,6 +39,7 @@ void Importer_obj::Initialize()
 
 	ReadObj("objs/Base.obj");
 
+	ReadObj("objs/tree.obj");
 
 }
 

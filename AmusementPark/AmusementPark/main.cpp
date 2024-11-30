@@ -3,9 +3,9 @@
 #include <gl/glew.h>
 #include <gl/freeglut.h>
 #include <gl/freeglut_ext.h>
-#include <gl/glm/glm.hpp>
-#include <gl/glm/ext.hpp>
-#include <gl/glm/gtc/matrix_transform.hpp>
+#include <gl/glm/glm/glm.hpp>
+#include <gl/glm/glm/ext.hpp>
+#include <gl/glm/glm/gtc/matrix_transform.hpp>
 
 #include <iostream>
 #include <vector>
@@ -140,6 +140,10 @@ void main(int argc, char** argv)
 		glm::vec3({ 0.0005,  0.0005, 0.0005 }), glm::vec3({ 0.88f, 0.74f, 0.91f }));
 
 	ship_pos = glm::vec3({ -50.0, -10.0, -10.0 }); // 바이킹 회전축
+
+	//Object* newObj = new Object(type, loc, rot, _size, _color, ObjectNum, m_importer);
+	mgr->AddObject(tree, glm::vec3({30.0,-40.0,-65.0}), glm::vec3({0.0,0.0,0.0}),
+		glm::vec3({0.8,0.8,0.8}), glm::vec3({ 0.265f, 0.55f, 0.265f }));
 
 
 
