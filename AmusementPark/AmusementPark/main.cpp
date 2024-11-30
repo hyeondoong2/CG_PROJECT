@@ -145,6 +145,11 @@ void main(int argc, char** argv)
 	mgr->AddObject(tree, glm::vec3({30.0,-40.0,-65.0}), glm::vec3({0.0,0.0,0.0}),
 		glm::vec3({0.8,0.8,0.8}), glm::vec3({ 0.265f, 0.55f, 0.265f }));
 
+	//문
+	mgr->AddObject(door, glm::vec3({ 33.0,-23.0,0.0 }), glm::vec3({ 0.0,70.0,0.0 }),
+		glm::vec3({ 15.0,15.0,15.0 }), glm::vec3({1.0f,1.0f,1.0f }));
+	mgr->AddObject(door, glm::vec3({ -33.0,-23.0,0.0 }), glm::vec3({ 0.0,110.0,0.0 }),
+		glm::vec3({ 15.0,15.0,15.0 }), glm::vec3({ 1.0f,1.0f,1.0f }));
 
 
 	glutDisplayFunc(drawScene);		// 출력 콜백 함수

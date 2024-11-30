@@ -7,7 +7,7 @@ enum Shape {
 	merry_go_round_body, merry_go_round_horse, 
 	base, chair,
 	roller_coaster_rail, roller_coaster_body, roller_coaster_head,
-	tree
+	tree,door
 };
 
 

@@ -69,6 +69,10 @@ Object::Object(int _type, glm::vec3 loc, glm::vec3 rot, glm::vec3 _size, glm::ve
 		SetMesh("tree.obj");
 		SetMaterial("tree.mtl");
 	}
+	else if (type == door) {
+		SetMesh("door.obj");
+		SetMaterial("door.mtl");
+	}
 
 }
 
