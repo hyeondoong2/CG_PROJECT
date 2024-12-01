@@ -15,7 +15,7 @@ uniform mat4 transform;
 uniform mat4 view;
 uniform mat4 projection;
 
-uniform mat3 normalMatrix;
+uniform mat3 nomarlMatrix;
 uniform vec3 incolor;
 
 void main(void) 
