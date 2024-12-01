@@ -45,6 +45,10 @@ void Camera::RotateCam(float angle)
 
 void Camera::DoWorking(GLuint shader)
 {
+    //look_location.y = location.y + sin(mouseY);
+    //look_location.x = location.x + cos(mouseX) * cos(mouseY);
+    //look_location.z = location.z + sin(mouseX) * cos(mouseY);
+
     if (perspect) {
         // 뷰 행렬 설정
         glm::mat4 view_matrix = glm::lookAt(location, look_location, glm::vec3(0.0, 1.0, 0.0));
@@ -88,6 +92,17 @@ void Camera::ChangeLookLocation(glm::vec3 _location)
     look_location.y += _location.y;
     look_location.z += _location.z;
 }
+
+void Camera::SetRotation(float x, float y)
+{
+    mouseX += sensitivity * glm::radians(x);
+    mouseY -= sensitivity * glm::radians(y); // 위아래 방향 반전
+
+    // Y축 제한
+    if (glm::degrees(mouseY) > 89.0f) mouseY = glm::radians(89.0f);
+    if (glm::degrees(mouseY) < -89.0f) mouseY = glm::radians(-89.0f);
+}
+
 
 Camera::Camera()
 {

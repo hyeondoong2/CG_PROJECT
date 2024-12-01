@@ -21,6 +21,7 @@ std::uniform_real_distribution<float> loc{ -1.0,1.0 };
 
 
 void Mouse(int button, int state, int x, int y);
+void PassiveMotion(int x, int y);
 GLvoid drawScene();
 GLvoid Reshape(int w, int h);
 GLvoid Keyboard(unsigned char key, int x, int y);
@@ -53,9 +54,13 @@ bool LightOn = true;
 bool DayMode = true;
 bool NightMode = false;
 
+bool RotateMouse = false;
+
 // 시점 바꾸기 플래그
 bool OneMode = false;
 bool ThreeMode = true;
+
+static int lastX = 0, lastY = 0;
 
 float convertX(float x) {
 	return 2.0 * x / WINDOW_WIDTH - 1.0;
@@ -130,17 +135,26 @@ void main(int argc, char** argv)
 	// 롤코
 	mgr->AddObject(roller_coaster_rail, glm::vec3({ 0.0, -40.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 0.0005, 0.0005, 0.0005 }), glm::vec3({ 1.0f, 1.0f, 1.0f }));
-	mgr->AddObject(roller_coaster_head, glm::vec3({ -5.0, -36.0, -115.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(roller_coaster_head, glm::vec3({ -5.0, -36.0, -114.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 0.0005,  0.0005, 0.0005 }), glm::vec3({ 0.678f, 0.902f, 1.0f }));
-	mgr->AddObject(roller_coaster_body, glm::vec3({ 0.0, -36.0, -115.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(roller_coaster_body, glm::vec3({ 0.0, -36.0, -114.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 0.0005,  0.0005, 0.0005 }), glm::vec3({ 1.0f, 0.95f, 0.8f }));
-	mgr->AddObject(roller_coaster_body, glm::vec3({ 5.0, -36.0, -115.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(roller_coaster_body, glm::vec3({ 5.0, -36.0, -114.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 0.0005,  0.0005, 0.0005 }), glm::vec3({ 1.0f, 0.713f, 0.756f }));
-	mgr->AddObject(roller_coaster_body, glm::vec3({ 10.0, -36.0, -115.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(roller_coaster_body, glm::vec3({ 10.0, -36.0, -114.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 0.0005,  0.0005, 0.0005 }), glm::vec3({ 0.88f, 0.74f, 0.91f }));
 
 	ship_pos = glm::vec3({ -50.0, -10.0, -10.0 }); // 바이킹 회전축
 
+	//Object* newObj = new Object(type, loc, rot, _size, _color, ObjectNum, m_importer);
+	mgr->AddObject(tree, glm::vec3({30.0,-40.0,-65.0}), glm::vec3({0.0,0.0,0.0}),
+		glm::vec3({0.8,0.8,0.8}), glm::vec3({ 0.265f, 0.55f, 0.265f }));
+
+	//문
+	mgr->AddObject(door, glm::vec3({ 33.0,-23.0,0.0 }), glm::vec3({ 0.0,70.0,0.0 }),
+		glm::vec3({ 15.0,15.0,15.0 }), glm::vec3({1.0f,1.0f,1.0f }));
+	mgr->AddObject(door, glm::vec3({ -33.0,-23.0,0.0 }), glm::vec3({ 0.0,110.0,0.0 }),
+		glm::vec3({ 15.0,15.0,15.0 }), glm::vec3({ 1.0f,1.0f,1.0f }));
 
 
 	glutDisplayFunc(drawScene);		// 출력 콜백 함수
@@ -148,6 +162,7 @@ void main(int argc, char** argv)
 	glutKeyboardFunc(Keyboard);
 	glutSpecialFunc(SpecialKeyboard);
 	glutReshapeFunc(Reshape);
+	glutPassiveMotionFunc(PassiveMotion);
 	glutTimerFunc(render_freq, TimerFunction, 1);
 
 	glutMainLoop();
@@ -197,12 +212,16 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	{
 		OneMode = true;
 		ThreeMode = false;
+		camera->SetLocation({ 0.0, -30.0, 120.0 });
+		camera->SetLookLocation({ 0.0, 0.0, 0.0 });
 	}
 	break;
 	case '3':
 	{
 		ThreeMode = true;
 		OneMode = false;
+		camera->SetLocation({ 0.0, 100.0, 120.0 });
+		camera->SetLookLocation({ 0.0, 0.0, 0.0 });
 	}
 	break;
 	// 상하좌우 이동
@@ -245,7 +264,7 @@ void SpecialKeyboard(int key, int x, int y) {
 
 void TimerFunction(int value)
 {
-	// 회전 각도 업데이트
+
 
 	for (auto& v : mgr->GetAllObjs()) {
 		if (v->GetType() == wheel_car) {
@@ -293,10 +312,39 @@ void TimerFunction(int value)
 
 void Mouse(int button, int state, int x, int y)
 {
-	//if (button == 3) camera->BindWithMouseWheel(-1.f);
-	//else if (button == 4) camera->BindWithMouseWheel(1.f);
+	if (button == GLUT_LEFT_BUTTON)
+	{
+		if (state == GLUT_DOWN) {
+			RotateMouse = true;
+		}
 
-	
-
+		else if (state == GLUT_UP) {
+			RotateMouse = false;
+		}
+	}
+	else if (button == GLUT_RIGHT_BUTTON)
+	{
+		if (state == GLUT_DOWN) {
+		}
+	}
 	glutPostRedisplay();
+}
+
+void PassiveMotion(int x, int y) {
+	if (RotateMouse) {
+		static int lastX = 0, lastY = 0;
+
+		// 마우스 이동 거리 계산
+		int deltaX = x - lastX;
+		int deltaY = y - lastY;
+
+		// 카메라 회전 적용
+		camera->SetRotation(deltaX, deltaY);
+
+		// 이전 좌표 갱신
+		lastX = x;
+		lastY = y;
+
+		//std::cout << "motion" << '\n';
+	}
 }

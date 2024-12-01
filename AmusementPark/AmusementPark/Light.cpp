@@ -9,9 +9,9 @@ Light::Light(glm::vec3 xyz)
 	distance = 200.f;
 
 	modelMatrix = glm::translate(modelMatrix, location);
-	modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation.x), glm::vec3(1.0, 0.0, 0.0));
-	modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation.y), glm::vec3(0.0, 1.0, 0.0));
-	modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation.z), glm::vec3(0.0, 0.0, 1.0));
+	modelMatrix = glm::rotate(modelMatrix, glm::radians(0.0f), glm::vec3(1.0, 0.0, 0.0));
+	modelMatrix = glm::rotate(modelMatrix, glm::radians(0.0f), glm::vec3(0.0, 1.0, 0.0));
+	modelMatrix = glm::rotate(modelMatrix, glm::radians(0.0f), glm::vec3(0.0, 0.0, 1.0));
 }
 
 Light::~Light()
@@ -43,9 +43,6 @@ void Light::LightWorks(GLuint Shader)
 	unsigned int lightColorLocation = glGetUniformLocation(Shader, "lightColor");
 	glm::vec3 light_color = GetLightColor();
 	glUniform3f(lightColorLocation, light_color.r, light_color.g, light_color.b);
-
-	unsigned int lightDistanceLocation = glGetUniformLocation(Shader, "lightDistance");
-	glUniform1f(lightDistanceLocation, GetLightDistance());
 }
 
 void Light::ChangeColor(glm::vec3 _color)
