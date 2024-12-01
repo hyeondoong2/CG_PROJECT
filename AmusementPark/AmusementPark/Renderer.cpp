@@ -30,40 +30,24 @@ void Renderer::SceneRender()
 		glm::vec3 color = v->GetColor();
 		glUniform3f(glGetUniformLocation(shaderProgramID, "incolor"), color.r, color.g, color.b);
 
-		//glUniform3fv(glGetUniformLocation(shaderProgramID, "BaseColor"), 1, glm::value_ptr(v->GetMaterial()->BaseColor));
-		//glUniform3fv(glGetUniformLocation(shaderProgramID, "AmbientColor"), 1, glm::value_ptr(v->GetMaterial()->AmbientColor));
-		//glUniform3fv(glGetUniformLocation(shaderProgramID, "SpecularColor"), 1, glm::value_ptr(v->GetMaterial()->Emissive));
-
-		
-		//// 텍스처 바인딩 및 유니폼 설정
-		//  // BaseColor 텍스처 처리
-		//if (v->GetMaterial()->BaseColorID != 0) {
-		//	glUniform1i(glGetUniformLocation(shaderProgramID, "u_BaseColor"), 0);
-		//	glActiveTexture(GL_TEXTURE0);
-		//	glBindTexture(GL_TEXTURE_2D, v->GetMaterial()->BaseColorID);  // 텍스처 바인딩
-		//}
-		//else {
-		//	std::cout << "empty" << '\n';
-		//}
-
-		//// NormalMap 텍스처 처리
-		//if (v->GetMaterial()->NormalMapID != 0) {
-		//	glUniform1i(glGetUniformLocation(shaderProgramID, "u_NormalMap"), 1);
-		//	glActiveTexture(GL_TEXTURE1);
-		//	glBindTexture(GL_TEXTURE_2D, v->GetMaterial()->NormalMapID);  // 노멀 맵 텍스처 바인딩
-		//}
-
-		//// Emissive 텍스처 처리
-		//if (v->GetMaterial()->EmissiveID != 0) {
-		//	glUniform1i(glGetUniformLocation(shaderProgramID, "u_Emissive"), 2);
-		//	glActiveTexture(GL_TEXTURE2);
-		//	glBindTexture(GL_TEXTURE_2D, v->GetMaterial()->EmissiveID);  // 이미시브 텍스처 바인딩
-		//}
-
-		glBindVertexArray(v->GetMesh()->VAO);
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-		glDrawArrays(GL_TRIANGLES, 0, v->GetMesh()->polygon_count * 3);
-		glBindVertexArray(0);
+		if (v->GetType() == cloud) {
+			glBindVertexArray(v->GetMesh()->VAO);
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+			glDrawArrays(GL_TRIANGLE_FAN, 0, v->GetMesh()->polygon_count * 3);
+			glBindVertexArray(0);
+		}
+		else if (v->GetType()==fence) {
+			glBindVertexArray(v->GetMesh()->VAO);
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+			glDrawArrays(GL_TRIANGLES, 0, (v->GetMesh()->polygon_count * 3) * 10);
+			glBindVertexArray(0);
+		}
+		else {
+			glBindVertexArray(v->GetMesh()->VAO);
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+			glDrawArrays(GL_TRIANGLES, 0, v->GetMesh()->polygon_count * 3);
+			glBindVertexArray(0);
+		}
 	}
 
 }

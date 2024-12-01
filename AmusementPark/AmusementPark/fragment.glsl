@@ -36,7 +36,7 @@ void main(void)
 
     // 3. Specular (반사광)
     float specularStrength = 0.5;                // 반사광 강도
-    int shininess = 130;                         // 반짝임의 정도
+    int shininess = 150;                         // 반짝임의 정도
     vec3 viewDir = normalize(viewPos - FragPos.xyz); // 뷰어 방향
     vec3 reflectDir = reflect(-lightDir, normalVector); // 반사 벡터
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), shininess);

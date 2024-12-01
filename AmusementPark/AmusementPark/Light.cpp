@@ -5,7 +5,7 @@ Light::Light(glm::vec3 xyz)
 	type = "none";
 	location = xyz;
 	rotation = glm::vec3{ 0 };
-	color = glm::vec3{ 1.0, 1.0, 1.0 };
+	color = glm::vec3{ 0.8, 0.8, 0.8 };
 	distance = 200.f;
 
 	modelMatrix = glm::translate(modelMatrix, location);
@@ -38,7 +38,7 @@ void Light::LightWorks(GLuint Shader)
 	unsigned int lightPosLocation = glGetUniformLocation(Shader, "lightPos");
 	//glm::vec3 light_location = GetLocation();
 	glm::vec3 light_location = modelMatrix[3];
-	glUniform3f(lightPosLocation, light_location.x, light_location.y, light_location.z);
+	glUniform3f(lightPosLocation, location.x, location.y, location.z);
 
 	unsigned int lightColorLocation = glGetUniformLocation(Shader, "lightColor");
 	glm::vec3 light_color = GetLightColor();

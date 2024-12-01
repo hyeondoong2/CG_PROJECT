@@ -55,7 +55,7 @@ void Camera::DoWorking(GLuint shader)
         glUniformMatrix4fv(glGetUniformLocation(shader, "view"), 1, GL_FALSE, glm::value_ptr(view_matrix));
 
         // 원근 투영 행렬 설정
-        float fovy = glm::radians(45.0f);  // 45도 시야각
+        float fovy = glm::radians(50.0f);  // 45도 시야각
         float aspect = (float)1000 / (float)1000;  // 화면 비율 (동적 설정)
         float _near = 0.1f;                 // 가까운 클리핑 평면
         float _far = 1000.0f;               // 먼 클리핑 평면

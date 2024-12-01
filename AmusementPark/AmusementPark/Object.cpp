@@ -3,7 +3,7 @@
 
 std::random_device _rd;
 std::default_random_engine _dre(_rd());
-std::uniform_real_distribution<float> speed{ 0.0, 0.05 };
+std::uniform_real_distribution<float> face{0.01, 0.05 };
 std::uniform_int_distribution<int> newType{ 0,4 };
 
 Object::Object(int _type, glm::vec3 loc, glm::vec3 rot, glm::vec3 _size, glm::vec3 _color, int index, Importer_obj* importer)
@@ -69,10 +69,25 @@ Object::Object(int _type, glm::vec3 loc, glm::vec3 rot, glm::vec3 _size, glm::ve
 		SetMesh("tree.obj");
 		SetMaterial("tree.mtl");
 	}
-	else if (type == door) {
+	else if (type == fence) {
+		SetMesh("fence.obj");
+	}
+	
+	else if (type == tree_leaf) {
+		SetMesh("tree_leaf.obj");
+	}
+	else if (type == tree_wood) {
+		SetMesh("tree_wood.obj");
+	}
+	else if (type == door1 || type == door2) {
 		SetMesh("door.obj");
 		SetMaterial("door.mtl");
 	}
+	else if (type == cloud) {
+		SetMesh("Cloud.obj");
+		speed = face(_dre);
+	}
+	
 
 }
 

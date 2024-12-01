@@ -50,6 +50,9 @@ float angleStep = 0.01f;             // 한 프레임당 각도 변화량 (속도)
 
 bool LightOn = true;
 
+bool OpenDoor = false;
+float doorAngle = 0.0f;
+
 // 밤낮 플래그
 bool DayMode = true;
 bool NightMode = false;
@@ -91,7 +94,7 @@ void main(int argc, char** argv)
 	mgr = new ObjectMgr(importer);
 	render = new Renderer(mgr);
 	camera = new Camera;
-	light = new Light({ 100.0, 100.0, 100.0 });
+	light = new Light({ 0.0, 100.0 , 20.0 });
 
 	//camera->ortho = true;
 	camera->perspect = true;
@@ -115,9 +118,9 @@ void main(int argc, char** argv)
 
 	// 바이킹
 	mgr->AddObject(viking_body, glm::vec3({ -50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
-		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 1.0f, 0.76f, 0.76f }));
+		glm::vec3({ 4.0, 4.0, 4.0 }), glm::vec3({ 1.0f, 0.76f, 0.76f }));
 	mgr->AddObject(viking_ship, glm::vec3({ -50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
-		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 1.0f, 0.95f, 0.8f }));
+		glm::vec3({ 4.0, 4.0, 4.0 }), glm::vec3({ 1.0f, 1.0f, 0.8f }));
 
 
 	// 회전목마
@@ -131,7 +134,7 @@ void main(int argc, char** argv)
 		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 1.0f, 0.713f, 0.756f }));
 	mgr->AddObject(merry_go_round_horse, glm::vec3({ 50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 270.0, 0.0 }),
 		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 0.88f, 0.74f, 0.91f }));
-	
+
 	// 롤코
 	mgr->AddObject(roller_coaster_rail, glm::vec3({ 0.0, -40.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 0.0005, 0.0005, 0.0005 }), glm::vec3({ 1.0f, 1.0f, 1.0f }));
@@ -144,17 +147,127 @@ void main(int argc, char** argv)
 	mgr->AddObject(roller_coaster_body, glm::vec3({ 10.0, -36.0, -114.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 0.0005,  0.0005, 0.0005 }), glm::vec3({ 0.88f, 0.74f, 0.91f }));
 
-	ship_pos = glm::vec3({ -50.0, -10.0, -10.0 }); // 바이킹 회전축
+	ship_pos = glm::vec3({ -50.0, -0.0, -10.0 }); // 바이킹 회전축
 
-	//Object* newObj = new Object(type, loc, rot, _size, _color, ObjectNum, m_importer);
-	mgr->AddObject(tree, glm::vec3({30.0,-40.0,-65.0}), glm::vec3({0.0,0.0,0.0}),
-		glm::vec3({0.8,0.8,0.8}), glm::vec3({ 0.265f, 0.55f, 0.265f }));
+	// 나무
+	mgr->AddObject(tree_leaf, glm::vec3({ -60.0, -40.0, -90.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 4.0, 4.0, 4.0 }), glm::vec3({ 0.3f, 0.7f, 0.3f }));
+	mgr->AddObject(tree_wood, glm::vec3({ -60.0, -40.0, -90.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 4.0, 4.0, 4.0 }), glm::vec3({ 0.65f, 0.4f, 0.2f }));
 
-	//문
-	mgr->AddObject(door, glm::vec3({ 33.0,-23.0,0.0 }), glm::vec3({ 0.0,70.0,0.0 }),
-		glm::vec3({ 15.0,15.0,15.0 }), glm::vec3({1.0f,1.0f,1.0f }));
-	mgr->AddObject(door, glm::vec3({ -33.0,-23.0,0.0 }), glm::vec3({ 0.0,110.0,0.0 }),
-		glm::vec3({ 15.0,15.0,15.0 }), glm::vec3({ 1.0f,1.0f,1.0f }));
+	mgr->AddObject(tree_leaf, glm::vec3({ -50.0, -40.0, -100.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 0.3f, 0.7f, 0.3f }));
+	mgr->AddObject(tree_wood, glm::vec3({ -50.0, -40.0, -100.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 0.65f, 0.4f, 0.2f }));
+
+	mgr->AddObject(tree_leaf, glm::vec3({ 60.0, -40.0, -90.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 4.0, 4.0, 4.0 }), glm::vec3({ 0.3f, 0.7f, 0.3f }));
+	mgr->AddObject(tree_wood, glm::vec3({ 60.0, -40.0, -90.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 4.0, 4.0, 4.0 }), glm::vec3({ 0.65f, 0.4f, 0.2f }));
+
+	mgr->AddObject(tree_leaf, glm::vec3({ 50.0, -40.0, -100.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 0.3f, 0.7f, 0.3f }));
+	mgr->AddObject(tree_wood, glm::vec3({ 50.0, -40.0, -100.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 0.65f, 0.4f, 0.2f }));
+
+	// 의자
+	mgr->AddObject(chair, glm::vec3({ -60.0, -40.0, -65.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 0.1, 0.1, 0.1 }), glm::vec3({ 0.65f, 0.4f, 0.2f }));
+
+	mgr->AddObject(chair, glm::vec3({ 60.0, -40.0, -65.0 }), glm::vec3({ 0.0, 180.0, 0.0 }),
+		glm::vec3({ 0.1, 0.1, 0.1 }), glm::vec3({ 0.65f, 0.4f, 0.2f }));
+
+
+	// 울타리
+	// // 첫 번째 울타리의 z 값을 -145로 수정하고, 빈 곳 없이 울타리 추가
+	float x_start = -70.0f;
+	float x_step = 7.0f; // x 값 간격
+
+	// 색상 배열 정의
+	glm::vec3 colors[] = {
+		glm::vec3(0.87f, 0.83f, 0.95f),
+		glm::vec3(0.678f, 0.902f, 1.0f),
+		glm::vec3(1.0f, 1.0f, 0.8f),
+		glm::vec3(1.0f, 0.713f, 0.756f),
+		glm::vec3(0.88f, 0.74f, 0.91f),
+		glm::vec3(0.87f, 0.83f, 0.95f),
+		glm::vec3(0.678f, 0.902f, 1.0f),
+		glm::vec3(1.0f, 1.0f, 0.8f),
+		glm::vec3(0.87f, 0.83f, 0.95f),
+		glm::vec3(0.678f, 0.902f, 1.0f),
+		glm::vec3(1.0f, 1.0f, 0.8f),
+	};
+
+	// 왼쪽부터 오른쪽까지 울타리 추가
+	for (int i = 0; i < 11; i++) {
+		float x = x_start + i * x_step;
+		mgr->AddObject(fence, glm::vec3({ x, -40.0f, -145.0f }), glm::vec3({ 0.0f, 270.0f, 0.0f }),
+			glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
+	}
+
+	// 오른쪽부터 왼쪽까지 울타리 추가 (대칭을 맞추기 위해 색상도 동일하게)
+	for (int i = 0; i < 10; i++) {
+		float x = -(x_start + i * x_step);
+		mgr->AddObject(fence, glm::vec3({ x, -40.0f, -145.0f }), glm::vec3({ 0.0f, 270.0f, 0.0f }),
+			glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
+	}
+
+	// 왼쪽부터 오른쪽까지 울타리 추가
+	for (int i = 0; i < 8; i++) {
+		float x = x_start + i * x_step;
+		mgr->AddObject(fence, glm::vec3({ x, -40.0f, -145.0f }), glm::vec3({ 0.0f, 270.0f, 0.0f }),
+			glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
+		mgr->AddObject(fence, glm::vec3({ x, -40.0f, 5.0f }), glm::vec3({ 0.0f, 270.0f, 0.0f }),
+			glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
+	}
+
+	// 오른쪽부터 왼쪽까지 울타리 추가 (대칭을 맞추기 위해 색상도 동일하게)
+	for (int i = 0; i < 8; i++) {
+		float x = -(x_start + i * x_step);
+		mgr->AddObject(fence, glm::vec3({ x, -40.0f, -145.0f }), glm::vec3({ 0.0f, 270.0f, 0.0f }),
+			glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
+		mgr->AddObject(fence, glm::vec3({ x, -40.0f, 5.0f }), glm::vec3({ 0.0f, 270.0f, 0.0f }),
+			glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
+	}
+
+
+
+
+
+	// 구름
+// 기존 구름 수정
+	mgr->AddObject(cloud, glm::vec3({ -50.0, 45.0, 20.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ -30.0, 50.0, -30.0 }), glm::vec3({ 0.0, 10.0, 0.0 }),
+		glm::vec3({ 1.5, 1.5, 1.5 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 30.0, 50.0, 40.0 }), glm::vec3({ 0.0, 30.0, 0.0 }),
+		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 50.0, 45.0, -10.0 }), glm::vec3({ 0.0, 30.0, 0.0 }),
+		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ -40.0, 50.0, -50.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.3, 1.3, 1.3 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 20.0, 55.0, 10.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 0.0, 45.0, -30.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 40.0, 40.0, 20.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 10.0, 50.0, -40.0 }), glm::vec3({ 0.0, 5.0, 0.0 }),
+		glm::vec3({ 1.4, 1.4, 1.4 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ -20.0, 50.0, 30.0 }), glm::vec3({ 0.0, 15.0, 0.0 }),
+		glm::vec3({ 1.6, 1.6, 1.6 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 30.0, 50.0, -20.0 }), glm::vec3({ 0.0, 20.0, 0.0 }),
+		glm::vec3({ 1.3, 1.3, 1.3 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ -30.0, 45.0, 0.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 0.0, 55.0, -50.0 }), glm::vec3({ 0.0, 25.0, 0.0 }),
+		glm::vec3({ 1.8, 1.8, 1.8 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 20.0, 50.0, 50.0 }), glm::vec3({ 0.0, 35.0, 0.0 }),
+		glm::vec3({ 1.7, 1.7, 1.7 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ -50.0, 45.0, 10.0 }), glm::vec3({ 0.0, 40.0, 0.0 }),
+		glm::vec3({ 1.5, 1.5, 1.5 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+
+
 
 
 	glutDisplayFunc(drawScene);		// 출력 콜백 함수
@@ -220,7 +333,7 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	{
 		ThreeMode = true;
 		OneMode = false;
-		camera->SetLocation({ 0.0, 100.0, 120.0 });
+		camera->SetLocation({ 0.0, 100.0, 150.0 });
 		camera->SetLookLocation({ 0.0, 0.0, 0.0 });
 	}
 	break;
@@ -228,8 +341,8 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	case 'w':
 	case 'W':
 	{
-		camera->ChangeLocation({0.0, 0.0, -1.0});
-		camera->ChangeLookLocation({0.0, 0.0, -1.0});
+		camera->ChangeLocation({ 0.0, 0.0, -1.0 });
+		camera->ChangeLookLocation({ 0.0, 0.0, -1.0 });
 	}
 	break;
 	case 's':
@@ -253,6 +366,10 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 		camera->ChangeLookLocation({ 1.0, 0.0, 0.0 });
 	}
 	break;
+	case 'o':
+	case 'O': {
+		OpenDoor = !OpenDoor;
+	}
 	}
 	glutPostRedisplay();
 }
@@ -303,6 +420,33 @@ void TimerFunction(int value)
 			orbit = glm::rotate(orbit, glm::radians(currentAngle), glm::vec3(0.0, 0.0, 1.0));
 			orbit = glm::translate(orbit, glm::vec3(-ship_pos));
 			v->modelMatrix = orbit * v->modelMatrix;
+		}
+		if (v->GetType() == cloud) {
+			glm::mat4 orbit = glm::mat4(1.0f);
+			//orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
+			orbit = glm::rotate(orbit, glm::radians(v->speed), glm::vec3(0.0, 1.0, 0.0));
+			//orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
+			v->modelMatrix = orbit * v->modelMatrix;
+		}
+
+		if (OpenDoor) {
+			doorAngle += 0.1;
+			if (doorAngle < 300) {
+				if (v->GetType() == door1) {
+					glm::mat4 orbit = glm::mat4(1.0f);
+					orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
+					orbit = glm::rotate(orbit, glm::radians(1.0f), glm::vec3(0.0, 1.0, 0.0));
+					orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
+					v->modelMatrix = orbit * v->modelMatrix;
+				}
+				else if (v->GetType() == door2) {
+					glm::mat4 orbit = glm::mat4(1.0f);
+					orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
+					orbit = glm::rotate(orbit, glm::radians(-1.0f), glm::vec3(0.0, 1.0, 0.0));
+					orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
+					v->modelMatrix = orbit * v->modelMatrix;
+				}
+			}
 		}
 	}
 

@@ -7,7 +7,8 @@ enum Shape {
 	merry_go_round_body, merry_go_round_horse, 
 	base, chair,
 	roller_coaster_rail, roller_coaster_body, roller_coaster_head,
-	tree,door
+	tree,door1, door2,
+	tree_leaf, tree_wood, fence, cloud
 };
 
 
@@ -38,6 +39,7 @@ public:
 	int object_index;
 
 	float angle = 0.0f;
+	float speed;
 
 	glm::mat4 modelMatrix = glm::mat4(1.0f);
 	glm::mat4 translationMatrix = glm::mat4(1.0f);

@@ -32,6 +32,7 @@ void Importer_obj::Initialize()
 
 	ReadObj("objs/chair.obj");
 	LoadMTL("objs/chair.mtl");
+	ReadObj("objs/Cloud.obj");
 
 	ReadObj("objs/roller_coaster_body.obj");
 	ReadObj("objs/roller_coaster_head.obj");
@@ -40,9 +41,16 @@ void Importer_obj::Initialize()
 	ReadObj("objs/Base.obj");
 
 	ReadObj("objs/tree.obj");
+	ReadObj("objs/tree_leaf.obj");
+	ReadObj("objs/tree_wood.obj");
+
+	ReadObj("objs/fence.obj");
+
 
 	ReadObj("objs/door.obj");
 	ReadObj("objs/door.mtl");
+
+
 
 }
 
