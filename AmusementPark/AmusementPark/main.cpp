@@ -423,9 +423,7 @@ void TimerFunction(int value)
 		}
 		if (v->GetType() == cloud) {
 			glm::mat4 orbit = glm::mat4(1.0f);
-			//orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
 			orbit = glm::rotate(orbit, glm::radians(v->speed), glm::vec3(0.0, 1.0, 0.0));
-			//orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
 			v->modelMatrix = orbit * v->modelMatrix;
 		}
 

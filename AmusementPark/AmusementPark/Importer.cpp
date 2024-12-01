@@ -32,7 +32,7 @@ void Importer_obj::Initialize()
 
 	ReadObj("objs/chair.obj");
 	LoadMTL("objs/chair.mtl");
-	ReadObj("objs/Cloud.obj");
+	ReadObj("objs/tree_leaf.obj");
 
 	ReadObj("objs/roller_coaster_body.obj");
 	ReadObj("objs/roller_coaster_head.obj");

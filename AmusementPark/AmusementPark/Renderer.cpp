@@ -30,24 +30,11 @@ void Renderer::SceneRender()
 		glm::vec3 color = v->GetColor();
 		glUniform3f(glGetUniformLocation(shaderProgramID, "incolor"), color.r, color.g, color.b);
 
-		if (v->GetType() == cloud) {
-			glBindVertexArray(v->GetMesh()->VAO);
-			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-			glDrawArrays(GL_TRIANGLE_FAN, 0, v->GetMesh()->polygon_count * 3);
-			glBindVertexArray(0);
-		}
-		else if (v->GetType()==fence) {
-			glBindVertexArray(v->GetMesh()->VAO);
-			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-			glDrawArrays(GL_TRIANGLES, 0, (v->GetMesh()->polygon_count * 3) * 10);
-			glBindVertexArray(0);
-		}
-		else {
-			glBindVertexArray(v->GetMesh()->VAO);
-			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-			glDrawArrays(GL_TRIANGLES, 0, v->GetMesh()->polygon_count * 3);
-			glBindVertexArray(0);
-		}
+		glBindVertexArray(v->GetMesh()->VAO);
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		glDrawArrays(GL_TRIANGLES, 0, v->GetMesh()->polygon_count * 3);
+		glBindVertexArray(0);
+
 	}
 
 }
