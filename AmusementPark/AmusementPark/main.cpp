@@ -42,11 +42,11 @@ Importer_obj* importer;
 Camera* camera;
 Light* light;
 
-static float currentAngle = -1.0f;   // 현재 각도
-static bool increasing = false;      // 각도 증가 방향
-float minAngle = -1.0;            // 최소 각도 (시작 지점)
+static float currentAngle = -1.0f;    // 현재 각도
+static bool increasing = false;    // 각도 증가 방향
+float minAngle = -1.0;             // 최소 각도 (시작 지점)
 float maxAngle = 1.0f;             // 최대 각도 (끝 지점)
-float angleStep = 0.01f;             // 한 프레임당 각도 변화량 (속도)
+float angleStep = 0.01f;              // 한 프레임당 각도 변화량 (속도)
 
 bool LightOn = true;
 
@@ -134,7 +134,6 @@ void main(int argc, char** argv)
 		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 1.0f, 0.713f, 0.756f }));
 	mgr->AddObject(merry_go_round_horse, glm::vec3({ 50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 270.0, 0.0 }),
 		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 0.88f, 0.74f, 0.91f }));
-
 	// 롤코
 	mgr->AddObject(roller_coaster_rail, glm::vec3({ 0.0, -40.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 0.0005, 0.0005, 0.0005 }), glm::vec3({ 1.0f, 1.0f, 1.0f }));
