@@ -108,25 +108,25 @@ void main(int argc, char** argv)
 	mgr->AddObject(wheel_car, glm::vec3({ 0.0, -8.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 0.8, 0.8, 0.8 }), glm::vec3({ 0.678f, 0.902f, 1.0f }));
 
-	// 바이킹
-	mgr->AddObject(viking_body, glm::vec3({ -50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
-		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 1.0f, 0.76f, 0.76f }));
-	mgr->AddObject(viking_ship, glm::vec3({ -50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
-		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 1.0f, 0.95f, 0.8f }));
+	//// 바이킹
+	//mgr->AddObject(viking_body, glm::vec3({ -50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
+	//	glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 1.0f, 0.76f, 0.76f }));
+	//mgr->AddObject(viking_ship, glm::vec3({ -50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
+	//	glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 1.0f, 0.95f, 0.8f }));
 
 
-	// 회전목마
-	mgr->AddObject(merry_go_round_body, glm::vec3({ 50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
-		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 0.87f, 0.83f, 0.95f }));
-	mgr->AddObject(merry_go_round_horse, glm::vec3({ 50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
-		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 0.678f, 0.902f, 1.0f }));
-	mgr->AddObject(merry_go_round_horse, glm::vec3({ 50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 1.0f, 1.0f, 0.8f }));
-	mgr->AddObject(merry_go_round_horse, glm::vec3({ 50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 180.0, 0.0 }),
-		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 1.0f, 0.713f, 0.756f }));
-	mgr->AddObject(merry_go_round_horse, glm::vec3({ 50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 270.0, 0.0 }),
-		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 0.88f, 0.74f, 0.91f }));
-	
+	//// 회전목마
+	//mgr->AddObject(merry_go_round_body, glm::vec3({ 50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
+	//	glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 0.87f, 0.83f, 0.95f }));
+	//mgr->AddObject(merry_go_round_horse, glm::vec3({ 50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
+	//	glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 0.678f, 0.902f, 1.0f }));
+	//mgr->AddObject(merry_go_round_horse, glm::vec3({ 50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	//	glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 1.0f, 1.0f, 0.8f }));
+	//mgr->AddObject(merry_go_round_horse, glm::vec3({ 50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 180.0, 0.0 }),
+	//	glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 1.0f, 0.713f, 0.756f }));
+	//mgr->AddObject(merry_go_round_horse, glm::vec3({ 50.0, -40.0, -30.0 }), glm::vec3({ 0.0, 270.0, 0.0 }),
+	//	glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 0.88f, 0.74f, 0.91f }));
+	//
 	// 롤코
 	mgr->AddObject(roller_coaster_rail, glm::vec3({ 0.0, -40.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 0.0005, 0.0005, 0.0005 }), glm::vec3({ 1.0f, 1.0f, 1.0f }));
@@ -142,14 +142,14 @@ void main(int argc, char** argv)
 	ship_pos = glm::vec3({ -50.0, -10.0, -10.0 }); // 바이킹 회전축
 
 	//Object* newObj = new Object(type, loc, rot, _size, _color, ObjectNum, m_importer);
-	mgr->AddObject(tree, glm::vec3({30.0,-40.0,-65.0}), glm::vec3({0.0,0.0,0.0}),
-		glm::vec3({0.8,0.8,0.8}), glm::vec3({ 0.265f, 0.55f, 0.265f }));
+	//mgr->AddObject(tree, glm::vec3({30.0,-40.0,-65.0}), glm::vec3({0.0,0.0,0.0}),
+	//	glm::vec3({0.8,0.8,0.8}), glm::vec3({ 0.265f, 0.55f, 0.265f }));
 
-	//문
-	mgr->AddObject(door, glm::vec3({ 33.0,-23.0,0.0 }), glm::vec3({ 0.0,70.0,0.0 }),
-		glm::vec3({ 15.0,15.0,15.0 }), glm::vec3({1.0f,1.0f,1.0f }));
-	mgr->AddObject(door, glm::vec3({ -33.0,-23.0,0.0 }), glm::vec3({ 0.0,110.0,0.0 }),
-		glm::vec3({ 15.0,15.0,15.0 }), glm::vec3({ 1.0f,1.0f,1.0f }));
+	////문
+	//mgr->AddObject(door, glm::vec3({ 33.0,-23.0,0.0 }), glm::vec3({ 0.0,70.0,0.0 }),
+	//	glm::vec3({ 15.0,15.0,15.0 }), glm::vec3({1.0f,1.0f,1.0f }));
+	//mgr->AddObject(door, glm::vec3({ -33.0,-23.0,0.0 }), glm::vec3({ 0.0,110.0,0.0 }),
+	//	glm::vec3({ 15.0,15.0,15.0 }), glm::vec3({ 1.0f,1.0f,1.0f }));
 
 
 	glutDisplayFunc(drawScene);		// 출력 콜백 함수
@@ -251,7 +251,7 @@ void SpecialKeyboard(int key, int x, int y) {
 
 	glutPostRedisplay();
 }
-
+bool angle_sample{ false };
 void TimerFunction(int value)
 {
 	// 회전 각도 업데이트
@@ -293,6 +293,78 @@ void TimerFunction(int value)
 			orbit = glm::rotate(orbit, glm::radians(currentAngle), glm::vec3(0.0, 0.0, 1.0));
 			orbit = glm::translate(orbit, glm::vec3(-ship_pos));
 			v->modelMatrix = orbit * v->modelMatrix;
+		}
+
+		else if (v->GetType() == roller_coaster_head) {
+			glm::mat4 orbit = glm::mat4(1.0f);
+			glm::mat4 center = glm::mat4(1.0f);
+			////std::cout << v->GetLocation().x << std::endl;
+			if (v->GetMatrix()[3].x <= -37.0 && v->GetMatrix()[3].x > -40.0) {
+				orbit = glm::translate(orbit, glm::vec3(-0.05, 0.0, 0.0));
+			}
+			else if (v->GetMatrix()[3].x > -55.0 && v->GetMatrix()[3].x <= -40.0 && v->GetMatrix()[3].y <= 22.0) {
+				//orbit = glm::translate(orbit, glm::vec3(-0.1, 0.0, 0.0));
+				//orbit = glm::translate(orbit, glm::vec3(-48.0, -68.0, 0.0));
+				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
+				orbit = glm::rotate(orbit, glm::radians(0.1f), glm::vec3(0.0, 0.0, -1.0));
+				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
+				orbit = glm::translate(orbit, glm::vec3(-0.05, 0.02, 0.0));
+				//orbit = glm::rotate(orbit, glm::radians(rollerAngle), glm::vec3(0.0, 0.0, -1.0));
+				/*if (rollerAngle < 90.0) {
+				}*/
+			}
+			else if (v->GetMatrix()[3].x > -65.0 && v->GetMatrix()[3].x <= -55.0) {
+				//orbit = glm::translate(orbit, glm::vec3(-0.1, 0.0, 0.0));
+				//orbit = glm::translate(orbit, glm::vec3(-48.0, -68.0, 0.0));
+				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
+				orbit = glm::rotate(orbit, glm::radians(0.15f), glm::vec3(0.0, 0.0, -1.0));
+				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
+				orbit = glm::translate(orbit, glm::vec3(-0.05, 0.07, 0.0));
+				//orbit = glm::rotate(orbit, glm::radians(rollerAngle), glm::vec3(0.0, 0.0, -1.0));
+				/*if (rollerAngle < 90.0) {
+				}*/
+			}
+			else if (v->GetMatrix()[3].x <= -65.0 && v->GetMatrix()[3].y <= 18.0) {   //위로 직진
+				if (!angle_sample) {
+					/*orbit = glm::translate(orbit, glm::vec3(-38.0, -68.0, 0.0));
+					orbit = glm::rotate(orbit, glm::radians(90.0f), glm::vec3(0.0, 0.0, -1.0));*/
+					orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
+					orbit = glm::rotate(orbit, glm::radians(40.0f), glm::vec3(0.0, 0.0, -1.0));
+					orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
+					angle_sample = !angle_sample;
+				}
+				else {
+					orbit = glm::translate(orbit, glm::vec3(0.0, 0.1, 0.0));
+				}
+			}
+			else if (v->GetMatrix()[3].x > -37.0) {
+				orbit = glm::translate(orbit, glm::vec3(-0.1, 0.0, 0.0));
+			}
+			//orbit = glm::rotate(orbit, glm::radians(rollerAngle), glm::vec3(0.0, 0.0, -1.0));
+			//   if (rollerAngle <= 90.0) {
+			//      rollerAngle += 0.1;
+			//   }
+			//}
+			//else if (v->GetMatrix()[3].x <= -60.0) {
+			//   rollerAngle = 90.0;
+			//   orbit = glm::translate(orbit, glm::vec3(-0.1, 0.0, 0.0));
+			//   orbit = glm::rotate(orbit, glm::radians(rollerAngle), glm::vec3(0.0, 0.0, -1.0));
+			//   /*if (rollerAngle <= 90.0) {
+			//      rollerAngle += 0.0001;
+			//   }*/
+			//}
+			//else {
+			//   //orbit = glm::translate(orbit, glm::vec3(roller_coaster_head));
+			//   orbit = glm::translate(orbit, glm::vec3(-0.1, 0.0, 0.0));
+			//   //orbit = glm::translate(orbit, glm::vec3(-roller_coaster_head));
+			//}
+			/*if (rollerAngle < 90.0) {
+			   rollerAngle += 0.1;
+			}*/
+			v->modelMatrix = orbit * v->modelMatrix;
+			//::cout << "x      " << v->GetMatrix()[3].x << std::endl;
+			std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
+			//std::cout << "angle      " << rollerAngle << std::endl;
 		}
 	}
 
