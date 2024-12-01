@@ -295,7 +295,7 @@ void TimerFunction(int value)
 			v->modelMatrix = orbit * v->modelMatrix;
 		}
 
-		else if (v->GetType() == roller_coaster_head) {
+		else if (v->GetType() == roller_coaster_head || v->GetType() == roller_coaster_body) {
 			glm::mat4 orbit = glm::mat4(1.0f);
 			glm::mat4 center = glm::mat4(1.0f);
 			if (v->GetMatrix()[3].x <= -37.0 && v->GetMatrix()[3].x > -40.0) {
@@ -326,15 +326,7 @@ void TimerFunction(int value)
 				orbit = glm::translate(orbit, glm::vec3(-0.015, 0.07, 0.0));
 			}
 			else if (v->GetMatrix()[3].x <= -65.1 && v->GetMatrix()[3].y <= 18.0) {   //위로 직진
-				/*if (!angle_sample) {
-					orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
-					orbit = glm::rotate(orbit, glm::radians(0.0f), glm::vec3(0.0, 0.0, -1.0));
-					orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
-					angle_sample = !angle_sample;
-				}
-				else {*/
 					orbit = glm::translate(orbit, glm::vec3(0.0, 0.1, 0.0));
-				//}
 			}
 			else if (v->GetMatrix()[3].x > -37.0) {
 				orbit = glm::translate(orbit, glm::vec3(-0.1, 0.0, 0.0));
