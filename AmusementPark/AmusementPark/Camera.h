@@ -24,7 +24,7 @@ public:
 	void SetLookLocation(glm::vec3 _location);
 	glm::mat4 GetLookLocation();
 
-	void RotateCam(float angle);
+	void RotateCam(float angle, glm::vec3 pos);
 	void DoWorking(GLuint shader);
 
 	void ChangeLocation(glm::vec3 _location);

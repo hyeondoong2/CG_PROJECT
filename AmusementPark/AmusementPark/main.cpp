@@ -63,6 +63,11 @@ bool RotateMouse = false;
 bool OneMode = false;
 bool ThreeMode = true;
 
+// 놀이기구 타기
+bool MerryGoRound = false;
+bool RollerCoaster = false;
+bool Viking = false;
+
 static int lastX = 0, lastY = 0;
 
 float convertX(float x) {
@@ -100,7 +105,7 @@ void main(int argc, char** argv)
 	camera->perspect = true;
 
 	// 카메라 위치 설정
-	camera->SetLocation({ 0.0, -30.0, 120.0 });
+	camera->SetLocation({ 0.0, -30.0, 50.0 });
 	camera->SetLookLocation({ 0.0, 0.0, 0.0 });
 
 	render->SetCamera(camera);
@@ -235,39 +240,36 @@ void main(int argc, char** argv)
 
 	// 구름
 // 기존 구름 수정
-	mgr->AddObject(cloud, glm::vec3({ -50.0, 45.0, 20.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ -30.0, 50.0, -30.0 }), glm::vec3({ 0.0, 10.0, 0.0 }),
+	mgr->AddObject(cloud, glm::vec3({ -30.0, 45.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ -20.0, 50.0, -80.0 }), glm::vec3({ 0.0, 10.0, 0.0 }),
 		glm::vec3({ 1.5, 1.5, 1.5 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 30.0, 50.0, 40.0 }), glm::vec3({ 0.0, 30.0, 0.0 }),
+	mgr->AddObject(cloud, glm::vec3({ 30.0, 50.0, -90.0 }), glm::vec3({ 0.0, 30.0, 0.0 }),
+		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 20.0, 45.0, -10.0 }), glm::vec3({ 0.0, 30.0, 0.0 }),
 		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 50.0, 45.0, -10.0 }), glm::vec3({ 0.0, 30.0, 0.0 }),
-		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ -40.0, 50.0, -50.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(cloud, glm::vec3({ 40.0, 50.0, -100.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 1.3, 1.3, 1.3 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 20.0, 55.0, 10.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(cloud, glm::vec3({ 20.0, 55.0, -60.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 0.0, 45.0, -30.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(cloud, glm::vec3({ 0.0, 45.0, -80.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 40.0, 40.0, 20.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 10.0, 50.0, -40.0 }), glm::vec3({ 0.0, 5.0, 0.0 }),
+	mgr->AddObject(cloud, glm::vec3({ -20.0, 40.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 10.0, 50.0, -90.0 }), glm::vec3({ 0.0, 5.0, 0.0 }),
 		glm::vec3({ 1.4, 1.4, 1.4 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ -20.0, 50.0, 30.0 }), glm::vec3({ 0.0, 15.0, 0.0 }),
+	mgr->AddObject(cloud, glm::vec3({ -20.0, 50.0, 0.0 }), glm::vec3({ 0.0, 15.0, 0.0 }),
 		glm::vec3({ 1.6, 1.6, 1.6 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 30.0, 50.0, -20.0 }), glm::vec3({ 0.0, 20.0, 0.0 }),
+	mgr->AddObject(cloud, glm::vec3({ 30.0, 50.0, -70.0 }), glm::vec3({ 0.0, 20.0, 0.0 }),
 		glm::vec3({ 1.3, 1.3, 1.3 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ -30.0, 45.0, 0.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(cloud, glm::vec3({ -30.0, 45.0, -50.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 0.0, 55.0, -50.0 }), glm::vec3({ 0.0, 25.0, 0.0 }),
+	mgr->AddObject(cloud, glm::vec3({ 0.0, 55.0, -100.0 }), glm::vec3({ 0.0, 25.0, 0.0 }),
 		glm::vec3({ 1.8, 1.8, 1.8 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 20.0, 50.0, 50.0 }), glm::vec3({ 0.0, 35.0, 0.0 }),
+	mgr->AddObject(cloud, glm::vec3({ 20.0, 50.0, 100.0 }), glm::vec3({ 0.0, 35.0, 0.0 }),
 		glm::vec3({ 1.7, 1.7, 1.7 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ -50.0, 45.0, 10.0 }), glm::vec3({ 0.0, 40.0, 0.0 }),
+	mgr->AddObject(cloud, glm::vec3({ -30.0, 45.0, -70.0 }), glm::vec3({ 0.0, 40.0, 0.0 }),
 		glm::vec3({ 1.5, 1.5, 1.5 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-
-
-
 
 	glutDisplayFunc(drawScene);		// 출력 콜백 함수
 	glutMouseFunc(Mouse);
@@ -336,6 +338,26 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 		camera->SetLookLocation({ 0.0, 0.0, 0.0 });
 	}
 	break;
+	// 놀이기구
+	case '7': {
+		MerryGoRound = !MerryGoRound;
+		if (MerryGoRound) {
+			camera->SetLocation({ 45.0, -25.0, -42.0 });
+		}
+		else {
+			camera->SetLocation({ 30.0, -30.0, 50.0 });
+		}
+	}
+			break;
+	case '8': {
+
+	}
+			break;
+	case '9': {
+
+
+	}
+			break;
 	// 상하좌우 이동
 	if (OneMode) {
 	case 'w':
@@ -382,7 +404,9 @@ void SpecialKeyboard(int key, int x, int y) {
 
 void TimerFunction(int value)
 {
-
+	if (MerryGoRound) {
+		camera->RotateCam(1.0, glm::vec3{ 50.0, -40.0, -30.0 });
+	}
 
 	for (auto& v : mgr->GetAllObjs()) {
 		if (v->GetType() == wheel_car) {
@@ -424,7 +448,9 @@ void TimerFunction(int value)
 		}
 		if (v->GetType() == cloud) {
 			glm::mat4 orbit = glm::mat4(1.0f);
+			orbit = glm::translate(orbit, glm::vec3(0.0, 0.0, -50.0));
 			orbit = glm::rotate(orbit, glm::radians(v->speed), glm::vec3(0.0, 1.0, 0.0));
+			orbit = glm::translate(orbit, -glm::vec3(0.0, 0.0, -50.0));
 			v->modelMatrix = orbit * v->modelMatrix;
 		}
 
@@ -474,20 +500,5 @@ void Mouse(int button, int state, int x, int y)
 }
 
 void PassiveMotion(int x, int y) {
-	if (RotateMouse) {
-		static int lastX = 0, lastY = 0;
 
-		// 마우스 이동 거리 계산
-		int deltaX = x - lastX;
-		int deltaY = y - lastY;
-
-		// 카메라 회전 적용
-		camera->SetRotation(deltaX, deltaY);
-
-		// 이전 좌표 갱신
-		lastX = x;
-		lastY = y;
-
-		//std::cout << "motion" << '\n';
-	}
 }

@@ -22,24 +22,35 @@ glm::mat4 Camera::GetLookLocation()
 	return cam_Look_Matrix;
 }
 
-void Camera::RotateCam(float angle)
+void Camera::RotateCam(float angle, glm::vec3 pos)
 {
+    // 현재 카메라 위치를 기준으로 변환 수행
+    glm::mat4 orbit = glm::mat4(1.0f);
 
+    // 회전 중심으로 이동
+    orbit = glm::translate(orbit, pos);
+
+    // Y축 기준으로 회전
+    orbit = glm::rotate(orbit, glm::radians(angle), glm::vec3(0.0, 1.0, 0.0));
+
+    // 회전 중심에서 다시 원래 위치로 이동
+    orbit = glm::translate(orbit, -pos);
+
+    // 카메라 변환 행렬에 적용
+
+    camMatrix = orbit * camMatrix;
+    cam_Look_Matrix = orbit * cam_Look_Matrix;
 }
 
 void Camera::DoWorking(GLuint shader)
 {
-    //look_location.y = location.y + sin(mouseY);
-    //look_location.x = location.x + cos(mouseX) * cos(mouseY);
-    //look_location.z = location.z + sin(mouseX) * cos(mouseY);
-
     if (perspect) {
         // 뷰 행렬 설정
         glm::mat4 view_matrix = glm::lookAt(glm::vec3(camMatrix[3]), glm::vec3(cam_Look_Matrix[3]), glm::vec3(0.0, 1.0, 0.0));
         glUniformMatrix4fv(glGetUniformLocation(shader, "view"), 1, GL_FALSE, glm::value_ptr(view_matrix));
 
         // 원근 투영 행렬 설정
-        float fovy = glm::radians(50.0f);  // 45도 시야각
+        float fovy = glm::radians(100.0f);  // 45도 시야각
         float aspect = (float)1000 / (float)1000;  // 화면 비율 (동적 설정)
         float _near = 0.1f;                 // 가까운 클리핑 평면
         float _far = 1000.0f;               // 먼 클리핑 평면
@@ -63,17 +74,11 @@ void Camera::DoWorking(GLuint shader)
 
 void Camera::ChangeLocation(glm::vec3 _location)
 {
-    //glm::mat4 move = glm::mat4(1.0f);
-    //move = glm::translate(move, _location);
-    //camMatrix = move * camMatrix;
     camMatrix = glm::translate(camMatrix, _location);
 }
 
 void Camera::ChangeLookLocation(glm::vec3 _location)
 {
-    //glm::mat4 move = glm::mat4(1.0f);
-    //move = glm::translate(move, _location);
-    //cam_Look_Matrix = move * cam_Look_Matrix;
     cam_Look_Matrix = glm::translate(cam_Look_Matrix, _location);
 }
 
