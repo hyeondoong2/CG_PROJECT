@@ -1,17 +1,7 @@
-﻿  Object.cpp
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\Object.cpp(6,50): warning C4305: '인수': 'double'에서 '_Ty'(으)로 잘립니다.
-          with
-          [
-              _Ty=float
-          ]
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\Object.cpp(6,44): warning C4305: '인수': 'double'에서 '_Ty'(으)로 잘립니다.
-          with
-          [
-              _Ty=float
-          ]
+﻿  Camera.cpp
   코드를 생성하고 있습니다.
-  1 of 646 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  4 of 646 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    14 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   AmusementPark.vcxproj -> C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\x64\Release\AmusementPark.exe

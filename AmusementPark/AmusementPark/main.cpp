@@ -337,6 +337,7 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	}
 	break;
 	// 상하좌우 이동
+	if (OneMode) {
 	case 'w':
 	case 'W':
 	{
@@ -368,6 +369,7 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	case 'o':
 	case 'O': {
 		OpenDoor = !OpenDoor;
+	}
 	}
 	}
 	glutPostRedisplay();

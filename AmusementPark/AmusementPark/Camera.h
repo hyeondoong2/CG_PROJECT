@@ -13,15 +13,16 @@ private:
 public:
 
 	glm::mat4 camMatrix = glm::mat4(1.0f);
+	glm::mat4 cam_Look_Matrix = glm::mat4(1.0f);
 	glm::vec3 location;
 	glm::vec3 rotation;
 	glm::vec3 look_location;
 
 	void SetLocation(glm::vec3 _location);
-	glm::vec3 GetLocation();
+	glm::mat4 GetLocation();
 
 	void SetLookLocation(glm::vec3 _location);
-	glm::vec3 GetLookLocation();
+	glm::mat4 GetLookLocation();
 
 	void RotateCam(float angle);
 	void DoWorking(GLuint shader);
