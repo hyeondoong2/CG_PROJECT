@@ -84,7 +84,7 @@ Object::Object(int _type, glm::vec3 loc, glm::vec3 rot, glm::vec3 _size, glm::ve
 		SetMaterial("door.mtl");
 	}
 	else if (type == cloud) {
-		SetMesh("tree_leaf.obj");
+		SetMesh("Cloud.obj");
 		speed = face(_dre);
 	}
 	

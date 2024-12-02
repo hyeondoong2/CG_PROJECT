@@ -45,6 +45,7 @@ void Importer_obj::Initialize()
 	ReadObj("objs/tree_wood.obj");
 
 	ReadObj("objs/fence.obj");
+	ReadObj("objs/Cloud.obj");
 
 
 	ReadObj("objs/door.obj");

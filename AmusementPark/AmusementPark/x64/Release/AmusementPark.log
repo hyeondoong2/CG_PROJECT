@@ -1,13 +1,17 @@
-﻿  main.cpp
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\main.cpp(69,32): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\main.cpp(73,13): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\main.cpp(78,1): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\main.cpp(430,20): warning C4305: '+=': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\main.cpp(483,31): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\main.cpp(483,23): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  Object.cpp
+C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\Object.cpp(6,50): warning C4305: '인수': 'double'에서 '_Ty'(으)로 잘립니다.
+          with
+          [
+              _Ty=float
+          ]
+C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\AmusementPark\Object.cpp(6,44): warning C4305: '인수': 'double'에서 '_Ty'(으)로 잘립니다.
+          with
+          [
+              _Ty=float
+          ]
   코드를 생성하고 있습니다.
-  0 of 646 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+  1 of 646 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   AmusementPark.vcxproj -> C:\Users\sally\OneDrive\바탕 화면\CG_PROJECT\AmusementPark\x64\Release\AmusementPark.exe
