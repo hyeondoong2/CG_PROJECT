@@ -35,6 +35,7 @@ public:
 	bool ortho = false;
 	bool perspect = true;
 
+	float angle = 45.0f;
 
 
 	Camera();

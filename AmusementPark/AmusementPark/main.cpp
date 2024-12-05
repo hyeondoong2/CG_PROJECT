@@ -105,7 +105,7 @@ void main(int argc, char** argv)
 	camera->perspect = true;
 
 	// 카메라 위치 설정
-	camera->SetLocation({ 0.0, -30.0, 50.0 });
+	camera->SetLocation({ 0.0, -30.0, 120.0 });
 	camera->SetLookLocation({ 0.0, 0.0, 0.0 });
 
 	render->SetCamera(camera);
@@ -342,10 +342,13 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	case '7': {
 		MerryGoRound = !MerryGoRound;
 		if (MerryGoRound) {
-			camera->SetLocation({ 45.0, -25.0, -42.0 });
+			camera->SetLocation({ 50.0, -25.0, -42.0 });
+			camera->SetLookLocation({ 0.0, 0.0, 0.0 });
+			camera->angle = 100.0f;
 		}
 		else {
 			camera->SetLocation({ 30.0, -30.0, 50.0 });
+			camera->angle = 45.0f;
 		}
 	}
 			break;
@@ -440,12 +443,15 @@ void TimerFunction(int value)
 				}
 			}
 
+			// 초기 상태에서 계산
 			glm::mat4 orbit = glm::mat4(1.0f);
-			orbit = glm::translate(orbit, glm::vec3(ship_pos));
-			orbit = glm::rotate(orbit, glm::radians(currentAngle), glm::vec3(0.0, 0.0, 1.0));
-			orbit = glm::translate(orbit, glm::vec3(-ship_pos));
-			v->modelMatrix = orbit * v->modelMatrix;
+			orbit = glm::translate(orbit, glm::vec3(ship_pos));  // 바이킹의 기준 위치로 이동
+			orbit = glm::rotate(orbit, glm::radians(currentAngle), glm::vec3(0.0, 0.0, 1.0)); // 회전
+			orbit = glm::translate(orbit, glm::vec3(-ship_pos)); // 기준 위치를 원점으로 복귀
+
+			v->modelMatrix = v->modelMatrix;  // 새로운 변환 행렬 적용
 		}
+
 		if (v->GetType() == cloud) {
 			glm::mat4 orbit = glm::mat4(1.0f);
 			orbit = glm::translate(orbit, glm::vec3(0.0, 0.0, -50.0));
