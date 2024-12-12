@@ -240,36 +240,49 @@ void main(int argc, char** argv)
 
 	// 구름
 // 기존 구름 수정
-	mgr->AddObject(cloud, glm::vec3({ -30.0, 45.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(cloud, glm::vec3({ -40.0, 50.0, -130.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ -20.0, 50.0, -80.0 }), glm::vec3({ 0.0, 10.0, 0.0 }),
-		glm::vec3({ 1.5, 1.5, 1.5 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 30.0, 50.0, -90.0 }), glm::vec3({ 0.0, 30.0, 0.0 }),
-		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 20.0, 45.0, -10.0 }), glm::vec3({ 0.0, 30.0, 0.0 }),
-		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 40.0, 50.0, -100.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 1.3, 1.3, 1.3 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 20.0, 55.0, -60.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 0.0, 45.0, -80.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ -20.0, 40.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 10.0, 50.0, -90.0 }), glm::vec3({ 0.0, 5.0, 0.0 }),
-		glm::vec3({ 1.4, 1.4, 1.4 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ -20.0, 50.0, 0.0 }), glm::vec3({ 0.0, 15.0, 0.0 }),
-		glm::vec3({ 1.6, 1.6, 1.6 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 30.0, 50.0, -70.0 }), glm::vec3({ 0.0, 20.0, 0.0 }),
-		glm::vec3({ 1.3, 1.3, 1.3 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ -30.0, 45.0, -50.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 0.0, 55.0, -100.0 }), glm::vec3({ 0.0, 25.0, 0.0 }),
-		glm::vec3({ 1.8, 1.8, 1.8 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 20.0, 50.0, 100.0 }), glm::vec3({ 0.0, 35.0, 0.0 }),
+	mgr->AddObject(cloud, glm::vec3({ -35.0, 55.0, -110.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.9, 1.9, 1.9 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ -25.0, 60.0, -100.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 2.1, 2.1, 2.1 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ -15.0, 55.0, -90.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 1.7, 1.7, 1.7 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ -30.0, 45.0, -70.0 }), glm::vec3({ 0.0, 40.0, 0.0 }),
-		glm::vec3({ 1.5, 1.5, 1.5 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ -5.0, 60.0, -80.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 5.0, 55.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.9, 1.9, 1.9 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 15.0, 50.0, -60.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.8, 1.8, 1.8 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 25.0, 55.0, -50.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 35.0, 50.0, -40.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.7, 1.7, 1.7 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 45.0, 55.0, -30.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.9, 1.9, 1.9 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ -40.0, 60.0, -20.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 2.1, 2.1, 2.1 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ -30.0, 50.0, -10.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.8, 1.8, 1.8 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ -20.0, 60.0, 0.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ -10.0, 55.0, 10.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.9, 1.9, 1.9 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 0.0, 50.0, 20.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 10.0, 55.0, 30.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.8, 1.8, 1.8 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 20.0, 50.0, 40.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 2.1, 2.1, 2.1 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 30.0, 55.0, 50.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.9, 1.9, 1.9 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 40.0, 50.0, 60.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ -45.0, 55.0, 70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.8, 1.8, 1.8 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ -35.0, 50.0, 80.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.9, 1.9, 1.9 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+
 
 	glutDisplayFunc(drawScene);		// 출력 콜백 함수
 	glutMouseFunc(Mouse);
@@ -334,7 +347,7 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	{
 		ThreeMode = true;
 		OneMode = false;
-		camera->SetLocation({ 0.0, 100.0, 150.0 });
+		camera->SetLocation({ 0.0, 150.0, 150.0 });
 		camera->SetLookLocation({ 0.0, 0.0, 0.0 });
 	}
 	break;
@@ -347,8 +360,8 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 			camera->angle = 100.0f;
 		}
 		else {
-			camera->SetLocation({ 0.0, -30.0, 120.0 });
-			camera->SetLookLocation({ 0.0, 0.0, 0.0 });
+			camera->SetLocation({ 50.0, -30.0, 20.0 });
+			camera->SetLookLocation({ 50.0, 0.0, -100.0 });
 			camera->angle = 45.0f;
 		}
 	}
@@ -455,9 +468,9 @@ void TimerFunction(int value)
 
 		if (v->GetType() == cloud) {
 			glm::mat4 orbit = glm::mat4(1.0f);
-			orbit = glm::translate(orbit, glm::vec3(0.0, 0.0, -50.0));
+			//orbit = glm::translate(orbit, glm::vec3(0.0, 0.0, 60.0));
 			orbit = glm::rotate(orbit, glm::radians(v->speed), glm::vec3(0.0, 1.0, 0.0));
-			orbit = glm::translate(orbit, -glm::vec3(0.0, 0.0, -50.0));
+			//orbit = glm::translate(orbit, -glm::vec3(0.0, 0.0, 60.0));
 			v->modelMatrix = orbit * v->modelMatrix;
 		}
 

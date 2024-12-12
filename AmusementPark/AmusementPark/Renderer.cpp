@@ -56,9 +56,10 @@ void Renderer::SceneRender()
 		glUniform1f(glGetUniformLocation(shaderProgramID, "Alpha"), 0.3f); // 투명도 설정
 
 		glBindVertexArray(v->GetMesh()->VAO);
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);  // 사각형 매쉬의 경계도 제대로 처리되도록 설정
+		// 사각형을 두 개의 삼각형으로 나누기 (예시: 두 삼각형을 그린다고 가정)
 		glDrawArrays(GL_TRIANGLES, 0, v->GetMesh()->polygon_count * 3);
-		glBindVertexArray(0);
+		glBindVertexArray(0);;
 	}
 
 	glDepthMask(GL_TRUE); // 깊이 버퍼 쓰기 다시 활성화
