@@ -347,7 +347,8 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 			camera->angle = 100.0f;
 		}
 		else {
-			camera->SetLocation({ 30.0, -30.0, 50.0 });
+			camera->SetLocation({ 0.0, -30.0, 120.0 });
+			camera->SetLookLocation({ 0.0, 0.0, 0.0 });
 			camera->angle = 45.0f;
 		}
 	}
