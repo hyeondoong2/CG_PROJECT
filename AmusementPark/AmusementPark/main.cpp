@@ -44,9 +44,9 @@ Light* light;
 
 static float currentAngle = -1.0f;    // 현재 각도
 static bool increasing = false;    // 각도 증가 방향
-float minAngle = -1.0;             // 최소 각도 (시작 지점)
-float maxAngle = 1.0f;             // 최대 각도 (끝 지점)
-float angleStep = 0.01f;              // 한 프레임당 각도 변화량 (속도)
+float minAngle = -80.0;             // 최소 각도 (시작 지점)
+float maxAngle = 80.0f;             // 최대 각도 (끝 지점)
+float angleStep = 1.0f;              // 한 프레임당 각도 변화량 (속도)
 
 bool LightOn = true;
 
@@ -110,6 +110,10 @@ void main(int argc, char** argv)
 
 	render->SetCamera(camera);
 	render->SetLight(light);
+
+	//mgr->AddObject(entrance, glm::vec3({ 0.0, -40.0, 0.0 }), glm::vec3({ 0.0f, 0.0f, 0.0f }),
+	//	glm::vec3({0.2, 0.2, 0.2 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+
 
 	// 땅
 	mgr->AddObject(base, glm::vec3({ 0.0, -40.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
@@ -221,8 +225,8 @@ void main(int argc, char** argv)
 		float x = x_start + i * x_step;
 		mgr->AddObject(fence, glm::vec3({ x, -40.0f, -145.0f }), glm::vec3({ 0.0f, 270.0f, 0.0f }),
 			glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
-		mgr->AddObject(fence, glm::vec3({ x, -40.0f, 5.0f }), glm::vec3({ 0.0f, 270.0f, 0.0f }),
-			glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
+		//mgr->AddObject(fence, glm::vec3({ x, -40.0f, 5.0f }), glm::vec3({ 0.0f, 270.0f, 0.0f }),
+		//	glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
 	}
 
 	// 오른쪽부터 왼쪽까지 울타리 추가 (대칭을 맞추기 위해 색상도 동일하게)
@@ -230,10 +234,9 @@ void main(int argc, char** argv)
 		float x = -(x_start + i * x_step);
 		mgr->AddObject(fence, glm::vec3({ x, -40.0f, -145.0f }), glm::vec3({ 0.0f, 270.0f, 0.0f }),
 			glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
-		mgr->AddObject(fence, glm::vec3({ x, -40.0f, 5.0f }), glm::vec3({ 0.0f, 270.0f, 0.0f }),
-			glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
+		//mgr->AddObject(fence, glm::vec3({ x, -40.0f, 5.0f }), glm::vec3({ 0.0f, 270.0f, 0.0f }),
+		//	glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
 	}
-
 
 
 
@@ -355,7 +358,7 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	case '7': {
 		MerryGoRound = !MerryGoRound;
 		if (MerryGoRound) {
-			camera->SetLocation({ 50.0, -25.0, -42.0 });
+			camera->SetLocation({ 50.0, -10.0, -42.0 });
 			camera->SetLookLocation({ 0.0, 0.0, 0.0 });
 			camera->angle = 100.0f;
 		}
@@ -367,7 +370,24 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	}
 			break;
 	case '8': {
+		Viking = !Viking;
+		if (Viking) {
+			glm::mat4 orbit = glm::mat4(1.0f);
+			//orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
+			orbit = glm::rotate(orbit, glm::radians(-90.0f), glm::vec3(0.0, 1.0, 0.0));
+			//orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
+			camera->camMatrix = orbit * camera->camMatrix;
+			camera->cam_Look_Matrix = orbit * camera->cam_Look_Matrix;
 
+			camera->SetLocation({ -50.0, -20.0, -30.0 });
+			camera->SetLookLocation({ 70.0, 0.0, -30.0 });
+			camera->angle = 100.0f;
+		}
+		else {
+			camera->SetLocation({ 50.0, -30.0, 20.0 });
+			camera->SetLookLocation({ 50.0, 0.0, -100.0 });
+			camera->angle = 45.0f;
+		}
 	}
 			break;
 	case '9': {
@@ -422,7 +442,11 @@ void SpecialKeyboard(int key, int x, int y) {
 void TimerFunction(int value)
 {
 	if (MerryGoRound) {
-		camera->RotateCam(1.0, glm::vec3{ 50.0, -40.0, -30.0 });
+		camera->RotateCamY(1.0, glm::vec3{ 50.0, -40.0, -30.0 });
+	}
+
+	if (Viking) {
+		//camera->RotateCamZ(1.0, glm::vec3{ -50.0, -10.0, -30.0 });
 	}
 
 	for (auto& v : mgr->GetAllObjs()) {
@@ -447,24 +471,32 @@ void TimerFunction(int value)
 			if (increasing) {
 				currentAngle += angleStep;
 				if (currentAngle >= maxAngle) {
-					increasing = false; // 최대 각도에 도달하면 방향 전환
+					currentAngle = maxAngle;  // 최대 각도를 넘어가지 않도록 제한
+					increasing = false;  // 방향 전환
 				}
 			}
 			else {
 				currentAngle -= angleStep;
 				if (currentAngle <= minAngle) {
-					increasing = true;  // 최소 각도에 도달하면 방향 전환
+					currentAngle = minAngle;  // 최소 각도를 넘어가지 않도록 제한
+					increasing = true;  // 방향 전환
 				}
 			}
 
-			// 초기 상태에서 계산
+			// 회전 중심으로 이동 후 회전하고 원위치로 되돌리기
 			glm::mat4 orbit = glm::mat4(1.0f);
-			orbit = glm::translate(orbit, glm::vec3(ship_pos));  // 바이킹의 기준 위치로 이동
-			orbit = glm::rotate(orbit, glm::radians(currentAngle), glm::vec3(0.0, 0.0, 1.0)); // 회전
-			orbit = glm::translate(orbit, glm::vec3(-ship_pos)); // 기준 위치를 원점으로 복귀
+			orbit = glm::translate(orbit, glm::vec3(ship_pos));  // 회전할 중심으로 이동
+			orbit = glm::rotate(orbit, glm::radians(currentAngle), glm::vec3(0.0, 0.0, 1.0));  // 회전
+			orbit = glm::translate(orbit, glm::vec3(-ship_pos)); // 원래 위치로 되돌리기
 
-			v->modelMatrix = v->modelMatrix;  // 새로운 변환 행렬 적용
+			// 초기 모델 행렬을 기준으로 회전 적용
+			v->modelMatrix = orbit * v->initialModelMatrix;
+			if (Viking) {
+				camera->cam_Look_Matrix = orbit * camera->Initial_cam_Look_Matrix;
+				camera->camMatrix = orbit * camera->Initial_camMatrix;
+			}
 		}
+
 
 		if (v->GetType() == cloud) {
 			glm::mat4 orbit = glm::mat4(1.0f);

@@ -4,6 +4,9 @@ void Camera::SetLocation(glm::vec3 _location)
 {
     camMatrix = glm::mat4(1.0f);
     camMatrix = glm::translate(camMatrix, _location);
+
+    Initial_camMatrix = glm::mat4(1.0f);
+    Initial_camMatrix = glm::translate(Initial_camMatrix, _location);
 }
 
 glm::mat4 Camera::GetLocation()
@@ -15,6 +18,9 @@ void Camera::SetLookLocation(glm::vec3 _location)
 {
     cam_Look_Matrix = glm::mat4(1.0f);
     cam_Look_Matrix = glm::translate(cam_Look_Matrix, _location);
+
+    Initial_cam_Look_Matrix = glm::mat4(1.0f);
+    Initial_cam_Look_Matrix = glm::translate(Initial_cam_Look_Matrix, _location);
 }
 
 glm::mat4 Camera::GetLookLocation()
@@ -22,7 +28,7 @@ glm::mat4 Camera::GetLookLocation()
 	return cam_Look_Matrix;
 }
 
-void Camera::RotateCam(float angle, glm::vec3 pos)
+void Camera::RotateCamY(float angle, glm::vec3 pos)
 {
     // 현재 카메라 위치를 기준으로 변환 수행
     glm::mat4 orbit = glm::mat4(1.0f);
@@ -32,6 +38,26 @@ void Camera::RotateCam(float angle, glm::vec3 pos)
 
     // Y축 기준으로 회전
     orbit = glm::rotate(orbit, glm::radians(angle), glm::vec3(0.0, 1.0, 0.0));
+
+    // 회전 중심에서 다시 원래 위치로 이동
+    orbit = glm::translate(orbit, -pos);
+
+    // 카메라 변환 행렬에 적용
+
+    camMatrix = orbit * camMatrix;
+    cam_Look_Matrix = orbit * cam_Look_Matrix;
+}
+
+void Camera::RotateCamZ(float angle, glm::vec3 pos)
+{
+    // 현재 카메라 위치를 기준으로 변환 수행
+    glm::mat4 orbit = glm::mat4(1.0f);
+
+    // 회전 중심으로 이동
+    orbit = glm::translate(orbit, pos);
+
+    // Y축 기준으로 회전
+    orbit = glm::rotate(orbit, glm::radians(angle), glm::vec3(0.0, 0.0, 1.0));
 
     // 회전 중심에서 다시 원래 위치로 이동
     orbit = glm::translate(orbit, -pos);

@@ -22,6 +22,13 @@ Object::Object(int _type, glm::vec3 loc, glm::vec3 rot, glm::vec3 _size, glm::ve
 	modelMatrix = glm::rotate(modelMatrix, glm::radians(rot.x), glm::vec3(1.0, 0.0, 0.0));
 	modelMatrix = glm::rotate(modelMatrix, glm::radians(rot.y), glm::vec3(0.0, 1.0, 0.0));
 	modelMatrix = glm::rotate(modelMatrix, glm::radians(rot.z), glm::vec3(0.0, 0.0, 1.0));
+
+	initialModelMatrix = glm::translate(initialModelMatrix, loc);
+	initialModelMatrix = glm::scale(initialModelMatrix, _size);
+	initialModelMatrix = glm::rotate(initialModelMatrix, glm::radians(rot.x), glm::vec3(1.0, 0.0, 0.0));
+	initialModelMatrix = glm::rotate(initialModelMatrix, glm::radians(rot.y), glm::vec3(0.0, 1.0, 0.0));
+	initialModelMatrix = glm::rotate(initialModelMatrix, glm::radians(rot.z), glm::vec3(0.0, 0.0, 1.0));
+
 	object_index = index;
 
 	std::cout << "new obj " << type << '\n';
@@ -86,6 +93,12 @@ Object::Object(int _type, glm::vec3 loc, glm::vec3 rot, glm::vec3 _size, glm::ve
 	else if (type == cloud) {
 		SetMesh("tree_leaf.obj");
 		speed = face(_dre);
+	}
+	else if (type == entrance) {
+		SetMesh("entrance.obj");
+	}
+	else if (type == cube) {
+		SetMesh("cube.obj");
 	}
 	
 

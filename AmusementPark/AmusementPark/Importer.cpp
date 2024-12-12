@@ -12,6 +12,9 @@ Importer_obj::~Importer_obj()
 
 void Importer_obj::Initialize()
 {
+	ReadObj("objs/entrance.obj");
+	ReadObj("objs/cube.obj");
+
 	ReadObj("objs/wheel_body.obj");
 	LoadMTL("objs/wheel_body.mtl");
 
@@ -49,6 +52,7 @@ void Importer_obj::Initialize()
 
 
 	ReadObj("objs/door.obj");
+
 	ReadObj("objs/door.mtl");
 
 }

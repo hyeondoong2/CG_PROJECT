@@ -8,7 +8,7 @@ enum Shape {
 	base, chair,
 	roller_coaster_rail, roller_coaster_body, roller_coaster_head,
 	tree,door1, door2,
-	tree_leaf, tree_wood, fence, cloud
+	tree_leaf, tree_wood, fence, cloud, entrance, cube
 };
 
 
@@ -42,6 +42,7 @@ public:
 	float speed;
 
 	glm::mat4 modelMatrix = glm::mat4(1.0f);
+	glm::mat4 initialModelMatrix = glm::mat4(1.0f);
 	glm::mat4 translationMatrix = glm::mat4(1.0f);
 	glm::mat4 scaleMatrix = glm::mat4(1.0f);
 	glm::mat4 rotationMatrix = glm::mat4(1.0f);
