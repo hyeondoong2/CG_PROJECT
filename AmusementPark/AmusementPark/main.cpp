@@ -249,13 +249,23 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 
 GLvoid SpecialKeyboard(int key, int x, int y)
 {
-	int a = 0;
+	char axis{};
 	switch (key) {
 	case GLUT_KEY_LEFT: // 왼쪽 화살표 키
-		camera->RotateCam(5.0f);
+		axis = 'y';
+		camera->RotateCam(axis, 5.0f);
 		break;
 	case GLUT_KEY_RIGHT: // 오른쪽 화살표 키
-		camera->RotateCam(-5.0f);
+		axis = 'y';
+		camera->RotateCam(axis ,-5.0f);
+		break;
+	case GLUT_KEY_DOWN:
+		axis = 'x';
+		camera->RotateCam(axis, -5.0f);
+		break;
+	case GLUT_KEY_UP:
+		axis = 'x';
+		camera->RotateCam(axis, 5.0f);
 		break;
 
 	}
