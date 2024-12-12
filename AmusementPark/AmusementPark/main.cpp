@@ -25,7 +25,7 @@ GLvoid drawScene();
 GLvoid Reshape(int w, int h);
 GLvoid Keyboard(unsigned char key, int x, int y);
 GLvoid TimerFunction(int value);
-void SpecialKeyboard(int key, int x, int y);
+GLvoid SpecialKeyboard(int key, int x, int y);
 
 #define WINDOW_WIDTH 1000
 #define WINDOW_HEIGHT 1000
@@ -218,8 +218,8 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	case 'w':
 	case 'W':
 	{
-		camera->ChangeLocation({0.0, 0.0, -1.0});
-		camera->ChangeLookLocation({0.0, 0.0, -1.0});
+		camera->ChangeLocation({ 0.0, 0.0, -1.0 });
+		camera->ChangeLookLocation({ 0.0, 0.0, -1.0 });
 	}
 	break;
 	case 's':
@@ -247,7 +247,18 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	glutPostRedisplay();
 }
 
-void SpecialKeyboard(int key, int x, int y) {
+GLvoid SpecialKeyboard(int key, int x, int y)
+{
+	int a = 0;
+	switch (key) {
+	case GLUT_KEY_LEFT: // 왼쪽 화살표 키
+		camera->RotateCam(5.0f);
+		break;
+	case GLUT_KEY_RIGHT: // 오른쪽 화살표 키
+		camera->RotateCam(-5.0f);
+		break;
+
+	}
 
 	glutPostRedisplay();
 }
@@ -326,15 +337,15 @@ void TimerFunction(int value)
 				orbit = glm::translate(orbit, glm::vec3(-0.015, 0.07, 0.0));
 			}
 			else if (v->GetMatrix()[3].x <= -65.1 && v->GetMatrix()[3].y <= 18.0) {   //위로 직진
-					orbit = glm::translate(orbit, glm::vec3(0.0, 0.1, 0.0));
+				orbit = glm::translate(orbit, glm::vec3(0.0, 0.1, 0.0));
 			}
 			else if (v->GetMatrix()[3].x > -37.0) {
 				orbit = glm::translate(orbit, glm::vec3(-0.1, 0.0, 0.0));
 			}
-			
+
 			v->modelMatrix = orbit * v->modelMatrix;
 			//::cout << "x      " << v->GetMatrix()[3].x << std::endl;
-			std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
+			//std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
 			//std::cout << "angle      " << rollerAngle << std::endl;
 		}
 	}
@@ -348,7 +359,7 @@ void Mouse(int button, int state, int x, int y)
 	//if (button == 3) camera->BindWithMouseWheel(-1.f);
 	//else if (button == 4) camera->BindWithMouseWheel(1.f);
 
-	
+
 
 	glutPostRedisplay();
 }
