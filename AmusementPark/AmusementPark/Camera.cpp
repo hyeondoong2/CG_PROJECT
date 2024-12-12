@@ -48,8 +48,12 @@ void Camera::RotateCam(char axis, float angle)
 	// 회전 후 새로운 위치 = 원점 + 회전된 벡터
 	location = center + offset;
 
-	// 카메라는 여전히 원점을 바라보게 설정
+	// 카메라는 여전히 원점을 바라보게 설정 -> 현재 보는 방향 보도록 설정
 	look_location = center;
+	//glm::vec3 direction = location-glm::vec3(0.0,0.0,-1.0); // 카메라가 바라보는 방향
+	//float distance = 5.0f; // 카메라와 바라보는 위치 사이의 거리 (원하는 거리로 설정)
+	//look_location =  direction * distance; // 회전된 위치를 바라보는 시점으로 설정
+	//glm::mat4 view_matrix = glm::lookAt(location, look_location, glm::vec3(0.0, look_location.y, 0.0));
 }
 
 
