@@ -6,9 +6,11 @@ enum Shape {
 	wheel_body, wheel_car, viking_body, viking_ship, 
 	merry_go_round_body, merry_go_round_horse, 
 	base, chair,
-	roller_coaster_rail, roller_coaster_body, roller_coaster_head,
+	roller_coaster_rail, roller_coaster_body1, 
+	roller_coaster_body2, roller_coaster_body3, roller_coaster_body4,
+	roller_coaster_head,
 	tree,door1, door2,
-	tree_leaf, tree_wood, fence, cloud, entrance, cube
+	tree_leaf, tree_wood, fence, cloud, entrance, cube, kitty
 };
 
 
@@ -27,11 +29,12 @@ private:
 	glm::vec3 size;
 	GLuint vao;
 
+
 	Importer_obj* Importer_mesh;
 	int type;
 
-
 public:
+
 	Object(int _type, glm::vec3 loc, glm::vec3 rot, glm::vec3 _size, glm::vec3 _color, int index, Importer_obj* importer);
 	~Object();
 
@@ -40,6 +43,8 @@ public:
 
 	float angle = 0.0f;
 	float speed;
+
+	GLuint text;
 
 	glm::mat4 modelMatrix = glm::mat4(1.0f);
 	glm::mat4 initialModelMatrix = glm::mat4(1.0f);
@@ -51,6 +56,8 @@ public:
 	void SetMesh(std::string filename);
 	Material* GetMaterial();
 	void SetMaterial(std::string filename);
+
+	void SetText(std::string filename);
 
 	glm::vec3 GetLocation();
 	glm::vec3 GetRotation();

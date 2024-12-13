@@ -55,6 +55,7 @@ void Importer_obj::Initialize()
 
 	ReadObj("objs/door.mtl");
 
+	ReadObj("objs/Kitty.obj");
 }
 
 void Importer_obj::CalculateTangentBitangent(const glm::vec3& pos1, const glm::vec3& pos2, const glm::vec3& pos3, const glm::vec2& uv1, const glm::vec2& uv2, const glm::vec2& uv3, glm::vec3& tangent, glm::vec3& bitangent)
@@ -189,29 +190,35 @@ void Importer_obj::LoadMTL(const std::string filePath)
 
 GLuint Importer_obj::LoadTexture(const std::string filePath)
 {
-	//Load Png
+	// PNG 로드
 	GLuint texture;
 
 	std::vector<unsigned char> image;
-
 	unsigned width, height;
 
 	unsigned error = lodepng::decode(image, width, height, filePath);
 
 	if (error != 0)
 	{
-		std::cout << "PNG image loading failed:" << filePath << std::endl;
+		std::cout << "PNG 이미지 로드 실패: " << filePath << std::endl;
 	}
 
+	// 텍스처 생성 및 바인딩
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA,
-		GL_UNSIGNED_BYTE, &image[0]);
 
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	// 이미지 데이터를 텍스처로 업로드 (RGBA 또는 RGB 포맷으로 설정)
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &image[0]);
 
-	std::cout << "PNG image loading Success:" << filePath << std::endl;
+	// 텍스처 파라미터 설정
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // 고품질 필터링
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // 고품질 필터링
+
+	// 텍스처 래핑 모드 설정 (경계를 넘을 때)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); // S축(수평)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT); // T축(수직)
+
+	std::cout << "PNG 이미지 로드 성공: " << filePath << std::endl;
 
 	return texture;
 }

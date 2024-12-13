@@ -55,7 +55,7 @@ class Importer_obj
 	std::string removeSubstring(const std::string& str, const std::string& toRemove);
 
 public:
-	static GLuint LoadTexture(const std::string filePath);
+	GLuint LoadTexture(std::string filename);
 
 	void LoadMTL(const std::string filePath);
 	Material* FindMaterial(std::string filename);

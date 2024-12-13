@@ -3,8 +3,12 @@
 in vec3 out_Color;   // 정점 셰이더에서 전달된 색상
 in vec3 FragPos;     // 정점 위치 (월드 좌표계)
 in vec3 Normal;      // 정점 법선 벡터 (월드 좌표계)
+in vec2 TexCoords;      // 정점 법선 벡터 (월드 좌표계)
 
 out vec4 FragColor;  // 최종 출력할 색상
+
+uniform sampler2D textureSampler;
+uniform bool useTexture;  
 
 // 조명 관련 uniform 변수
 uniform vec3 lightPos;       // 조명 위치
@@ -14,6 +18,15 @@ uniform float Alpha;         // 알파값 (투명도)
 
 void main(void) 
 {
+    // 텍스처 색상 또는 객체 기본 색상 선택
+    vec3 baseColor = out_Color;
+    if(useTexture) {
+         baseColor =  texture(textureSampler, TexCoords).rgb;
+    }
+
+
+    //vec3 baseColor = texture(textureSampler, TexCoords).rgb;
+
     // 1. Ambient (환경광)
     float ambientStrength = 0.2;
     vec3 ambient = ambientStrength * lightColor;
@@ -34,7 +47,7 @@ void main(void)
     vec3 specular = specularStrength * spec * lightColor;
 
     // 최종 조명 색상 계산
-    vec3 result = (ambient + diffuse + specular) * out_Color;
+    vec3 result = (ambient + diffuse + specular) * baseColor;
 
     // 감마 보정 적용
     float gamma = 2.2;

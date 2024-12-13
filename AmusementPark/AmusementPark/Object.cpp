@@ -59,6 +59,7 @@ Object::Object(int _type, glm::vec3 loc, glm::vec3 rot, glm::vec3 _size, glm::ve
 	}
 	else if (type == base) {
 		SetMesh("Base.obj");
+		SetText("textures/texture5.png");
 	}
 	else if (type == chair) {
 		SetMesh("chair.obj");
@@ -66,7 +67,7 @@ Object::Object(int _type, glm::vec3 loc, glm::vec3 rot, glm::vec3 _size, glm::ve
 	else if (type == roller_coaster_rail) {
 		SetMesh("roller_coaster_rail.obj");
 	}
-	else if (type == roller_coaster_body) {
+	else if (type == roller_coaster_body1 || type == roller_coaster_body2 || type == roller_coaster_body3) {
 		SetMesh("roller_coaster_body.obj");
 	}
 	else if (type == roller_coaster_head) {
@@ -100,7 +101,10 @@ Object::Object(int _type, glm::vec3 loc, glm::vec3 rot, glm::vec3 _size, glm::ve
 	else if (type == cube) {
 		SetMesh("cube.obj");
 	}
-	
+	else if (type == kitty) {
+		SetMesh("Kitty.obj");
+		SetText("textures/HelloKitty.png");
+	}
 
 }
 
@@ -129,6 +133,11 @@ void Object::SetMaterial(std::string filename)
 {
 	m_material = Importer_mesh->FindMaterial(filename);
 	std::cout << "find!" << '\n';
+}
+
+void Object::SetText(std::string filename)
+{
+	text = Importer_mesh->LoadTexture(filename);
 }
 
 glm::vec3 Object::GetLocation()
