@@ -59,7 +59,7 @@ Object::Object(int _type, glm::vec3 loc, glm::vec3 rot, glm::vec3 _size, glm::ve
 	else if (type == roller_coaster_rail) {
 		SetMesh("roller_coaster_rail.obj");
 	}
-	else if (type == roller_coaster_body) {
+	else if (type == roller_coaster_body1|| type == roller_coaster_body2|| type == roller_coaster_body3) {
 		SetMesh("roller_coaster_body.obj");
 	}
 	else if (type == roller_coaster_head) {

@@ -6,7 +6,7 @@ enum Shape {
 	wheel_body, wheel_car, viking_body, viking_ship, 
 	merry_go_round_body, merry_go_round_horse, 
 	base, chair,
-	roller_coaster_rail, roller_coaster_body, roller_coaster_head,
+	roller_coaster_rail, roller_coaster_body1, roller_coaster_body2, roller_coaster_body3, roller_coaster_head,
 	tree,door
 };
 
