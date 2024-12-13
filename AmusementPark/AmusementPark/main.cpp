@@ -403,9 +403,9 @@ void TimerFunction(int value)
 			//}
 			else if (v->GetMatrix()[3].x >= -65.0 && v->GetMatrix()[3].x <= -63.0) {	//
 				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
-				orbit = glm::rotate(orbit, glm::radians(0.44f), glm::vec3(0.0, 0.0, 1.0));
+				orbit = glm::rotate(orbit, glm::radians(0.833f), glm::vec3(0.0, 0.0, 1.0));
 				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
-				orbit = glm::translate(orbit, glm::vec3(0.04, -0.13, 0.0));
+				orbit = glm::translate(orbit, glm::vec3(0.08, -0.25, 0.0));
 				std::cout << "x      " << v->GetMatrix()[3].x << std::endl;
 				std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
 				std::cout << "z      " << v->GetMatrix()[3].z << std::endl;
