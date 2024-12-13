@@ -349,123 +349,92 @@ void TimerFunction(int value)
 			else if (v->GetMatrix()[3].x <= -65.4 && v->GetMatrix()[3].y <= 18.0 && v->GetMatrix()[3].z >= -122) {   //위로 직진
 				orbit = glm::translate(orbit, glm::vec3(0.0, 0.1, 0.0));
 			}
-			else if (v->GetMatrix()[3].x > -37.0 && v->GetMatrix()[3].z >= -122) {
+			else if (v->GetMatrix()[3].x <= 60.0 && v->GetMatrix()[3].x > -37.0 && v->GetMatrix()[3].z >= -122) {
 				orbit = glm::translate(orbit, glm::vec3(-0.1, 0.0, 0.0));
 			}
-			else if (v->GetMatrix()[3].y <= 23.0 && v->GetMatrix()[3].z >= -122) {
+			else if (v->GetMatrix()[3].x <= 60.0 && v->GetMatrix()[3].y <= 23.0 && v->GetMatrix()[3].z >= -122) {
 				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
 				orbit = glm::rotate(orbit, glm::radians(0.5f), glm::vec3(-1.0, 0.0, 0.0));
 				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
 				orbit = glm::translate(orbit, glm::vec3(0.0, 0.07, -0.03));
 			}
-			else if (v->GetMatrix()[3].y <= 25.0 && v->GetMatrix()[3].z >= -123.0) {
+			else if (v->GetMatrix()[3].x <= 60.0 && v->GetMatrix()[3].y <= 25.0 && v->GetMatrix()[3].z >= -123.0) {
 				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
 				orbit = glm::rotate(orbit, glm::radians(0.8f), glm::vec3(-1.0, 0.0, 0.0));
 				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
 				orbit = glm::translate(orbit, glm::vec3(0.0, 0.01, -0.05));
 			}
-			else if (v->GetMatrix()[3].y > 21.0 && v->GetMatrix()[3].z <= -123.0) {
+			else if (v->GetMatrix()[3].x <= 60.0 && v->GetMatrix()[3].y > 21.0 && v->GetMatrix()[3].z <= -123.0) {
 				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
 				orbit = glm::rotate(orbit, glm::radians(0.4f), glm::vec3(-1.0, 0.0, 0.0));
 				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
 				orbit = glm::translate(orbit, glm::vec3(0.0, -0.04, -0.025));
 			}
-
-			else if (v->GetMatrix()[3].y >= -8.0) {		
+			//롤러코스터 낙하 
+			else if (v->GetMatrix()[3].x <= 60.0 && v->GetMatrix()[3].y >= -8.0) {
 				orbit = glm::translate(orbit, glm::vec3(0.0, -0.7, 0.0));
 			}
-			//else if (v->GetMatrix()[3].x >= -66.0 && v->GetMatrix()[3].x <= -64.0) {	//여기까지 ㄱㅊ은듯 <이거 너무 느림
-			//	orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
-			//	orbit = glm::rotate(orbit, glm::radians(0.2f), glm::vec3(0.0, 0.0, 1.0));
-			//	orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
-			//	orbit = glm::translate(orbit, glm::vec3(0.01, -0.05, 0.0));
-			//	std::cout << "x      " << v->GetMatrix()[3].x << std::endl;
-			//	std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
-			//	std::cout << "z      " << v->GetMatrix()[3].z << std::endl;
-			//}
-			else if (v->GetMatrix()[3].x >= -66.0 && v->GetMatrix()[3].x <= -64.8) {	//여기까지 ㄱㅊ은듯
+			else if (v->GetMatrix()[3].x >= -66.0 && v->GetMatrix()[3].x <= -64.8 && v->GetMatrix()[3].z <= -120.0) {	//
 				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
 				orbit = glm::rotate(orbit, glm::radians(0.33f), glm::vec3(0.0, 0.0, 1.0));
 				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
 				orbit = glm::translate(orbit, glm::vec3(0.023, -0.23, 0.0));
 			}
-			else if (v->GetMatrix()[3].x >= -65.0 && v->GetMatrix()[3].x <= -63.0) {	//
+			else if (v->GetMatrix()[3].x >= -65.0 && v->GetMatrix()[3].x <= -63.0 && v->GetMatrix()[3].z <= -120.0) {	//
 				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
 				orbit = glm::rotate(orbit, glm::radians(0.833f), glm::vec3(0.0, 0.0, 1.0));
 				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
 				orbit = glm::translate(orbit, glm::vec3(0.08, -0.25, 0.0));
 			}
-			else if (v->GetMatrix()[3].x >= -63.0 && v->GetMatrix()[3].x <= -57.0) {	//
+			else if (v->GetMatrix()[3].x >= -63.0 && v->GetMatrix()[3].x <= -57.0 && v->GetMatrix()[3].z <= -120.0) {	//
 				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
 				orbit = glm::rotate(orbit, glm::radians(0.83f), glm::vec3(0.0, 0.0, 1.0));
 				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
 				orbit = glm::translate(orbit, glm::vec3(0.2, -0.28, 0.0));
 			}
-			else if (v->GetMatrix()[3].x >= -57.0 && v->GetMatrix()[3].x <= -50.0) {	//
+			else if (v->GetMatrix()[3].x >= -57.0 && v->GetMatrix()[3].x <= -50.0 && v->GetMatrix()[3].z <= -120.0) {	//
 				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
 				orbit = glm::rotate(orbit, glm::radians(0.9f), glm::vec3(0.0, 0.0, 1.0));
 				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
 				orbit = glm::translate(orbit, glm::vec3(0.3, -0.22, 0.0));
 			}
-			else if (v->GetMatrix()[3].x >= -50.0 && v->GetMatrix()[3].x <= -44.0) {	//
+			else if (v->GetMatrix()[3].x >= -50.0 && v->GetMatrix()[3].x <= -44.0 && v->GetMatrix()[3].z <= -120.0) {	//
 				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
 				orbit = glm::rotate(orbit, glm::radians(0.2f), glm::vec3(0.0, 0.0, 1.0));
 				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
 				orbit = glm::translate(orbit, glm::vec3(0.4, -0.15, 0.0));
 			}
-			else if (v->GetMatrix()[3].x >= -44.0 && v->GetMatrix()[3].x <= -36.0) {	//
+			else if (v->GetMatrix()[3].x >= -44.0 && v->GetMatrix()[3].x <= -36.0 && v->GetMatrix()[3].z <= -120.0) {	//
 				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
 				orbit = glm::rotate(orbit, glm::radians(0.8f), glm::vec3(0.0, 0.0, 1.0));
 				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
 				orbit = glm::translate(orbit, glm::vec3(0.4, -0.05, 0.0));
-				std::cout << "x      " << v->GetMatrix()[3].x << std::endl;
-				std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
-				std::cout << "z      " << v->GetMatrix()[3].z << std::endl;
-				}
-			else if (v->GetMatrix()[3].x >= -38.0 && v->GetMatrix()[3].x <= 10.0) {	//
-					orbit = glm::translate(orbit, glm::vec3(0.6, 0.0, 0.0));
-					std::cout << "x      " << v->GetMatrix()[3].x << std::endl;
-					std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
-					std::cout << "z      " << v->GetMatrix()[3].z << std::endl;
-					}
-			else if (v->GetMatrix()[3].x >=10.0 && v->GetMatrix()[3].x <= 35.0) {	//
-						orbit = glm::translate(orbit, glm::vec3(0.4, 0.0, 0.0));
-						std::cout << "x      " << v->GetMatrix()[3].x << std::endl;
-						std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
-						std::cout << "z      " << v->GetMatrix()[3].z << std::endl;
-						}
-			else if (v->GetMatrix()[3].x >= 35.0 && v->GetMatrix()[3].x <= 65.0) {	//
-							orbit = glm::translate(orbit, glm::vec3(0.2, 0.0, 0.0));
-							std::cout << "x      " << v->GetMatrix()[3].x << std::endl;
-							std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
-							std::cout << "z      " << v->GetMatrix()[3].z << std::endl;
-							}
-			//else if (v->GetMatrix()[3].x >= -63.0 && v->GetMatrix()[3].x <= -56.0) {	// 여기까지 튕김
-			//	orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
-			//	orbit = glm::rotate(orbit, glm::radians(0.5f), glm::vec3(0.0, 0.0, 1.0));
-			//	orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
-			//	orbit = glm::translate(orbit, glm::vec3(0.1, -0.145, 0.0));
-			//}
-			//else if (v->GetMatrix()[3].y>=-33.0) {
-			//
-			//	std::cout << "x      " << v->GetMatrix()[3].x << std::endl;
-			//	std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
-			//	std::cout << "z      " << v->GetMatrix()[3].z << std::endl;
-			//	orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
-			//	orbit = glm::rotate(orbit, glm::radians(0.35f), glm::vec3(0.0, 0.0, 1.0));
-			//	orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
-			//	orbit = glm::translate(orbit, glm::vec3(0.14, -0.07, 0.0));
-			//}
-			//else if (v->GetMatrix()[3].x > -45.0 && v->GetMatrix()[3].x <= -10.0) {
-			//	std::cout << "x      " << v->GetMatrix()[3].x << std::endl;
-			//	std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
-			//	std::cout << "z      " << v->GetMatrix()[3].z << std::endl;
-			//	//orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
-			//	//orbit = glm::rotate(orbit, glm::radians(0.3f), glm::vec3(0.0, 0.0, 1.0));
-			//	//orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
-			//	orbit = glm::translate(orbit, glm::vec3(0.5, 0.0, 0.0));
-			//}
-
+			}
+			//평지 이동 속도
+			else if (v->GetMatrix()[3].x >= -38.0 && v->GetMatrix()[3].x <= 10.0 && v->GetMatrix()[3].z <= -120.0) {	//
+				orbit = glm::translate(orbit, glm::vec3(0.6, 0.0, 0.0));
+			}
+			else if (v->GetMatrix()[3].x >= 10.0 && v->GetMatrix()[3].x <= 35.0 && v->GetMatrix()[3].z <= -120.0) {	//
+				orbit = glm::translate(orbit, glm::vec3(0.4, 0.0, 0.0));
+			}
+			else if (v->GetMatrix()[3].x >= 35.0 && v->GetMatrix()[3].x <= 68.0 && v->GetMatrix()[3].z <= -120.0) {	//
+				orbit = glm::translate(orbit, glm::vec3(0.2, 0.0, 0.0));
+			}
+			else if (v->GetMatrix()[3].x <= 73.0 && v->GetMatrix()[3].z <= -120.0) {
+				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
+				orbit = glm::rotate(orbit, glm::radians(-0.7f), glm::vec3(0.0, 1.0, 0.0));
+				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
+				orbit = glm::translate(orbit, glm::vec3(0.045, 0.0, 0.02));
+			}
+			else if (v->GetMatrix()[3].z <= -113.5&& v->GetMatrix()[3].z >= -123.0) {
+				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
+				orbit = glm::rotate(orbit, glm::radians(-0.38f), glm::vec3(0.0, 1.0, 0.0));
+				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
+				orbit = glm::translate(orbit, glm::vec3(-0.014, 0.0, 0.038));
+			}
+			else if (v->GetMatrix()[3].x >= 20.0) {
+				orbit = glm::translate(orbit, glm::vec3(-0.3, 0.0, 0.0));
+			}
 
 			v->modelMatrix = orbit * v->modelMatrix;
 			//std::cout << "angle      " << rollerAngle << std::endl;
