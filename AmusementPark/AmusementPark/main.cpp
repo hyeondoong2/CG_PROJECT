@@ -485,10 +485,9 @@ void TimerFunction(int value)
 			}
 			else if (v->GetMatrix()[3].x >= 20.0) {
 				orbit = glm::translate(orbit, glm::vec3(-0.3, 0.0, 0.0));
-				}
+			}
 			v->modelMatrix = orbit * v->modelMatrix;
 
-			prevhead = v->modelMatrix;
 		}
 		else if (v->GetType() == roller_coaster_body1) {
 			glm::mat4 orbit = glm::mat4(1.0f);
@@ -627,7 +626,7 @@ void TimerFunction(int value)
 			}
 			else if (v->GetMatrix()[3].x >= 63.0 && v->GetMatrix()[3].x <= 68.0 && v->GetMatrix()[3].z <= -120.0) {	//
 				orbit = glm::translate(orbit, glm::vec3(0.05, 0.0, 0.0));
-				}
+			}
 			else if (v->GetMatrix()[3].x <= 73.0 && v->GetMatrix()[3].z <= -120.0) {
 				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
 				orbit = glm::rotate(orbit, glm::radians(-0.7f), glm::vec3(0.0, 1.0, 0.0));
@@ -645,13 +644,13 @@ void TimerFunction(int value)
 				glm::vec3 loc = glm::vec3(70.0, -36.0, -114.0);  // 위치
 				glm::vec3 rot = glm::vec3(0.0, 0.0, 0.0);        // 회전 (라디안)
 				glm::vec3 _size = glm::vec3(0.0005, 0.0005, 0.0005); // 크기
-			
+
 				// 초기화
 				v->modelMatrix = glm::mat4(1.0f);
-			
+
 				// 크기 조정
 				glm::mat4 scale = glm::scale(glm::mat4(1.0f), _size);
-			
+
 				// 회전 설정 (XYZ 순서로 회전)
 				glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), rot.x, glm::vec3(1.0, 0.0, 0.0)); // X축 회전
 				rotation = glm::rotate(rotation, rot.y, glm::vec3(0.0, 1.0, 0.0));                 // Y축 회전
@@ -659,27 +658,141 @@ void TimerFunction(int value)
 				//glm::mat4 rotation = glm::mat4(1.0f); // 회전 제거
 				// 위치 이동
 				glm::mat4 translation = glm::translate(glm::mat4(1.0f), loc);
-			
+
 				// 변환 순서: Translation * Rotation * Scale
 				v->modelMatrix = translation * rotation * scale;
-			
+
 				// 디버그 출력
 				printMatrix(v->modelMatrix, "v->modelMatrix");
-			
-				}
+
+			}
 			else if (v->GetMatrix()[3].x >= 65.0) {
 				orbit = glm::translate(orbit, glm::vec3(-0.1, 0.0, 0.0));
 				//printMatrix(v->modelMatrix, "v->modelMatrix");
 			}
 			else if (v->GetMatrix()[3].x >= 20.0) {
-					orbit = glm::translate(orbit, glm::vec3(-0.3, 0.0, 0.0));
-					//printMatrix(v->modelMatrix, "v->modelMatrix");
+				orbit = glm::translate(orbit, glm::vec3(-0.3, 0.0, 0.0));
+				//printMatrix(v->modelMatrix, "v->modelMatrix");
 			}
 			v->modelMatrix = orbit * v->modelMatrix;
+			prevhead = v->modelMatrix;
 
 		}
+		else if (v->GetType() == roller_coaster_body2) {
+			glm::mat4 orbit = glm::mat4(1.0f);
+			if (prevhead[3].x > -45.0 && prevhead[3].z >= -114.0) {	// 왼쪽이동
+				glm::mat4 orbit = glm::mat4(1.0f);
+				glm::vec3 loc = glm::vec3(prevhead[3].x + 5.8,-36.0, -114.0);  // 위치
+				glm::vec3 rot = glm::vec3(0.0, 0.0, 0.0);        // 회전 (라디안)
+				glm::vec3 _size = glm::vec3(0.0005, 0.0005, 0.0005); // 크기
 
+				// 초기화
+				v->modelMatrix = glm::mat4(1.0f);
+
+				// 크기 조정
+				glm::mat4 scale = glm::scale(glm::mat4(1.0f), _size);
+
+				// 회전 설정 (XYZ 순서로 회전)
+				glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), rot.x, glm::vec3(1.0, 0.0, 0.0)); // X축 회전
+				rotation = glm::rotate(rotation, rot.y, glm::vec3(0.0, 1.0, 0.0));                 // Y축 회전
+				rotation = glm::rotate(rotation, rot.z, glm::vec3(0.0, 0.0, 1.0));                 // Z축 회전
+
+				// 위치 이동
+				glm::mat4 translation = glm::translate(glm::mat4(1.0f), loc);
+
+				// 변환 순서: Translation * Rotation * Scale
+				v->modelMatrix = translation * rotation * scale;
+			}
+			//else if (prevhead[3].x > -45.0 && prevhead[3].z >= -114.0) {	// 왼쪽이동
+			//	glm::mat4 orbit = glm::mat4(1.0f);
+			//	glm::vec3 loc = glm::vec3(prevhead[3].x + 6.0, -36.0, -114.0);  // 위치
+			//	glm::vec3 rot = glm::vec3(0.0, 0.0, 0.0);        // 회전 (라디안)
+			//	glm::vec3 _size = glm::vec3(0.0005, 0.0005, 0.0005); // 크기
+			//
+			//	// 초기화
+			//	v->modelMatrix = glm::mat4(1.0f);
+			//
+			//	// 크기 조정
+			//	glm::mat4 scale = glm::scale(glm::mat4(1.0f), _size);
+			//
+			//	// 회전 설정 (XYZ 순서로 회전)
+			//	glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), rot.x, glm::vec3(1.0, 0.0, 0.0)); // X축 회전
+			//	rotation = glm::rotate(rotation, rot.y, glm::vec3(0.0, 1.0, 0.0));                 // Y축 회전
+			//	rotation = glm::rotate(rotation, rot.z, glm::vec3(0.0, 0.0, 1.0));                 // Z축 회전
+			//
+			//	// 위치 이동
+			//	glm::mat4 translation = glm::translate(glm::mat4(1.0f), loc);
+			//
+			//	// 변환 순서: Translation * Rotation * Scale
+			//	v->modelMatrix = translation * rotation * scale;
+			//}
+			else if (v->GetMatrix()[3].x > -43.0 && v->GetMatrix()[3].x <= -39.0 && v->GetMatrix()[3].y <= 22.0 && v->GetMatrix()[3].z >= -122) {
+				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
+				orbit = glm::rotate(orbit, glm::radians(0.33f), glm::vec3(0.0, 0.0, -1.0));
+				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
+				orbit = glm::translate(orbit, glm::vec3(-0.083, 0.025, 0.0));
+
+			}
+			else if (v->GetMatrix()[3].x > -48.0 && v->GetMatrix()[3].x <= -39.0 && v->GetMatrix()[3].y <= 22.0 && v->GetMatrix()[3].z >= -122) {
+				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
+				orbit = glm::rotate(orbit, glm::radians(0.13f), glm::vec3(0.0, 0.0, -1.0));
+				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
+				orbit = glm::translate(orbit, glm::vec3(-0.05, 0.013, 0.0));
+
+			}
+			else if (v->GetMatrix()[3].x > -55.0 && v->GetMatrix()[3].x <= -48.0 && v->GetMatrix()[3].z >= -122) {
+				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
+				orbit = glm::rotate(orbit, glm::radians(0.15f), glm::vec3(0.0, 0.0, -1.0));
+				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
+				orbit = glm::translate(orbit, glm::vec3(-0.06, 0.04, 0.0));
+			}
+			else if (v->GetMatrix()[3].x > -61.0 && v->GetMatrix()[3].x <= -55.0 && v->GetMatrix()[3].z >= -122) {
+				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
+				orbit = glm::rotate(orbit, glm::radians(0.09f), glm::vec3(0.0, 0.0, -1.0));
+				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
+				orbit = glm::translate(orbit, glm::vec3(-0.043, 0.043, 0.0));
+			}
+			else if (v->GetMatrix()[3].x > -63.5 && v->GetMatrix()[3].x <= -61.0 && v->GetMatrix()[3].z >= -122) {
+				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
+				orbit = glm::rotate(orbit, glm::radians(0.14f), glm::vec3(0.0, 0.0, -1.0));
+				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
+				orbit = glm::translate(orbit, glm::vec3(-0.024, 0.052, 0.0));
+			}
+			else if (v->GetMatrix()[3].x > -65.4 && v->GetMatrix()[3].x <= -63.5 && v->GetMatrix()[3].z >= -122) {
+				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
+				orbit = glm::rotate(orbit, glm::radians(0.185f), glm::vec3(0.0, 0.0, -1.0));
+				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
+				orbit = glm::translate(orbit, glm::vec3(-0.025, 0.09, 0.0));
+			}
+			else if (prevhead[3].y <= 64.5 && prevhead[3].z == -114.0) {
+				glm::mat4 orbit = glm::mat4(1.0f);
+				glm::vec3 loc = glm::vec3(prevhead[3].x , prevhead[3].y-5.8, -114.0);  // 위치
+				glm::vec3 rot = glm::vec3(0.0, 0.0, -1.5708);        // 회전 (라디안)
+				glm::vec3 _size = glm::vec3(0.0005, 0.0005, 0.0005); // 크기
+
+				// 초기화
+				v->modelMatrix = glm::mat4(1.0f);
+
+				// 크기 조정
+				glm::mat4 scale = glm::scale(glm::mat4(1.0f), _size);
+
+				// 회전 설정 (XYZ 순서로 회전)
+				glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), rot.x, glm::vec3(1.0, 0.0, 0.0)); // X축 회전
+				rotation = glm::rotate(rotation, rot.y, glm::vec3(0.0, 1.0, 0.0));                 // Y축 회전
+				rotation = glm::rotate(rotation, rot.z, glm::vec3(0.0, 0.0, 1.0));                 // Z축 회전
+
+				// 위치 이동
+				glm::mat4 translation = glm::translate(glm::mat4(1.0f), loc);
+
+				// 변환 순서: Translation * Rotation * Scale
+				v->modelMatrix = translation * rotation * scale;
+			}
+
+			v->modelMatrix = orbit * v->modelMatrix;
+			printMatrix(v->modelMatrix, "v->modelMatrix");
+		}
 	}
+
 
 	glutPostRedisplay();
 	glutTimerFunc(render_freq, TimerFunction, 1);
