@@ -10,7 +10,8 @@ enum Shape {
 	roller_coaster_body2, roller_coaster_body3, roller_coaster_body4,
 	roller_coaster_head,
 	tree,door1, door2,
-	tree_leaf, tree_wood, fence, cloud, entrance, cube, kitty
+	tree_leaf, tree_wood, fence, cloud, entrance, cube, kitty, mymelody,
+	balloon, basket
 };
 
 

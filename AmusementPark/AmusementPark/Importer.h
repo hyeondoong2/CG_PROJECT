@@ -45,6 +45,9 @@ class Importer_obj
 	std::vector<Material*> Materials;
 	std::vector<VertexData*> VertexBuffers;
 
+	GLuint enviroment_Material;
+	std::vector<std::string> cubeMap_filepathes;
+
 	void Initialize();
 
 	void CalculateTangentBitangent(
@@ -56,7 +59,8 @@ class Importer_obj
 
 public:
 	GLuint LoadTexture(std::string filename);
-
+	GLuint LoadEnviromentTextures(std::vector<std::string> filepathes);
+	GLuint GetEnviromentMaterial();
 	void LoadMTL(const std::string filePath);
 	Material* FindMaterial(std::string filename);
 

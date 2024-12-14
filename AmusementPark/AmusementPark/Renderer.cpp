@@ -33,14 +33,21 @@ void Renderer::SceneRender()
 		// 색상 유니폼 전달
 		glm::vec3 color = v->GetColor();
 		glUniform3f(glGetUniformLocation(shaderProgramID, "incolor"), color.r, color.g, color.b);
-			glBindTexture(GL_TEXTURE_2D, v->text);
+		glBindTexture(GL_TEXTURE_2D, v->text);
 
-		if (v->GetType() == kitty) {
+		if (v->text != 0) {
 			glUniform1i(glGetUniformLocation(shaderProgramID, "useTexture"), GL_TRUE);
 			glBindVertexArray(v->GetMesh()->VAO);
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 			glDrawArrays(GL_TRIANGLES, 0, v->GetMesh()->polygon_count * 3);
 		}
+
+	/*	if (v->GetType() == kitty) {
+			glUniform1i(glGetUniformLocation(shaderProgramID, "useTexture"), GL_TRUE);
+			glBindVertexArray(v->GetMesh()->VAO);
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+			glDrawArrays(GL_TRIANGLES, 0, v->GetMesh()->polygon_count * 3);
+		}*/
 		else {
 			// VAO 바인딩
 			//glBindTexture(GL_TEXTURE_2D, v->text);
@@ -67,7 +74,7 @@ void Renderer::SceneRender()
 		// 구름의 알파값 설정
 		glUniform1i(glGetUniformLocation(shaderProgramID, "useTexture"), GL_FALSE);
 		glUniform3f(glGetUniformLocation(shaderProgramID, "incolor"), color.r, color.g, color.b);
-		glUniform1f(glGetUniformLocation(shaderProgramID, "Alpha"), 0.4f); // 투명도 설정
+		glUniform1f(glGetUniformLocation(shaderProgramID, "Alpha"), 0.5f); // 투명도 설정
 
 		glBindVertexArray(v->GetMesh()->VAO);
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);  // 사각형 매쉬의 경계도 제대로 처리되도록 설정
@@ -80,6 +87,87 @@ void Renderer::SceneRender()
 	glDisable(GL_BLEND); // 블렌딩 비활성화
 }
 
+void Renderer::Render_Enviroment(GLuint Shader)
+{
+	glDepthMask(GL_FALSE);
+
+	glUseProgram(Shader);
+
+	camera->DoWorking(Shader);
+	glActiveTexture(GL_TEXTURE0);
+
+	glBindTexture(GL_TEXTURE_CUBE_MAP, importer->GetEnviromentMaterial());
+	GLuint ul_enviroment = glGetUniformLocation(Shader, "u_enviroment");
+	glUniform1i(ul_enviroment, 0);
+
+	glBindVertexArray(EviromentVAO);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+
+	glBindVertexArray(0);
+
+	glDepthMask(GL_TRUE);
+}
+
+void Renderer::Initialize_EviromentVAO()
+{
+	float skyboxSize = 100.f;
+	float skyboxVertices[] = {
+		// positions          
+		-skyboxSize,  skyboxSize, -skyboxSize,
+		-skyboxSize, -skyboxSize, -skyboxSize,
+		 skyboxSize, -skyboxSize, -skyboxSize,
+		 skyboxSize, -skyboxSize, -skyboxSize,
+		 skyboxSize,  skyboxSize, -skyboxSize,
+		-skyboxSize,  skyboxSize, -skyboxSize,
+
+		-skyboxSize, -skyboxSize,  skyboxSize,
+		-skyboxSize, -skyboxSize, -skyboxSize,
+		-skyboxSize,  skyboxSize, -skyboxSize,
+		-skyboxSize,  skyboxSize, -skyboxSize,
+		-skyboxSize,  skyboxSize,  skyboxSize,
+		-skyboxSize, -skyboxSize,  skyboxSize,
+
+		 skyboxSize, -skyboxSize, -skyboxSize,
+		 skyboxSize, -skyboxSize,  skyboxSize,
+		 skyboxSize,  skyboxSize,  skyboxSize,
+		 skyboxSize,  skyboxSize,  skyboxSize,
+		 skyboxSize,  skyboxSize, -skyboxSize,
+		 skyboxSize, -skyboxSize, -skyboxSize,
+
+		-skyboxSize, -skyboxSize,  skyboxSize,
+		-skyboxSize,  skyboxSize,  skyboxSize,
+		 skyboxSize,  skyboxSize,  skyboxSize,
+		 skyboxSize,  skyboxSize,  skyboxSize,
+		 skyboxSize, -skyboxSize,  skyboxSize,
+		-skyboxSize, -skyboxSize,  skyboxSize,
+
+		-skyboxSize,  skyboxSize, -skyboxSize,
+		 skyboxSize,  skyboxSize, -skyboxSize,
+		 skyboxSize,  skyboxSize,  skyboxSize,
+		 skyboxSize,  skyboxSize,  skyboxSize,
+		-skyboxSize,  skyboxSize,  skyboxSize,
+		-skyboxSize,  skyboxSize, -skyboxSize,
+
+		-skyboxSize, -skyboxSize, -skyboxSize,
+		-skyboxSize, -skyboxSize,  skyboxSize,
+		 skyboxSize, -skyboxSize, -skyboxSize,
+		 skyboxSize, -skyboxSize, -skyboxSize,
+		-skyboxSize, -skyboxSize,  skyboxSize,
+		 skyboxSize, -skyboxSize,  skyboxSize
+	};
+
+	glGenVertexArrays(1, &EviromentVAO);
+	glGenBuffers(1, &EviromentVBO);
+
+	glBindVertexArray(EviromentVAO);
+
+	glBindBuffer(GL_ARRAY_BUFFER, EviromentVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices[0], GL_STATIC_DRAW);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void*)0);
+
+	glBindVertexArray(0);
+}
 
 void Renderer::SetCamera(Camera* cam)
 {
@@ -158,4 +246,5 @@ void Renderer::make_shaderProgram()
 void Renderer::Initialize()
 {
 	make_shaderProgram();
+	Initialize_EviromentVAO();
 }

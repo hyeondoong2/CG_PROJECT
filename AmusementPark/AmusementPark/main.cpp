@@ -28,8 +28,8 @@ GLvoid Keyboard(unsigned char key, int x, int y);
 GLvoid TimerFunction(int value);
 void SpecialKeyboard(int key, int x, int y);
 
-#define WINDOW_WIDTH 1000
-#define WINDOW_HEIGHT 1000
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 800
 
 #define render_freq 10
 #define M_PI 3.14159265358979323846
@@ -119,13 +119,22 @@ void main(int argc, char** argv)
 	//mgr->AddObject(entrance, glm::vec3({ 0.0, -40.0, 0.0 }), glm::vec3({ 0.0f, 0.0f, 0.0f }),
 	//	glm::vec3({0.2, 0.2, 0.1 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
 
+	//mgr->AddObject(cube, glm::vec3({ -50.0, 0.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
+	//	glm::vec3({ 40.0, 40.0, 40.0 }), glm::vec3({ 1.0f, 1.0f, 0.8f }));
 
-	//mgr->AddObject(kitty, glm::vec3({0.0, -40.0, -100.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		//glm::vec3({ 1000.0, 1000.0, 1000.0 }), glm::vec3({ 1.0f, 1.0f, 1.0f }));
+
+	mgr->AddObject(mymelody, glm::vec3({-40.0, -40.0, -100.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 10.0, 10.0, 10.0 }), glm::vec3({ 1.0f, 1.0f, 1.0f }));
+
+	//mgr->AddObject(kitty, glm::vec3({ -30.0, -40.0, -100.0 }), glm::vec3({ 0.0, 0.0, 180.0 }),
+	//	glm::vec3({ 10.0, 10.0, 10.0 }), glm::vec3({ 1.0f, 1.0f, 1.0f }));
 
 	// 땅
 	mgr->AddObject(base, glm::vec3({ 0.0, -40.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 40.0, 1.0, 40.0 }), glm::vec3({ 0.6f, 0.933f, 0.565f }));
+
+	//mgr->AddObject(cube, glm::vec3({ 0.0, -40.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	//	glm::vec3({ 500.0, 500.0, 500.0 }), glm::vec3({ 0.678f, 0.847f, 0.902f }));
 
 	// 관람차
 	mgr->AddObject(wheel_body, glm::vec3({ 0.0, -40.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
@@ -165,26 +174,56 @@ void main(int argc, char** argv)
 
 	ship_pos = glm::vec3({ -50.0, -0.0, -10.0 }); // 바이킹 회전축
 
-	// 나무
-	mgr->AddObject(tree_leaf, glm::vec3({ -60.0, -40.0, -90.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(tree_leaf, glm::vec3({ -60.0, -40.0, -100.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 4.0, 4.0, 4.0 }), glm::vec3({ 0.3f, 0.7f, 0.3f }));
-	mgr->AddObject(tree_wood, glm::vec3({ -60.0, -40.0, -90.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(tree_wood, glm::vec3({ -60.0, -40.0, -100.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 4.0, 4.0, 4.0 }), glm::vec3({ 0.65f, 0.4f, 0.2f }));
 
-	mgr->AddObject(tree_leaf, glm::vec3({ -50.0, -40.0, -100.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(tree_leaf, glm::vec3({ -50.0, -40.0, -90.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 0.3f, 0.7f, 0.3f }));
-	mgr->AddObject(tree_wood, glm::vec3({ -50.0, -40.0, -100.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(tree_wood, glm::vec3({ -50.0, -40.0, -90.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 0.65f, 0.4f, 0.2f }));
 
-	mgr->AddObject(tree_leaf, glm::vec3({ 60.0, -40.0, -90.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(tree_leaf, glm::vec3({ 60.0, -40.0, -100.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 4.0, 4.0, 4.0 }), glm::vec3({ 0.3f, 0.7f, 0.3f }));
-	mgr->AddObject(tree_wood, glm::vec3({ 60.0, -40.0, -90.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(tree_wood, glm::vec3({ 60.0, -40.0, -100.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 4.0, 4.0, 4.0 }), glm::vec3({ 0.65f, 0.4f, 0.2f }));
 
-	mgr->AddObject(tree_leaf, glm::vec3({ 50.0, -40.0, -100.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(tree_leaf, glm::vec3({ 50.0, -40.0, -90.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 0.3f, 0.7f, 0.3f }));
-	mgr->AddObject(tree_wood, glm::vec3({ 50.0, -40.0, -100.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(tree_wood, glm::vec3({ 50.0, -40.0, -90.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 0.65f, 0.4f, 0.2f }));
+
+
+	mgr->AddObject(tree_leaf, glm::vec3({ -40.0, -40.0, -140.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 4.0, 4.0, 4.0 }), glm::vec3({ 0.3f, 0.7f, 0.3f }));
+	mgr->AddObject(tree_wood, glm::vec3({ -40.0, -40.0, -140.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 4.0, 4.0, 4.0 }), glm::vec3({ 0.65f, 0.4f, 0.2f }));
+
+	mgr->AddObject(tree_leaf, glm::vec3({ -50.0, -40.0, -130.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 0.3f, 0.7f, 0.3f }));
+	mgr->AddObject(tree_wood, glm::vec3({ -50.0, -40.0, -130.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 0.65f, 0.4f, 0.2f }));
+
+	mgr->AddObject(tree_leaf, glm::vec3({ 40.0, -40.0, -140.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 4.0, 4.0, 4.0 }), glm::vec3({ 0.3f, 0.7f, 0.3f }));
+	mgr->AddObject(tree_wood, glm::vec3({ 40.0, -40.0, -140.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 4.0, 4.0, 4.0 }), glm::vec3({ 0.65f, 0.4f, 0.2f }));
+
+	mgr->AddObject(tree_leaf, glm::vec3({ 50.0, -40.0, -130.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 0.3f, 0.7f, 0.3f }));
+	mgr->AddObject(tree_wood, glm::vec3({ 50.0, -40.0, -130.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 3.0, 3.0, 3.0 }), glm::vec3({ 0.65f, 0.4f, 0.2f }));
+
+	mgr->AddObject(tree_leaf, glm::vec3({ -60.0, -40.0, 0.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 4.0, 4.0, 4.0 }), glm::vec3({ 0.3f, 0.7f, 0.3f }));
+	mgr->AddObject(tree_wood, glm::vec3({ -60.0, -40.0, 0.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 4.0, 4.0, 4.0 }), glm::vec3({ 0.65f, 0.4f, 0.2f }));
+
+	mgr->AddObject(tree_leaf, glm::vec3({ 60.0, -40.0, 0.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 4.0, 4.0, 4.0 }), glm::vec3({ 0.3f, 0.7f, 0.3f }));
+	mgr->AddObject(tree_wood, glm::vec3({ 60.0, -40.0, 0.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 4.0, 4.0, 4.0 }), glm::vec3({ 0.65f, 0.4f, 0.2f }));
 
 	// 의자
 	mgr->AddObject(chair, glm::vec3({ -60.0, -40.0, -65.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
@@ -228,7 +267,7 @@ void main(int argc, char** argv)
 			glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
 	}
 
-	//// 왼쪽부터 오른쪽까지 울타리 추가
+	// 왼쪽부터 오른쪽까지 울타리 추가
 	//for (int i = 0; i < 8; i++) {
 	//	float x = x_start + i * x_step;
 	//	mgr->AddObject(fence, glm::vec3({ x, -40.0f, -145.0f }), glm::vec3({ 0.0f, 270.0f, 0.0f }),
@@ -246,53 +285,44 @@ void main(int argc, char** argv)
 	//		glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
 	//}
 
-
+	//mgr->AddObject(balloon, glm::vec3({ -50.0, 45.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		//glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	//mgr->AddObject(basket, glm::vec3({ -50.0, 45.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		//glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
 
 
 	// 구름
 // 기존 구름 수정
-	mgr->AddObject(cloud, glm::vec3({ -40.0, 50.0, -130.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(cloud, glm::vec3({ -50.0, 45.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ -30.0, 50.0, -30.0 }), glm::vec3({ 0.0, 10.0, 0.0 }),
+		glm::vec3({ 1.5, 1.5, 1.5 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 30.0, 50.0, -40.0 }), glm::vec3({ 0.0, 30.0, 0.0 }),
+		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 50.0, 45.0, -10.0 }), glm::vec3({ 0.0, 30.0, 0.0 }),
+		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ -40.0, 50.0, -50.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.3, 1.3, 1.3 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 20.0, 55.0, -60.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ -35.0, 55.0, -110.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 1.9, 1.9, 1.9 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ -25.0, 60.0, -100.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 2.1, 2.1, 2.1 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ -15.0, 55.0, -90.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(cloud, glm::vec3({ 0.0, 45.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 40.0, 40.0, -20.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 10.0, 50.0, -40.0 }), glm::vec3({ 0.0, 5.0, 0.0 }),
+		glm::vec3({ 1.4, 1.4, 1.4 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ -20.0, 50.0, -30.0 }), glm::vec3({ 0.0, 15.0, 0.0 }),
+		glm::vec3({ 1.6, 1.6, 1.6 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 30.0, 50.0, -20.0 }), glm::vec3({ 0.0, 20.0, 0.0 }),
+		glm::vec3({ 1.3, 1.3, 1.3 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ -30.0, 45.0, 0.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 0.0, 55.0, -50.0 }), glm::vec3({ 0.0, 25.0, 0.0 }),
+		glm::vec3({ 1.8, 1.8, 1.8 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 20.0, 50.0, -50.0 }), glm::vec3({ 0.0, 35.0, 0.0 }),
 		glm::vec3({ 1.7, 1.7, 1.7 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ -5.0, 60.0, -80.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 5.0, 55.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 1.9, 1.9, 1.9 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 15.0, 50.0, -60.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 1.8, 1.8, 1.8 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 25.0, 55.0, -50.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 35.0, 50.0, -40.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 1.7, 1.7, 1.7 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 45.0, 55.0, -30.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 1.9, 1.9, 1.9 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ -40.0, 60.0, -20.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 2.1, 2.1, 2.1 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ -30.0, 50.0, -10.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 1.8, 1.8, 1.8 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ -20.0, 60.0, 0.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ -10.0, 55.0, 10.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 1.9, 1.9, 1.9 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 0.0, 50.0, 20.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 10.0, 55.0, 30.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 1.8, 1.8, 1.8 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 20.0, 50.0, 40.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 2.1, 2.1, 2.1 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 30.0, 55.0, 50.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 1.9, 1.9, 1.9 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ 40.0, 50.0, -60.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 2.0, 2.0, 2.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ -45.0, 55.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 1.8, 1.8, 1.8 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	mgr->AddObject(cloud, glm::vec3({ -35.0, 50.0, -80.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		glm::vec3({ 1.9, 1.9, 1.9 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ -50.0, 45.0, -10.0 }), glm::vec3({ 0.0, 40.0, 0.0 }),
+		glm::vec3({ 1.5, 1.5, 1.5 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
 
 
 	glutDisplayFunc(drawScene);		// 출력 콜백 함수
@@ -350,7 +380,7 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	{
 		OneMode = true;
 		ThreeMode = false;
-		camera->SetLocation({ 0.0, -30.0, 80.0 });
+		camera->SetLocation({ 0.0, -30.0, 60.0 });
 		camera->SetLookLocation({ 0.0, 0.0, 0.0 });
 	}
 	break;
@@ -557,15 +587,14 @@ void TimerFunction(int value)
 
 		if (v->GetType() == cloud) {
 			glm::mat4 orbit = glm::mat4(1.0f);
-			//orbit = glm::translate(orbit, glm::vec3(0.0, 0.0, 60.0));
+			orbit = glm::translate(orbit, glm::vec3(0.0, 0.0, -60.0));
 			orbit = glm::rotate(orbit, glm::radians(v->speed), glm::vec3(0.0, 1.0, 0.0));
-			//orbit = glm::translate(orbit, -glm::vec3(0.0, 0.0, 60.0));
+			orbit = glm::translate(orbit, -glm::vec3(0.0, 0.0, -60.0));
 			v->modelMatrix = orbit * v->modelMatrix;
 		}
 
 		else if (v->GetType() == roller_coaster_head) {
 			glm::mat4 orbit = glm::mat4(1.0f);
-
 			if (v->GetMatrix()[3].x <= -37.0 && v->GetMatrix()[3].x > -40.0 && v->GetMatrix()[3].z >= -122) {
 				orbit = glm::translate(orbit, glm::vec3(-0.05, 0.0, 0.0));
 			}
@@ -660,31 +689,64 @@ void TimerFunction(int value)
 			//평지 이동 속도
 			else if (v->GetMatrix()[3].x >= -38.0 && v->GetMatrix()[3].x <= 10.0 && v->GetMatrix()[3].z <= -120.0) {	//
 				orbit = glm::translate(orbit, glm::vec3(0.6, 0.0, 0.0));
+				std::cout << "x      " << v->GetMatrix()[3].x << std::endl;
+				std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
+				std::cout << "z      " << v->GetMatrix()[3].z << std::endl;
 			}
 			else if (v->GetMatrix()[3].x >= 10.0 && v->GetMatrix()[3].x <= 35.0 && v->GetMatrix()[3].z <= -120.0) {	//
 				orbit = glm::translate(orbit, glm::vec3(0.4, 0.0, 0.0));
+				std::cout << "x      " << v->GetMatrix()[3].x << std::endl;
+				std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
+				std::cout << "z      " << v->GetMatrix()[3].z << std::endl;
 			}
 			else if (v->GetMatrix()[3].x >= 35.0 && v->GetMatrix()[3].x <= 68.0 && v->GetMatrix()[3].z <= -120.0) {	//
 				orbit = glm::translate(orbit, glm::vec3(0.2, 0.0, 0.0));
 			}
 			else if (v->GetMatrix()[3].x <= 73.0 && v->GetMatrix()[3].z <= -120.0) {
 				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
-				orbit = glm::rotate(orbit, glm::radians(-0.7f), glm::vec3(0.0, 1.0, 0.0));
+				orbit = glm::rotate(orbit, glm::radians(-0.5f), glm::vec3(0.0, 1.0, 0.0));
 				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
-				orbit = glm::translate(orbit, glm::vec3(0.045, 0.0, 0.02));
+				orbit = glm::translate(orbit, glm::vec3(0.04, 0.0, 0.03));
 			}
-			else if (v->GetMatrix()[3].z <= -113.5 && v->GetMatrix()[3].z >= -123.0) {
+			else if (v->GetMatrix()[3].z <= -114.0 && v->GetMatrix()[3].z >= -123.0) {
 				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
-				orbit = glm::rotate(orbit, glm::radians(-0.38f), glm::vec3(0.0, 1.0, 0.0));
+				orbit = glm::rotate(orbit, glm::radians(-0.45f), glm::vec3(0.0, 1.0, 0.0));
 				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
-				orbit = glm::translate(orbit, glm::vec3(-0.014, 0.0, 0.038));
+				orbit = glm::translate(orbit, glm::vec3(-0.012, 0.0, 0.03));
+
+			}
+			else if (v->GetMatrix()[3].x >= 70.5 && v->GetMatrix()[3].z >= -114.5) {
+				glm::vec3 loc = glm::vec3(70.0, -36.0, -114.0);  // 위치
+				glm::vec3 rot = glm::vec3(0.0, 0.0, 0.0);        // 회전 (라디안)
+				glm::vec3 _size = glm::vec3(0.0005, 0.0005, 0.0005); // 크기
+
+				// 초기화
+				v->modelMatrix = glm::mat4(1.0f);
+
+				// 크기 조정
+				glm::mat4 scale = glm::scale(glm::mat4(1.0f), _size);
+
+				// 회전 설정 (XYZ 순서로 회전)
+				glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), rot.x, glm::vec3(1.0, 0.0, 0.0)); // X축 회전
+				rotation = glm::rotate(rotation, rot.y, glm::vec3(0.0, 1.0, 0.0));                 // Y축 회전
+				rotation = glm::rotate(rotation, rot.z, glm::vec3(0.0, 0.0, 1.0));                 // Z축 회전
+
+				// 위치 이동
+				glm::mat4 translation = glm::translate(glm::mat4(1.0f), loc);
+
+				// 변환 순서: Translation * Rotation * Scale
+				v->modelMatrix = translation * rotation * scale;
+
+				// 디버그 출력
+				//printMatrix(v->modelMatrix, "v->modelMatrix");
+
 			}
 			else if (v->GetMatrix()[3].x >= 20.0) {
 				orbit = glm::translate(orbit, glm::vec3(-0.3, 0.0, 0.0));
 			}
-
 			v->modelMatrix = orbit * v->modelMatrix;
-			//std::cout << "angle      " << rollerAngle << std::endl;
+
+			//prevhead = v->modelMatrix;
 		}
 		else if (v->GetType() == roller_coaster_body1) {
 			glm::mat4 orbit = glm::mat4(1.0f);

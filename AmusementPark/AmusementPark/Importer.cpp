@@ -55,7 +55,61 @@ void Importer_obj::Initialize()
 
 	ReadObj("objs/door.mtl");
 
-	ReadObj("objs/Kitty.obj");
+	ReadObj("objs/Kitty_HelloKitty.obj");
+	ReadObj("objs/MyMelody.obj");
+
+	//ReadObj("objs/hot_airballoon.obj");
+	//ReadObj("objs/hot_airballoon_basket.obj");
+
+	cubeMap_filepathes.push_back("textures/skybox/right.png");
+	cubeMap_filepathes.push_back("textures/skybox/left.png");
+	cubeMap_filepathes.push_back("textures/skybox/top.png");
+	cubeMap_filepathes.push_back("textures/skybox/bottom.png");
+	cubeMap_filepathes.push_back("textures/skybox/front.png");
+	cubeMap_filepathes.push_back("textures/skybox/back.png");
+	enviroment_Material = LoadEnviromentTextures(cubeMap_filepathes);
+}
+
+
+GLuint Importer_obj::LoadEnviromentTextures(std::vector<std::string> filepathes)
+{
+	// Load PNG
+	GLuint texture;
+
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, texture);
+
+	unsigned width, height;
+	int i = 0;
+
+	for (auto& v : filepathes) {
+		std::vector<unsigned char> image;
+		unsigned error = lodepng::decode(image, width, height, v.c_str());
+
+		if (error != 0) {
+			std::cout << "Environment image loading failed: " << v.c_str() << std::endl;
+			continue;
+		}
+
+		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
+			0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &image[0]
+		);
+
+		++i;
+	}
+
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+
+	return texture;
+}
+
+GLuint Importer_obj::GetEnviromentMaterial()
+{
+	return enviroment_Material;
 }
 
 void Importer_obj::CalculateTangentBitangent(const glm::vec3& pos1, const glm::vec3& pos2, const glm::vec3& pos3, const glm::vec2& uv1, const glm::vec2& uv2, const glm::vec2& uv3, glm::vec3& tangent, glm::vec3& bitangent)
@@ -342,6 +396,7 @@ void Importer_obj::setupMesh(VertexData* VD) {
 	glGenBuffers(1, &VD->VBO);
 	glGenBuffers(1, &VD->normalVBO);
 	glGenBuffers(1, &VD->colorVBO);
+	glGenBuffers(1, &VD->texCoordVBO);
 
 	glBindVertexArray(VD->VAO);
 

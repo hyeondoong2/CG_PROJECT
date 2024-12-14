@@ -59,7 +59,6 @@ Object::Object(int _type, glm::vec3 loc, glm::vec3 rot, glm::vec3 _size, glm::ve
 	}
 	else if (type == base) {
 		SetMesh("Base.obj");
-		SetText("textures/texture5.png");
 	}
 	else if (type == chair) {
 		SetMesh("chair.obj");
@@ -100,10 +99,21 @@ Object::Object(int _type, glm::vec3 loc, glm::vec3 rot, glm::vec3 _size, glm::ve
 	}
 	else if (type == cube) {
 		SetMesh("cube.obj");
+		//SetText("textures/ground.png");
 	}
 	else if (type == kitty) {
-		SetMesh("Kitty.obj");
+		SetMesh("Kitty_HelloKitty.obj");
 		SetText("textures/HelloKitty.png");
+	}
+	else if (type == mymelody) {
+		SetMesh("MyMelody.obj");
+		SetText("textures/MyMelody.png");
+	}
+	else if (type == balloon) {
+		SetMesh("hot_airballoon.obj");
+	}
+	else if (type == basket) {
+		SetMesh("hot_airballoon_basket.obj");
 	}
 
 }
