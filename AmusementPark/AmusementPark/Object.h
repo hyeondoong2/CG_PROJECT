@@ -11,7 +11,7 @@ enum Shape {
 	roller_coaster_head,
 	tree,door1, door2,
 	tree_leaf, tree_wood, fence, cloud, entrance, cube, kitty, mymelody,
-	balloon, basket
+	balloon, basket, chiikawa
 };
 
 

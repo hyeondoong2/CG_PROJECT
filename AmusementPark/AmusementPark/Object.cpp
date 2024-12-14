@@ -115,6 +115,9 @@ Object::Object(int _type, glm::vec3 loc, glm::vec3 rot, glm::vec3 _size, glm::ve
 	else if (type == basket) {
 		SetMesh("hot_airballoon_basket.obj");
 	}
+	else if (type == chiikawa) {
+		SetMesh("chiikawa.obj");
+	}
 
 }
 

@@ -58,8 +58,9 @@ void Importer_obj::Initialize()
 	ReadObj("objs/Kitty_HelloKitty.obj");
 	ReadObj("objs/MyMelody.obj");
 
-	//ReadObj("objs/hot_airballoon.obj");
-	//ReadObj("objs/hot_airballoon_basket.obj");
+	ReadObj("objs/hot_airballoon.obj");
+	ReadObj("objs/hot_airballoon_basket.obj");
+	ReadObj("objs/chiikawa.obj");
 
 	cubeMap_filepathes.push_back("textures/skybox/right.png");
 	cubeMap_filepathes.push_back("textures/skybox/left.png");
@@ -156,7 +157,7 @@ void Importer_obj::DeBugVertexData(VertexData* VD)
 		std::cout << v.x << " " << v.y << " " << v.z << std::endl;
 	}
 
-	std::cout << count << std::endl;
+	//std::cout << count << std::endl;
 }
 
 std::string Importer_obj::removeSubstring(const std::string& str, const std::string& toRemove)
@@ -239,7 +240,7 @@ void Importer_obj::LoadMTL(const std::string filePath)
 
 	mtlFile.close();
 
-	std::cout << "MTL File Load Complete." << std::endl;
+	//std::cout << "MTL File Load Complete." << std::endl;
 }
 
 GLuint Importer_obj::LoadTexture(const std::string filePath)

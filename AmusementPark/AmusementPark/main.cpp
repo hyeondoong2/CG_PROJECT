@@ -123,11 +123,11 @@ void main(int argc, char** argv)
 	//	glm::vec3({ 40.0, 40.0, 40.0 }), glm::vec3({ 1.0f, 1.0f, 0.8f }));
 
 
-	mgr->AddObject(mymelody, glm::vec3({-40.0, -40.0, -100.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(mymelody, glm::vec3({ -40.0, -40.0, -100.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 10.0, 10.0, 10.0 }), glm::vec3({ 1.0f, 1.0f, 1.0f }));
 
-	//mgr->AddObject(kitty, glm::vec3({ -30.0, -40.0, -100.0 }), glm::vec3({ 0.0, 0.0, 180.0 }),
-	//	glm::vec3({ 10.0, 10.0, 10.0 }), glm::vec3({ 1.0f, 1.0f, 1.0f }));
+	mgr->AddObject(kitty, glm::vec3({ 40.0, -40.0, -100.0 }), glm::vec3({ 0.0, 0.0, 180.0 }),
+		glm::vec3({ 10.0, 10.0, 10.0 }), glm::vec3({ 1.0f, 1.0f, 1.0f }));
 
 	// 땅
 	mgr->AddObject(base, glm::vec3({ 0.0, -40.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
@@ -285,10 +285,10 @@ void main(int argc, char** argv)
 	//		glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
 	//}
 
-	//mgr->AddObject(balloon, glm::vec3({ -50.0, 45.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		//glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-	//mgr->AddObject(basket, glm::vec3({ -50.0, 45.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-		//glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(balloon, glm::vec3({ -50.0, 35.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 0.05, 0.05, 0.05 }), glm::vec3({ 1.0f, 0.95f, 0.8f }));
+	mgr->AddObject(basket, glm::vec3({ -50.0, 35.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 0.05, 0.05, 0.05 }), glm::vec3({ 0.65f, 0.4f, 0.2f }));
 
 
 	// 구름
@@ -322,6 +322,17 @@ void main(int argc, char** argv)
 	mgr->AddObject(cloud, glm::vec3({ 20.0, 50.0, -50.0 }), glm::vec3({ 0.0, 35.0, 0.0 }),
 		glm::vec3({ 1.7, 1.7, 1.7 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
 	mgr->AddObject(cloud, glm::vec3({ -50.0, 45.0, -10.0 }), glm::vec3({ 0.0, 40.0, 0.0 }),
+		glm::vec3({ 1.5, 1.5, 1.5 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+
+	mgr->AddObject(cloud, glm::vec3({ -30.0, 50.0, -20.0 }), glm::vec3({ 0.0, 20.0, 0.0 }),
+		glm::vec3({ 1.3, 1.3, 1.3 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ -30.0, 45.0, -80.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 1.2, 1.2, 1.2 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 50.0, 55.0, -50.0 }), glm::vec3({ 0.0, 25.0, 0.0 }),
+		glm::vec3({ 1.8, 1.8, 1.8 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ 20.0, 50.0, -100.0 }), glm::vec3({ 0.0, 35.0, 0.0 }),
+		glm::vec3({ 1.7, 1.7, 1.7 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
+	mgr->AddObject(cloud, glm::vec3({ -50.0, 45.0, -90.0 }), glm::vec3({ 0.0, 40.0, 0.0 }),
 		glm::vec3({ 1.5, 1.5, 1.5 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
 
 
@@ -404,7 +415,7 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 		else {
 			camera->SetLocation({ 50.0, -30.0, 20.0 });
 			camera->SetLookLocation({ 50.0, 0.0, -100.0 });
-			camera->angle =70.0f;
+			camera->angle = 70.0f;
 		}
 	}
 			break;
@@ -425,7 +436,7 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 		else {
 			camera->SetLocation({ -50.0, -30.0, 50.0 });
 			camera->SetLookLocation({ -50.0, 0.0, -70.0 });
-			camera->angle = 45.0f;
+			camera->angle = 70.0f;
 		}
 	}
 			break;
@@ -439,8 +450,8 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	case 'W':
 	{
 		if (OneMode && !ThreeMode) {
-		camera->ChangeLocation({ 0.0, 0.0, -1.0 });
-		camera->ChangeLookLocation({ 0.0, 0.0, -1.0 });
+			camera->ChangeLocation({ 0.0, 0.0, -1.0 });
+			camera->ChangeLookLocation({ 0.0, 0.0, -1.0 });
 		}
 	}
 	break;
@@ -448,8 +459,8 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	case 'S':
 	{
 		if (OneMode && !ThreeMode) {
-		camera->ChangeLocation({ 0.0, 0.0,1.0 });
-		camera->ChangeLookLocation({ 0.0, 0.0,1.0 });
+			camera->ChangeLocation({ 0.0, 0.0,1.0 });
+			camera->ChangeLookLocation({ 0.0, 0.0,1.0 });
 		}
 	}
 	break;
@@ -457,8 +468,8 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	case 'A':
 	{
 		if (OneMode && !ThreeMode) {
-		camera->ChangeLocation({ -1.0, 0.0, 0.0 });
-		camera->ChangeLookLocation({ -1.0, 0.0, 0.0 });
+			camera->ChangeLocation({ -1.0, 0.0, 0.0 });
+			camera->ChangeLookLocation({ -1.0, 0.0, 0.0 });
 		}
 	}
 	break;
@@ -466,8 +477,8 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	case 'D':
 	{
 		if (OneMode && !ThreeMode) {
-		camera->ChangeLocation({ 1.0, 0.0, 0.0 });
-		camera->ChangeLookLocation({ 1.0, 0.0, 0.0 });
+			camera->ChangeLocation({ 1.0, 0.0, 0.0 });
+			camera->ChangeLookLocation({ 1.0, 0.0, 0.0 });
 		}
 	}
 	break;
@@ -551,6 +562,14 @@ void TimerFunction(int value)
 			orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
 			v->modelMatrix = orbit * v->modelMatrix;
 
+		}
+
+		else if (v->GetType() == balloon || v->GetType() == basket) {
+			glm::mat4 orbit = glm::mat4(1.0f);
+			orbit = glm::translate(orbit, glm::vec3(-30.0, 35.0, -120.0));
+			orbit = glm::rotate(orbit, glm::radians(0.1f), glm::vec3(0.0, 1.0, 0.0));
+			orbit = glm::translate(orbit, -glm::vec3(-30.0, 35.0, -120.0));
+			v->modelMatrix = orbit * v->modelMatrix;
 		}
 
 		if (v->GetType() == viking_ship) {
@@ -689,15 +708,15 @@ void TimerFunction(int value)
 			//평지 이동 속도
 			else if (v->GetMatrix()[3].x >= -38.0 && v->GetMatrix()[3].x <= 10.0 && v->GetMatrix()[3].z <= -120.0) {	//
 				orbit = glm::translate(orbit, glm::vec3(0.6, 0.0, 0.0));
-				std::cout << "x      " << v->GetMatrix()[3].x << std::endl;
+	/*			std::cout << "x      " << v->GetMatrix()[3].x << std::endl;
 				std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
-				std::cout << "z      " << v->GetMatrix()[3].z << std::endl;
+				std::cout << "z      " << v->GetMatrix()[3].z << std::endl;*/
 			}
 			else if (v->GetMatrix()[3].x >= 10.0 && v->GetMatrix()[3].x <= 35.0 && v->GetMatrix()[3].z <= -120.0) {	//
 				orbit = glm::translate(orbit, glm::vec3(0.4, 0.0, 0.0));
-				std::cout << "x      " << v->GetMatrix()[3].x << std::endl;
+			/*	std::cout << "x      " << v->GetMatrix()[3].x << std::endl;
 				std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
-				std::cout << "z      " << v->GetMatrix()[3].z << std::endl;
+				std::cout << "z      " << v->GetMatrix()[3].z << std::endl;*/
 			}
 			else if (v->GetMatrix()[3].x >= 35.0 && v->GetMatrix()[3].x <= 68.0 && v->GetMatrix()[3].z <= -120.0) {	//
 				orbit = glm::translate(orbit, glm::vec3(0.2, 0.0, 0.0));
@@ -748,49 +767,7 @@ void TimerFunction(int value)
 
 			//prevhead = v->modelMatrix;
 		}
-		else if (v->GetType() == roller_coaster_body1) {
-			glm::mat4 orbit = glm::mat4(1.0f);
-			glm::mat4 center = glm::mat4(1.0f);
-
-			if (v->GetMatrix()[3].x <= -32.0 && v->GetMatrix()[3].x > -35.0 && v->GetMatrix()[3].z >= -122) {
-				orbit = glm::translate(orbit, glm::vec3(-0.05, 0.0, 0.0));
-			}
-			else if (v->GetMatrix()[3].x > -32.0 && v->GetMatrix()[3].z >= -122) {
-				orbit = glm::translate(orbit, glm::vec3(-0.1, 0.0, 0.0));
-			}
-			else if (v->GetMatrix()[3].x > -47.0 && v->GetMatrix()[3].x <= -35.0 && v->GetMatrix()[3].y <= 22.0 && v->GetMatrix()[3].z >= -122) {
-				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
-				orbit = glm::rotate(orbit, glm::radians(0.1f), glm::vec3(0.0, 0.0, -1.0));
-				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
-				orbit = glm::translate(orbit, glm::vec3(-0.05, 0.01, 0.0));
-			}
-			else if (v->GetMatrix()[3].x > -51.0 && v->GetMatrix()[3].x <= -47.0 && v->GetMatrix()[3].z >= -122) {
-				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
-				orbit = glm::rotate(orbit, glm::radians(0.1f), glm::vec3(0.0, 0.0, -1.0));
-				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
-				orbit = glm::translate(orbit, glm::vec3(-0.07, 0.04, 0.0));
-			}
-			else if (v->GetMatrix()[3].x > -56.0 && v->GetMatrix()[3].x <= -51.0 && v->GetMatrix()[3].z >= -122) {
-				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
-				orbit = glm::rotate(orbit, glm::radians(0.15f), glm::vec3(0.0, 0.0, -1.0));
-				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
-				orbit = glm::translate(orbit, glm::vec3(-0.06, 0.04, 0.0));
-			}
-			else if (v->GetMatrix()[3].x > -59.0 && v->GetMatrix()[3].x <= -56.0 && v->GetMatrix()[3].z >= -122) {
-				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
-				orbit = glm::rotate(orbit, glm::radians(0.1f), glm::vec3(0.0, 0.0, -1.0));
-				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
-				orbit = glm::translate(orbit, glm::vec3(-0.05, 0.05, 0.0));
-			}
-			else if (v->GetMatrix()[3].x > -62.0 && v->GetMatrix()[3].x <= -59.0 && v->GetMatrix()[3].z >= -122) {
-				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
-				orbit = glm::rotate(orbit, glm::radians(0.15f), glm::vec3(0.0, 0.0, -1.0));
-				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
-				orbit = glm::translate(orbit, glm::vec3(-0.02, 0.05, 0.0));
-			}
-		
-			v->modelMatrix = orbit * v->modelMatrix;
-		}
+	
 	}
 
 	glutPostRedisplay();
