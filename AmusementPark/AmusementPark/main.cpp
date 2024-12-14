@@ -390,12 +390,12 @@ void TimerFunction(int value)
 			else if (v->GetMatrix()[3].x <= 60.0 && v->GetMatrix()[3].y >= 12.0) {
 				orbit = glm::translate(orbit, glm::vec3(0.0, -0.06, 0.0));
 			}
-			//else if (v->GetMatrix()[3].x <= 60.0 && v->GetMatrix()[3].y >= 8.0) {
-			//	orbit = glm::translate(orbit, glm::vec3(0.0, -0.3, 0.0));
-			//}
-			//else if (v->GetMatrix()[3].x <= 60.0 && v->GetMatrix()[3].y >= -8.0) {
-			//	orbit = glm::translate(orbit, glm::vec3(0.0, -0.7, 0.0));
-			//}
+			else if (v->GetMatrix()[3].x <= 60.0 && v->GetMatrix()[3].y >= 8.0) {
+				orbit = glm::translate(orbit, glm::vec3(0.0, -0.3, 0.0));
+			}
+			else if (v->GetMatrix()[3].x <= 60.0 && v->GetMatrix()[3].y >= -8.0) {
+				orbit = glm::translate(orbit, glm::vec3(0.0, -0.7, 0.0));
+			}
 			//else if (v->GetMatrix()[3].x >= -66.0 && v->GetMatrix()[3].x <= -64.8 && v->GetMatrix()[3].z <= -120.0) {	//
 			//	orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
 			//	orbit = glm::rotate(orbit, glm::radians(0.33f), glm::vec3(0.0, 0.0, 1.0));
@@ -568,12 +568,12 @@ void TimerFunction(int value)
 				std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
 				std::cout << "z      " << v->GetMatrix()[3].z << std::endl;
 			}
-			//else if (v->GetMatrix()[3].x <= 60.0 && v->GetMatrix()[3].y >= 12.0) {
-			//	orbit = glm::translate(orbit, glm::vec3(0.0, -0.3, 0.0));
-			//}
-			//else if (v->GetMatrix()[3].x <= 60.0 && v->GetMatrix()[3].y >= -6.0) {
-			//	orbit = glm::translate(orbit, glm::vec3(0.0, -0.7, 0.0));
-			//}
+			else if (v->GetMatrix()[3].x <= 60.0 && v->GetMatrix()[3].y >= 13.6) {
+				orbit = glm::translate(orbit, glm::vec3(0.0, -0.2, 0.0));
+			}
+			else if (v->GetMatrix()[3].x <= 60.0 && v->GetMatrix()[3].y >= -2.0) {
+				orbit = glm::translate(orbit, glm::vec3(0.0, -0.7, 0.0));
+			}
 			//else if (v->GetMatrix()[3].x <= 60.0 && v->GetMatrix()[3].y >= -8.0) {
 			//	orbit = glm::translate(orbit, glm::vec3(0.0, -0.5, 0.0));
 			//}
