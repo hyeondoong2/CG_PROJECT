@@ -13,7 +13,12 @@
 #include "ObjectMgr.h"
 #include "Importer.h"
 #include "Camera.h"
+#include<Windows.h>
+#include<mmsystem.h>
 #include <math.h>
+
+#pragma comment(lib,"winmm.lib")
+#define M_Run "sounds/amusementPark.wav"
 
 std::random_device rd;
 std::default_random_engine dre(rd());
@@ -337,6 +342,7 @@ void main(int argc, char** argv)
 	mgr->AddObject(cloud, glm::vec3({ -50.0, 45.0, -90.0 }), glm::vec3({ 0.0, 40.0, 0.0 }),
 		glm::vec3({ 1.5, 1.5, 1.5 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
 
+	PlaySound(TEXT(M_Run), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
 
 	glutDisplayFunc(drawScene);		// 출력 콜백 함수
 	glutMouseFunc(Mouse);
