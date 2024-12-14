@@ -121,11 +121,6 @@ void main(int argc, char** argv)
 	render->SetCamera(camera);
 	render->SetLight(light);
 
-	//mgr->AddObject(entrance, glm::vec3({ 0.0, -40.0, 0.0 }), glm::vec3({ 0.0f, 0.0f, 0.0f }),
-	//	glm::vec3({0.2, 0.2, 0.1 }), glm::vec3({ 1.0f, 1.0, 1.0 }));
-
-	//mgr->AddObject(cube, glm::vec3({ -50.0, 0.0, -30.0 }), glm::vec3({ 0.0, 90.0, 0.0 }),
-	//	glm::vec3({ 40.0, 40.0, 40.0 }), glm::vec3({ 1.0f, 1.0f, 0.8f }));
 
 
 	mgr->AddObject(mymelody, glm::vec3({ -30.0, -40.0, -135.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
@@ -133,15 +128,9 @@ void main(int argc, char** argv)
 	mgr->AddObject(kitty, glm::vec3({ 30.0, -40.0, -135.0 }), glm::vec3({ 0.0, 0.0, 180.0 }),
 		glm::vec3({ 10.0, 10.0, 10.0 }), glm::vec3({ 1.0f, 1.0f, 1.0f }));
 
-	//mgr->AddObject(chiikawa, glm::vec3({ 20.0, -10.0, -130.0 }), glm::vec3({ 0.0, 180.0, 0.0 }),
-		//glm::vec3({ 10.0, 10.0, 10.0 }), glm::vec3({ 1.0f, 1.0f, 1.0f }));
-
 	// 땅
 	mgr->AddObject(base, glm::vec3({ 0.0, -40.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 40.0, 1.0, 40.0 }), glm::vec3({ 0.6f, 0.933f, 0.565f }));
-
-	//mgr->AddObject(cube, glm::vec3({ 0.0, -40.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
-	//	glm::vec3({ 500.0, 500.0, 500.0 }), glm::vec3({ 0.678f, 0.847f, 0.902f }));
 
 	// 관람차
 	mgr->AddObject(wheel_body, glm::vec3({ 0.0, -40.0, -65.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
@@ -488,7 +477,7 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	case 'w':
 	case 'W':
 	{
-		if (OneMode && !ThreeMode) {
+		if (OneMode && !ThreeMode && !RollerCoaster && !MerryGoRound && !Viking) {
 			camera->ChangeLocation({ 0.0, 0.0, -1.0 });
 			camera->ChangeLookLocation({ 0.0, 0.0, -1.0 });
 		}
@@ -497,7 +486,7 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	case 's':
 	case 'S':
 	{
-		if (OneMode && !ThreeMode) {
+		if (OneMode && !ThreeMode && !RollerCoaster && !MerryGoRound && !Viking) {
 			camera->ChangeLocation({ 0.0, 0.0,1.0 });
 			camera->ChangeLookLocation({ 0.0, 0.0,1.0 });
 		}
@@ -506,7 +495,7 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	case 'a':
 	case 'A':
 	{
-		if (OneMode && !ThreeMode) {
+		if (OneMode && !ThreeMode && !RollerCoaster && !MerryGoRound && !Viking) {
 			camera->ChangeLocation({ -1.0, 0.0, 0.0 });
 			camera->ChangeLookLocation({ -1.0, 0.0, 0.0 });
 		}
@@ -515,7 +504,7 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	case 'd':
 	case 'D':
 	{
-		if (OneMode && !ThreeMode) {
+		if (OneMode && !ThreeMode && !RollerCoaster && !MerryGoRound && !Viking) {
 			camera->ChangeLocation({ 1.0, 0.0, 0.0 });
 			camera->ChangeLookLocation({ 1.0, 0.0, 0.0 });
 		}
@@ -532,7 +521,7 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 
 void SpecialKeyboard(int key, int x, int y) {
 	// 카메라 방향 조절
-	if (OneMode) {
+	if (OneMode && !RollerCoaster && !MerryGoRound && !Viking) {
 		switch (key) {
 		case GLUT_KEY_LEFT: {
 
