@@ -505,20 +505,20 @@ void TimerFunction(int value)
 				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
 				orbit = glm::rotate(orbit, glm::radians(0.15f), glm::vec3(0.0, 0.0, -1.0));
 				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
-				orbit = glm::translate(orbit, glm::vec3(-0.06, 0.045, 0.0));
+				orbit = glm::translate(orbit, glm::vec3(-0.06, 0.04, 0.0));
 				std::cout << "x      " << v->GetMatrix()[3].x << std::endl;
 				std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
 				std::cout << "z      " << v->GetMatrix()[3].z << std::endl;
 			}
-			//else if (v->GetMatrix()[3].x > -61.0 && v->GetMatrix()[3].x <= -50.0 && v->GetMatrix()[3].z >= -122) {
-			//	orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
-			//	orbit = glm::rotate(orbit, glm::radians(0.17f), glm::vec3(0.0, 0.0, -1.0));
-			//	orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
-			//	orbit = glm::translate(orbit, glm::vec3(-0.043, 0.058, 0.0));
-			//	std::cout << "x      " << v->GetMatrix()[3].x << std::endl;
-			//	std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
-			//	std::cout << "z      " << v->GetMatrix()[3].z << std::endl;
-			//}
+			else if (v->GetMatrix()[3].x > -61.0 && v->GetMatrix()[3].x <= -55.0 && v->GetMatrix()[3].z >= -122) {
+				orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
+				orbit = glm::rotate(orbit, glm::radians(0.09f), glm::vec3(0.0, 0.0, -1.0));
+				orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
+				orbit = glm::translate(orbit, glm::vec3(-0.043, 0.043, 0.0));
+				std::cout << "x      " << v->GetMatrix()[3].x << std::endl;
+				std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
+				std::cout << "z      " << v->GetMatrix()[3].z << std::endl;
+			}
 			//else if (v->GetMatrix()[3].x > -64.0 && v->GetMatrix()[3].x <= -61.0 && v->GetMatrix()[3].z >= -122) {
 			//	orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
 			//	orbit = glm::rotate(orbit, glm::radians(0.1f), glm::vec3(0.0, 0.0, -1.0));
