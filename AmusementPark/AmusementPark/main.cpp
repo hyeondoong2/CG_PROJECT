@@ -28,8 +28,8 @@ GLvoid Keyboard(unsigned char key, int x, int y);
 GLvoid TimerFunction(int value);
 void SpecialKeyboard(int key, int x, int y);
 
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 800
+#define WINDOW_WIDTH 900
+#define WINDOW_HEIGHT 900
 
 #define render_freq 10
 #define M_PI 3.14159265358979323846
@@ -123,11 +123,13 @@ void main(int argc, char** argv)
 	//	glm::vec3({ 40.0, 40.0, 40.0 }), glm::vec3({ 1.0f, 1.0f, 0.8f }));
 
 
-	mgr->AddObject(mymelody, glm::vec3({ -40.0, -40.0, -100.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(mymelody, glm::vec3({ -5.0, -40.0, -135.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+		glm::vec3({ 10.0, 10.0, 10.0 }), glm::vec3({ 1.0f, 1.0f, 1.0f }));
+	mgr->AddObject(kitty, glm::vec3({ 5.0, -40.0, -135.0 }), glm::vec3({ 0.0, 0.0, 180.0 }),
 		glm::vec3({ 10.0, 10.0, 10.0 }), glm::vec3({ 1.0f, 1.0f, 1.0f }));
 
-	mgr->AddObject(kitty, glm::vec3({ 40.0, -40.0, -100.0 }), glm::vec3({ 0.0, 0.0, 180.0 }),
-		glm::vec3({ 10.0, 10.0, 10.0 }), glm::vec3({ 1.0f, 1.0f, 1.0f }));
+	//mgr->AddObject(chiikawa, glm::vec3({ 20.0, -10.0, -130.0 }), glm::vec3({ 0.0, 180.0, 0.0 }),
+		//glm::vec3({ 10.0, 10.0, 10.0 }), glm::vec3({ 1.0f, 1.0f, 1.0f }));
 
 	// 땅
 	mgr->AddObject(base, glm::vec3({ 0.0, -40.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
@@ -137,9 +139,9 @@ void main(int argc, char** argv)
 	//	glm::vec3({ 500.0, 500.0, 500.0 }), glm::vec3({ 0.678f, 0.847f, 0.902f }));
 
 	// 관람차
-	mgr->AddObject(wheel_body, glm::vec3({ 0.0, -40.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(wheel_body, glm::vec3({ 0.0, -40.0, -65.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 1.0, 1.0, 1.0 }), glm::vec3({ 1.0f, 0.713f, 0.756f }));
-	mgr->AddObject(wheel_car, glm::vec3({ 0.0, -8.0, -70.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
+	mgr->AddObject(wheel_car, glm::vec3({ 0.0, -8.0, -65.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 0.8, 0.8, 0.8 }), glm::vec3({ 0.678f, 0.902f, 1.0f }));
 
 	// 바이킹
@@ -268,22 +270,22 @@ void main(int argc, char** argv)
 	}
 
 	// 왼쪽부터 오른쪽까지 울타리 추가
-	//for (int i = 0; i < 8; i++) {
-	//	float x = x_start + i * x_step;
-	//	mgr->AddObject(fence, glm::vec3({ x, -40.0f, -145.0f }), glm::vec3({ 0.0f, 270.0f, 0.0f }),
-	//		glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
-	//	mgr->AddObject(fence, glm::vec3({ x, -40.0f, 5.0f }), glm::vec3({ 0.0f, 270.0f, 0.0f }),
-	//		glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
-	//}
+	for (int i = 0; i < 8; i++) {
+		float x = x_start + i * x_step;
+		mgr->AddObject(fence, glm::vec3({ x, -40.0f, -145.0f }), glm::vec3({ 0.0f, 270.0f, 0.0f }),
+			glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
+		mgr->AddObject(fence, glm::vec3({ x, -40.0f, 5.0f }), glm::vec3({ 0.0f, 270.0f, 0.0f }),
+			glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
+	}
 
-	//// 오른쪽부터 왼쪽까지 울타리 추가 (대칭을 맞추기 위해 색상도 동일하게)
-	//for (int i = 0; i < 8; i++) {
-	//	float x = -(x_start + i * x_step);
-	//	mgr->AddObject(fence, glm::vec3({ x, -40.0f, -145.0f }), glm::vec3({ 0.0f, 270.0f, 0.0f }),
-	//		glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
-	//	mgr->AddObject(fence, glm::vec3({ x, -40.0f, 5.0f }), glm::vec3({ 0.0f, 270.0f, 0.0f }),
-	//		glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
-	//}
+	// 오른쪽부터 왼쪽까지 울타리 추가 (대칭을 맞추기 위해 색상도 동일하게)
+	for (int i = 0; i < 8; i++) {
+		float x = -(x_start + i * x_step);
+		mgr->AddObject(fence, glm::vec3({ x, -40.0f, -145.0f }), glm::vec3({ 0.0f, 270.0f, 0.0f }),
+			glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
+		mgr->AddObject(fence, glm::vec3({ x, -40.0f, 5.0f }), glm::vec3({ 0.0f, 270.0f, 0.0f }),
+			glm::vec3({ 7.0f, 7.0f, 7.0f }), colors[i]);
+	}
 
 	mgr->AddObject(balloon, glm::vec3({ -50.0, 35.0, -120.0 }), glm::vec3({ 0.0, 0.0, 0.0 }),
 		glm::vec3({ 0.05, 0.05, 0.05 }), glm::vec3({ 1.0f, 0.95f, 0.8f }));
@@ -389,60 +391,91 @@ GLvoid Keyboard(unsigned char key, int x, int y)
 	// 시점 변환
 	case '1':
 	{
-		OneMode = true;
-		ThreeMode = false;
-		camera->SetLocation({ 0.0, -30.0, 60.0 });
-		camera->SetLookLocation({ 0.0, 0.0, 0.0 });
+		if (!RollerCoaster && !MerryGoRound && !Viking) {
+			OneMode = true;
+			ThreeMode = false;
+			camera->SetLocation({ 0.0, -30.0, 60.0 });
+			camera->SetLookLocation({ 0.0, 0.0, 0.0 });
+			camera->angle = 70.0f;
+		}
 	}
 	break;
 	case '3':
 	{
-		ThreeMode = true;
-		OneMode = false;
-		camera->SetLocation({ 0.0, 100.0, 70.0 });
-		camera->SetLookLocation({ 0.0, 0.0, -30.0 });
+		if (!RollerCoaster && !MerryGoRound && !Viking) {
+			ThreeMode = true;
+			OneMode = false;
+			camera->SetLocation({ 0.0, 100.0, 70.0 });
+			camera->SetLookLocation({ 0.0, 0.0, -30.0 });
+			camera->angle = 70.0f;
+		}
 	}
 	break;
 	// 놀이기구
 	case '7': {
-		MerryGoRound = !MerryGoRound;
-		if (MerryGoRound) {
+		if (!RollerCoaster && !Viking && !ThreeMode) {
+			MerryGoRound = !MerryGoRound;
+			if (MerryGoRound) {
 
-			camera->SetLocation({ 45.0, -25.0, -42.0 });
-			camera->SetLookLocation({ 0.0, 0.0, 0.0 });
-			camera->angle = 100.0f;
-		}
-		else {
-			camera->SetLocation({ 50.0, -30.0, 20.0 });
-			camera->SetLookLocation({ 50.0, 0.0, -100.0 });
-			camera->angle = 70.0f;
+				camera->SetLocation({ 45.0, -25.0, -42.0 });
+				camera->SetLookLocation({ 0.0, 0.0, 0.0 });
+				camera->angle = 100.0f;
+			}
+			else {
+				camera->SetLocation({ 50.0, -30.0, 0.0 });
+				camera->SetLookLocation({ 50.0, 0.0, -60.0 });
+				camera->angle = 70.0f;
+			}
 		}
 	}
 			break;
 	case '8': {
-		Viking = !Viking;
-		if (Viking) {
-			glm::mat4 orbit = glm::mat4(1.0f);
-			//orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
-			orbit = glm::rotate(orbit, glm::radians(-90.0f), glm::vec3(0.0, 1.0, 0.0));
-			//orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
-			camera->camMatrix = orbit * camera->camMatrix;
-			camera->cam_Look_Matrix = orbit * camera->cam_Look_Matrix;
+		if (!RollerCoaster && !MerryGoRound && !ThreeMode) {
+			Viking = !Viking;
+			if (Viking) {
+				glm::mat4 orbit = glm::mat4(1.0f);
+				//orbit = glm::translate(orbit, glm::vec3(v->modelMatrix[3]));
+				orbit = glm::rotate(orbit, glm::radians(-90.0f), glm::vec3(0.0, 1.0, 0.0));
+				//orbit = glm::translate(orbit, glm::vec3(-v->modelMatrix[3]));
+				camera->camMatrix = orbit * camera->camMatrix;
+				camera->cam_Look_Matrix = orbit * camera->cam_Look_Matrix;
 
-			camera->SetLocation({ -50.0, -20.0, -30.0 });
-			camera->SetLookLocation({ 70.0, 0.0, -30.0 });
-			camera->angle = 100.0f;
-		}
-		else {
-			camera->SetLocation({ -50.0, -30.0, 50.0 });
-			camera->SetLookLocation({ -50.0, 0.0, -70.0 });
-			camera->angle = 70.0f;
+				camera->SetLocation({ -50.0, -20.0, -30.0 });
+				camera->SetLookLocation({ 70.0, 0.0, -30.0 });
+				camera->angle = 100.0f;
+			}
+			else {
+				camera->SetLocation({ -50.0, -30.0, 0.0 });
+				camera->SetLookLocation({ -50.0, 0.0, -120.0 });
+				camera->angle = 70.0f;
+			}
 		}
 	}
 			break;
 	case '9': {
-
-
+		if (!MerryGoRound && !Viking && !ThreeMode) {
+			RollerCoaster = !RollerCoaster;
+			if (RollerCoaster) {
+				for (auto& v : mgr->GetAllObjs()) {
+					if (v->GetType() == roller_coaster_head) {
+						camera->SetLocation({ v->modelMatrix[3].x + 10, v->modelMatrix[3].y + 10, v->modelMatrix[3].z });
+						camera->SetLookLocation({ v->modelMatrix[3].x + 10 , 0.0, -v->modelMatrix[3].z });
+						camera->angle = 100.0f;
+					}
+				}
+				glm::mat4 orbit = glm::mat4(1.0f);
+				orbit = glm::translate(orbit, glm::vec3(camera->camMatrix[3]));
+				orbit = glm::rotate(orbit, glm::radians(-90.0f), glm::vec3(0.0, 1.0, 0.0));
+				orbit = glm::translate(orbit, glm::vec3(-camera->camMatrix[3]));
+				camera->camMatrix = orbit * camera->camMatrix;
+				camera->cam_Look_Matrix = orbit * camera->cam_Look_Matrix;
+			}
+			else {
+				camera->SetLocation({ -30.0, -30.0, -80.0 });
+				camera->SetLookLocation({ -30.0, 0.0, -190.0 });
+				camera->angle = 70.0f;
+			}
+		}
 	}
 			break;
 			// 상하좌우 이동
@@ -708,15 +741,15 @@ void TimerFunction(int value)
 			//평지 이동 속도
 			else if (v->GetMatrix()[3].x >= -38.0 && v->GetMatrix()[3].x <= 10.0 && v->GetMatrix()[3].z <= -120.0) {	//
 				orbit = glm::translate(orbit, glm::vec3(0.6, 0.0, 0.0));
-	/*			std::cout << "x      " << v->GetMatrix()[3].x << std::endl;
-				std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
-				std::cout << "z      " << v->GetMatrix()[3].z << std::endl;*/
+				/*			std::cout << "x      " << v->GetMatrix()[3].x << std::endl;
+							std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
+							std::cout << "z      " << v->GetMatrix()[3].z << std::endl;*/
 			}
 			else if (v->GetMatrix()[3].x >= 10.0 && v->GetMatrix()[3].x <= 35.0 && v->GetMatrix()[3].z <= -120.0) {	//
 				orbit = glm::translate(orbit, glm::vec3(0.4, 0.0, 0.0));
-			/*	std::cout << "x      " << v->GetMatrix()[3].x << std::endl;
-				std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
-				std::cout << "z      " << v->GetMatrix()[3].z << std::endl;*/
+				/*	std::cout << "x      " << v->GetMatrix()[3].x << std::endl;
+					std::cout << "y      " << v->GetMatrix()[3].y << std::endl;
+					std::cout << "z      " << v->GetMatrix()[3].z << std::endl;*/
 			}
 			else if (v->GetMatrix()[3].x >= 35.0 && v->GetMatrix()[3].x <= 68.0 && v->GetMatrix()[3].z <= -120.0) {	//
 				orbit = glm::translate(orbit, glm::vec3(0.2, 0.0, 0.0));
@@ -741,6 +774,10 @@ void TimerFunction(int value)
 
 				// 초기화
 				v->modelMatrix = glm::mat4(1.0f);
+				if (RollerCoaster) {
+					camera->cam_Look_Matrix = glm::mat4(1.0f);
+					camera->camMatrix = glm::mat4(1.0f);
+				}
 
 				// 크기 조정
 				glm::mat4 scale = glm::scale(glm::mat4(1.0f), _size);
@@ -755,6 +792,26 @@ void TimerFunction(int value)
 
 				// 변환 순서: Translation * Rotation * Scale
 				v->modelMatrix = translation * rotation * scale;
+				if (RollerCoaster) {
+					camera->cam_Look_Matrix = translation * rotation * scale;
+					camera->camMatrix = translation * rotation * scale;
+				for (auto& v : mgr->GetAllObjs()) {
+					if (v->GetType() == roller_coaster_head) {
+						camera->SetLocation({ v->modelMatrix[3].x + 10, v->modelMatrix[3].y + 10, v->modelMatrix[3].z });
+						camera->SetLookLocation({ v->modelMatrix[3].x + 10 , 0.0, -v->modelMatrix[3].z });
+						camera->angle = 100.0f;
+					}
+				}
+				}
+
+				glm::mat4 orbit = glm::mat4(1.0f);
+				orbit = glm::translate(orbit, glm::vec3(camera->camMatrix[3]));
+				orbit = glm::rotate(orbit, glm::radians(-90.0f), glm::vec3(0.0, 1.0, 0.0));
+				orbit = glm::translate(orbit, glm::vec3(-camera->camMatrix[3]));
+				if (RollerCoaster) {
+					camera->camMatrix = orbit * camera->camMatrix;
+					camera->cam_Look_Matrix = orbit * camera->cam_Look_Matrix;
+				}
 
 				// 디버그 출력
 				//printMatrix(v->modelMatrix, "v->modelMatrix");
@@ -764,10 +821,13 @@ void TimerFunction(int value)
 				orbit = glm::translate(orbit, glm::vec3(-0.3, 0.0, 0.0));
 			}
 			v->modelMatrix = orbit * v->modelMatrix;
-
+			if (RollerCoaster) {
+				camera->cam_Look_Matrix = orbit * camera->cam_Look_Matrix;
+				camera->camMatrix = orbit * camera->camMatrix;
+			}
 			//prevhead = v->modelMatrix;
 		}
-	
+
 	}
 
 	glutPostRedisplay();

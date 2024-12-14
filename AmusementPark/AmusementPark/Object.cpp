@@ -117,6 +117,7 @@ Object::Object(int _type, glm::vec3 loc, glm::vec3 rot, glm::vec3 _size, glm::ve
 	}
 	else if (type == chiikawa) {
 		SetMesh("chiikawa.obj");
+		SetText("textures/chiikawa_face.png");
 	}
 
 }

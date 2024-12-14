@@ -42,15 +42,8 @@ void Renderer::SceneRender()
 			glDrawArrays(GL_TRIANGLES, 0, v->GetMesh()->polygon_count * 3);
 		}
 
-	/*	if (v->GetType() == kitty) {
-			glUniform1i(glGetUniformLocation(shaderProgramID, "useTexture"), GL_TRUE);
-			glBindVertexArray(v->GetMesh()->VAO);
-			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-			glDrawArrays(GL_TRIANGLES, 0, v->GetMesh()->polygon_count * 3);
-		}*/
 		else {
 			// VAO 바인딩
-			//glBindTexture(GL_TEXTURE_2D, v->text);
 			glUniform1i(glGetUniformLocation(shaderProgramID, "useTexture"), GL_FALSE);
 			glBindVertexArray(v->GetMesh()->VAO);
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -74,7 +67,7 @@ void Renderer::SceneRender()
 		// 구름의 알파값 설정
 		glUniform1i(glGetUniformLocation(shaderProgramID, "useTexture"), GL_FALSE);
 		glUniform3f(glGetUniformLocation(shaderProgramID, "incolor"), color.r, color.g, color.b);
-		glUniform1f(glGetUniformLocation(shaderProgramID, "Alpha"), 0.5f); // 투명도 설정
+		glUniform1f(glGetUniformLocation(shaderProgramID, "Alpha"), 0.3f); // 투명도 설정
 
 		glBindVertexArray(v->GetMesh()->VAO);
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);  // 사각형 매쉬의 경계도 제대로 처리되도록 설정
