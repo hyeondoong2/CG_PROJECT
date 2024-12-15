@@ -60,7 +60,7 @@ void Importer_obj::Initialize()
 
 	ReadObj("objs/hot_airballoon.obj");
 	ReadObj("objs/hot_airballoon_basket.obj");
-	ReadObj("objs/chiikawa.obj");
+	//ReadObj("objs/chiikawa.obj");
 
 	cubeMap_filepathes.push_back("textures/skybox/right.png");
 	cubeMap_filepathes.push_back("textures/skybox/left.png");
